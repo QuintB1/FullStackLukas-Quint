@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\ChampionsLeague.csproj": {}
+    "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Service\\ChampionsLeague.Service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\ChampionsLeague.csproj": {
+    "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Service\\ChampionsLeague.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\ChampionsLeague.csproj",
-        "projectName": "ChampionsLeague",
-        "projectPath": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\ChampionsLeague.csproj",
+        "projectUniqueName": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Service\\ChampionsLeague.Service.csproj",
+        "projectName": "ChampionsLeague.Service",
+        "projectPath": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Service\\ChampionsLeague.Service.csproj",
         "packagesPath": "C:\\Users\\quint\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\obj\\",
+        "outputPath": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -61,9 +61,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
