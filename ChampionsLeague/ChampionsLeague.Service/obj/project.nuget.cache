@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "X6FLSxVeMj0=",
+  "dgSpecHash": "C3Y0ClWp7wQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Service\\ChampionsLeague.Service.csproj",
   "expectedPackageFiles": [
@@ -9,8 +9,8 @@
     "C:\\Users\\quint\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\9.0.12\\microsoft.entityframeworkcore.analyzers.9.0.12.nupkg.sha512",
     "C:\\Users\\quint\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.12\\microsoft.extensions.caching.abstractions.9.0.12.nupkg.sha512",
     "C:\\Users\\quint\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.12\\microsoft.extensions.caching.memory.9.0.12.nupkg.sha512",
-    "C:\\Users\\quint\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.12\\microsoft.extensions.dependencyinjection.9.0.12.nupkg.sha512",
-    "C:\\Users\\quint\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.12\\microsoft.extensions.dependencyinjection.abstractions.9.0.12.nupkg.sha512",
+    "C:\\Users\\quint\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.13\\microsoft.extensions.dependencyinjection.9.0.13.nupkg.sha512",
+    "C:\\Users\\quint\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.13\\microsoft.extensions.dependencyinjection.abstractions.9.0.13.nupkg.sha512",
     "C:\\Users\\quint\\.nuget\\packages\\microsoft.extensions.logging\\9.0.12\\microsoft.extensions.logging.9.0.12.nupkg.sha512",
     "C:\\Users\\quint\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.12\\microsoft.extensions.logging.abstractions.9.0.12.nupkg.sha512",
     "C:\\Users\\quint\\.nuget\\packages\\microsoft.extensions.options\\9.0.12\\microsoft.extensions.options.9.0.12.nupkg.sha512",
