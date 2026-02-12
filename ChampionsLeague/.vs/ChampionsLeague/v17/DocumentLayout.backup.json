@@ -1,7 +1,32 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague\\controllers\\shoppingcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|solutionrelative:championsleague\\controllers\\shoppingcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague\\controllers\\matchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|solutionrelative:championsleague\\controllers\\matchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague\\controllers\\calendarcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|solutionrelative:championsleague\\controllers\\calendarcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague\\controllers\\cancellationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|solutionrelative:championsleague\\controllers\\cancellationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague\\controllers\\stadiumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|solutionrelative:championsleague\\controllers\\stadiumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague\\championsleague.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|solutionrelative:championsleague\\championsleague.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,6 +47,84 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ShoppingCartController.cs",
+              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Controllers\\ShoppingCartController.cs",
+              "RelativeDocumentMoniker": "ChampionsLeague\\Controllers\\ShoppingCartController.cs",
+              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Controllers\\ShoppingCartController.cs",
+              "RelativeToolTip": "ChampionsLeague\\Controllers\\ShoppingCartController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T17:14:34.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MatchController.cs",
+              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Controllers\\MatchController.cs",
+              "RelativeDocumentMoniker": "ChampionsLeague\\Controllers\\MatchController.cs",
+              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Controllers\\MatchController.cs",
+              "RelativeToolTip": "ChampionsLeague\\Controllers\\MatchController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T17:13:02.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CalendarController.cs",
+              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Controllers\\CalendarController.cs",
+              "RelativeDocumentMoniker": "ChampionsLeague\\Controllers\\CalendarController.cs",
+              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Controllers\\CalendarController.cs",
+              "RelativeToolTip": "ChampionsLeague\\Controllers\\CalendarController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T17:10:34.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CancellationController.cs",
+              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Controllers\\CancellationController.cs",
+              "RelativeDocumentMoniker": "ChampionsLeague\\Controllers\\CancellationController.cs",
+              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Controllers\\CancellationController.cs",
+              "RelativeToolTip": "ChampionsLeague\\Controllers\\CancellationController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T17:06:14.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StadiumController.cs",
+              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Controllers\\StadiumController.cs",
+              "RelativeDocumentMoniker": "ChampionsLeague\\Controllers\\StadiumController.cs",
+              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Controllers\\StadiumController.cs*",
+              "RelativeToolTip": "ChampionsLeague\\Controllers\\StadiumController.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T17:03:16.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ChampionsLeague.csproj",
+              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\ChampionsLeague.csproj",
+              "RelativeDocumentMoniker": "ChampionsLeague\\ChampionsLeague.csproj",
+              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\ChampionsLeague.csproj",
+              "RelativeToolTip": "ChampionsLeague\\ChampionsLeague.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-11T10:55:01.465Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{A569174E-38A8-4FF9-8CA4-92E6D6255F52}|ChampionsLeague\\ChampionsLeague.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague\\data\\authdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A569174E-38A8-4FF9-8CA4-92E6D6255F52}|ChampionsLeague\\ChampionsLeague.csproj|solutionrelative:championsleague\\data\\authdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A569174E-38A8-4FF9-8CA4-92E6D6255F52}|ChampionsLeague\\ChampionsLeague.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague\\championsleague.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{A569174E-38A8-4FF9-8CA4-92E6D6255F52}|ChampionsLeague\\ChampionsLeague.csproj|solutionrelative:championsleague\\championsleague.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,34 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Data\\AuthDbContext.cs",
-              "RelativeDocumentMoniker": "ChampionsLeague\\Data\\AuthDbContext.cs",
-              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Data\\AuthDbContext.cs",
-              "RelativeToolTip": "ChampionsLeague\\Data\\AuthDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-11T08:18:39.506Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ChampionsLeague",
-              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\ChampionsLeague.csproj",
-              "RelativeDocumentMoniker": "ChampionsLeague\\ChampionsLeague.csproj",
-              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\ChampionsLeague.csproj",
-              "RelativeToolTip": "ChampionsLeague\\ChampionsLeague.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-02-11T08:17:35.397Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
