@@ -1,7 +1,32 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|solutionrelative:championsleague\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|solutionrelative:championsleague\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|solutionrelative:championsleague\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D2C7C8B-275F-4AE7-B81F-6C5539539C2D}|ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague.domain\\championsleague.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{7D2C7C8B-275F-4AE7-B81F-6C5539539C2D}|ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj|solutionrelative:championsleague.domain\\championsleague.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D50CC754-22BE-408E-8CB3-D57956C7F28C}|ChampionsLeague\\ChampionsLeague.csproj|solutionrelative:championsleague\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F7A111E-169D-4FE8-8CEF-C24C9442A7AB}|ChampionsLeague.Repository\\ChampionsLeague.Repository.csproj|c:\\users\\quint\\onedrive\\desktop\\advanced programming\\fullstacklukas-quint\\championsleague\\championsleague.repository\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F7A111E-169D-4FE8-8CEF-C24C9442A7AB}|ChampionsLeague.Repository\\ChampionsLeague.Repository.csproj|solutionrelative:championsleague.repository\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +34,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\appsettings.json",
+              "RelativeDocumentMoniker": "ChampionsLeague\\appsettings.json",
+              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\appsettings.json",
+              "RelativeToolTip": "ChampionsLeague\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-12T17:54:21.022Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Program.cs",
+              "RelativeDocumentMoniker": "ChampionsLeague\\Program.cs",
+              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Program.cs",
+              "RelativeToolTip": "ChampionsLeague\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T17:50:23.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "ChampionsLeague\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "ChampionsLeague\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T17:49:02.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ChampionsLeague.Domain",
+              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj",
+              "RelativeDocumentMoniker": "ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj",
+              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj",
+              "RelativeToolTip": "ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-12T17:35:08.528Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -22,6 +99,32 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ChampionsLeague\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ChampionsLeague\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAB/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-12T17:24:20.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Repository\\Class1.cs",
+              "RelativeDocumentMoniker": "ChampionsLeague.Repository\\Class1.cs",
+              "ToolTip": "C:\\Users\\quint\\OneDrive\\Desktop\\Advanced programming\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Repository\\Class1.cs",
+              "RelativeToolTip": "ChampionsLeague.Repository\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T17:22:54.116Z",
+              "EditorCaption": ""
             }
           ]
         }
