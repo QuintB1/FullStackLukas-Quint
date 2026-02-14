@@ -1,0 +1,12 @@
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\bin\Debug\net9.0\ChampionsLeague.Repository.deps.json
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\bin\Debug\net9.0\ChampionsLeague.Repository.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\bin\Debug\net9.0\ChampionsLeague.Repository.pdb
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ChampionsLeague.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ChampionsLeague.Repository.AssemblyInfoInputs.cache
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ChampionsLeague.Repository.AssemblyInfo.cs
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ChampionsLeague.Repository.csproj.CoreCompileInputs.cache
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ChampionsLeague.Repository.sourcelink.json
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ChampionsLeague.Repository.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\refint\ChampionsLeague.Repository.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ChampionsLeague.Repository.pdb
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ref\ChampionsLeague.Repository.dll

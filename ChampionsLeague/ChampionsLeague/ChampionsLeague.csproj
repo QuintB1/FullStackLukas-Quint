@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChampionsLeague.Repository\ChampionsLeague.Repository.csproj" />
+    <ProjectReference Include="..\ChampionsLeague.Domain\ChampionsLeague.Domain.csproj" />
     <ProjectReference Include="..\ChampionsLeague.Services\ChampionsLeague.Services.csproj" />
   </ItemGroup>
 
