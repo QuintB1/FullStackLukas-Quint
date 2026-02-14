@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v9.0": {
       "ChampionsLeague/1.0.0": {
         "dependencies": {
-          "ChampionsLeague.Repository": "1.0.0",
+          "ChampionsLeague.Domain": "1.0.0",
           "ChampionsLeague.Services": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "9.0.10",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "9.0.10",
@@ -1107,7 +1107,18 @@
           }
         }
       },
+      "ChampionsLeague.Domain/1.0.0": {
+        "runtime": {
+          "ChampionsLeague.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "ChampionsLeague.Repository/1.0.0": {
+        "dependencies": {
+          "ChampionsLeague.Domain": "1.0.0"
+        },
         "runtime": {
           "ChampionsLeague.Repository.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -1116,6 +1127,10 @@
         }
       },
       "ChampionsLeague.Services/1.0.0": {
+        "dependencies": {
+          "ChampionsLeague.Domain": "1.0.0",
+          "ChampionsLeague.Repository": "1.0.0"
+        },
         "runtime": {
           "ChampionsLeague.Services.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -1746,6 +1761,11 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
+    },
+    "ChampionsLeague.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "ChampionsLeague.Repository/1.0.0": {
       "type": "project",

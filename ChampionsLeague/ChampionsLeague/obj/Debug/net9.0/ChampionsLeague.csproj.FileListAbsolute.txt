@@ -908,3 +908,5 @@ C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\obj\Debug\net9.0\ChampionsLeague.pdb
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\obj\Debug\net9.0\ChampionsLeague.genruntimeconfig.cache
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\obj\Debug\net9.0\ref\ChampionsLeague.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\bin\Debug\net9.0\ChampionsLeague.Domain.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\bin\Debug\net9.0\ChampionsLeague.Domain.pdb

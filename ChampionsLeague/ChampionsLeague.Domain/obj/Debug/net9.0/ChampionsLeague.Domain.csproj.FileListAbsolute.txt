@@ -1,0 +1,14 @@
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\bin\Debug\net9.0\ChampionsLeague.Domain.deps.json
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\bin\Debug\net9.0\ChampionsLeague.Domain.runtimeconfig.json
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\bin\Debug\net9.0\ChampionsLeague.Domain.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\bin\Debug\net9.0\ChampionsLeague.Domain.pdb
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\ChampionsLeague.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\ChampionsLeague.Domain.AssemblyInfoInputs.cache
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\ChampionsLeague.Domain.AssemblyInfo.cs
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\ChampionsLeague.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\ChampionsLeague.Domain.sourcelink.json
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\ChampionsLeague.Domain.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\refint\ChampionsLeague.Domain.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\ChampionsLeague.Domain.pdb
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\ChampionsLeague.Domain.genruntimeconfig.cache
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\ref\ChampionsLeague.Domain.dll

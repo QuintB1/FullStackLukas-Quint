@@ -10,3 +10,7 @@ C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\refint\ChampionsLeague.Repository.dll
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ChampionsLeague.Repository.pdb
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ref\ChampionsLeague.Repository.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\bin\Debug\net9.0\ChampionsLeague.Domain.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\bin\Debug\net9.0\ChampionsLeague.Domain.pdb
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ChampionsLeague.Repository.csproj.AssemblyReference.cache
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\Champion.7751D0D9.Up2Date

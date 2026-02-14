@@ -10,3 +10,9 @@ C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\refint\ChampionsLeague.Services.dll
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.pdb
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ref\ChampionsLeague.Services.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Domain.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Repository.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Domain.pdb
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Repository.pdb
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.csproj.AssemblyReference.cache
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\Champion.9EE3A2EA.Up2Date
