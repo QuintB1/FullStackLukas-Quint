@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ChampionsLeague.Domain.Entities
 {
-    public partial class Order
+    public partial class Product
     {
-        public int UserId { get; set; }
-        public int OrderId { get; set; }
-        public DateOnly OrderDate { get; set; }
+        public int ProductId { get; set; }
+        public decimal UnitPrice { get; set; }
+        public DateOnly StartDate { get; set; }
         public virtual ICollection<OrderLine> OrderLines { get; set; } = new List<OrderLine>();
     }
 }
