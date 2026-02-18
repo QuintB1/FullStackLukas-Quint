@@ -910,3 +910,11 @@ C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\obj\Debug\net9.0\ref\ChampionsLeague.dll
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\bin\Debug\net9.0\ChampionsLeague.Domain.dll
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\bin\Debug\net9.0\ChampionsLeague.Domain.pdb
+C:\Users\quint\OneDrive\Desktop\Advanced programming\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\bin\Debug\net9.0\System.Text.Json.dll
+C:\Users\quint\OneDrive\Desktop\Advanced programming\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\bin\Debug\net9.0\ChampionsLeague.Domain.dll
+C:\Users\quint\OneDrive\Desktop\Advanced programming\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\bin\Debug\net9.0\ChampionsLeague.Repository.dll
+C:\Users\quint\OneDrive\Desktop\Advanced programming\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\bin\Debug\net9.0\ChampionsLeague.Services.dll
+C:\Users\quint\OneDrive\Desktop\Advanced programming\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\bin\Debug\net9.0\ChampionsLeague.Domain.pdb
+C:\Users\quint\OneDrive\Desktop\Advanced programming\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\bin\Debug\net9.0\ChampionsLeague.Services.pdb
+C:\Users\quint\OneDrive\Desktop\Advanced programming\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\bin\Debug\net9.0\ChampionsLeague.Repository.pdb
+C:\Users\quint\OneDrive\Desktop\Advanced programming\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague\bin\Debug\net9.0\AutoMapper.dll

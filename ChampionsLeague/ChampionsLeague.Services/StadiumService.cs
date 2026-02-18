@@ -1,41 +1,38 @@
 ﻿using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.Repository.Interfaces;
+using ChampionsLeague.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChampionsLeague.Repository
+namespace ChampionsLeague.Services
 {
-    public class OrderDAO : IDAO<Order>
+    public class StadiumService : IService<Stadium>
     {
-        private IDAO<Order> _orderDAO;
-        public OrderDAO(IDAO<Order> dAO) {
-            _orderDAO = dAO;
-        }
-
-        public Task AddAsync(Order entity)
+        private IDAO<Stadium> StadiumDAO;
+        public Task AddAsync(Stadium entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Order entity)
+        public Task DeleteAsync(Stadium entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task FindByAsync(int UserId)
+        public Task<Stadium?> FindByIdAsync(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Order>?> GetAllAsync()
+        public Task<IEnumerable<Stadium>> GetAllAsync()
         {
-            return _orderDAO.GetAllAsync();
+            throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Order entity)
+        public Task UpdateAsync(Stadium entity)
         {
             throw new NotImplementedException();
         }
