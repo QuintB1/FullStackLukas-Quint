@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ChampionsLeague.Domain.Entities
+namespace ChampionsLeague.Domain.Entities;
+
+public partial class Order
 {
-    public partial class Order
-    {
-        public int UserId { get; set; }
-        public int OrderId { get; set; }
-        public DateOnly OrderDate { get; set; }
-        public virtual ICollection<OrderLine> OrderLines { get; set; } = new List<OrderLine>();
-    }
+    public int OrderId { get; set; }
+
+    public DateOnly OrderDate { get; set; }
+
+    public string UserId { get; set; } = null!;
+
+    public virtual ICollection<OrderLine> OrderLines { get; set; } = new List<OrderLine>();
+
+    public virtual AspNetUser User { get; set; } = null!;
 }

@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ChampionsLeague.Domain.Entities
+namespace ChampionsLeague.Domain.Entities;
+
+public partial class Match
 {
-    public partial class Match
-    {
-        public DateOnly Date { get; set; }
-        public int HomeClub {  get; set; }
-        public int AwayClub { get; set; }
-        public int StadiumId { get; set; }
-        public int MatchId { get; set; }
-        public virtual Stadium StadiumNrNavigation { get; set; } = null!;
-        public virtual Club ClubNrNavigation { get; set; } = null!;
-    }
+    public int MatchId { get; set; }
+
+    public DateOnly MatchDate { get; set; }
+
+    public int HomeClub { get; set; }
+
+    public int AwayClub { get; set; }
+
+    public int StadiumId { get; set; }
+
+    public virtual Club AwayClubNavigation { get; set; } = null!;
+
+    public virtual Club HomeClubNavigation { get; set; } = null!;
+
+    public virtual Stadium Stadium { get; set; } = null!;
+
+    public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }
