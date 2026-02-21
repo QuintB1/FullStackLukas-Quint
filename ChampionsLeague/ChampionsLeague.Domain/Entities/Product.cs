@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ChampionsLeague.Domain.Entities
+namespace ChampionsLeague.Domain.Entities;
+
+public partial class Product
 {
-    public partial class Product
-    {
-        public int ProductId { get; set; }
-        public decimal UnitPrice { get; set; }
-        public DateOnly StartDate { get; set; }
-        public virtual ICollection<OrderLine> OrderLines { get; set; } = new List<OrderLine>();
-    }
+    public int ProductId { get; set; }
+
+    public decimal UnitPrice { get; set; }
+
+    public DateOnly StartDate { get; set; }
+
+    public virtual ICollection<OrderLine> OrderLines { get; set; } = new List<OrderLine>();
+
+    public virtual ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
+
+    public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

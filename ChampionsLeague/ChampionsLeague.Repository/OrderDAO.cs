@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 
 namespace ChampionsLeague.Repository
 {
-    internal class OrderDAO : IDAO<Order>
+    public class OrderDAO : IDAO<Order>
     {
-        public OrderDAO() { }
+        private IDAO<Order> _orderDAO;
+        public OrderDAO(IDAO<Order> dAO) {
+            _orderDAO = dAO;
+        }
 
         public Task AddAsync(Order entity)
         {
@@ -29,7 +32,7 @@ namespace ChampionsLeague.Repository
 
         public Task<IEnumerable<Order>?> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return _orderDAO.GetAllAsync();
         }
 
         public Task UpdateAsync(Order entity)

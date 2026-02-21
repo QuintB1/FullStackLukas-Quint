@@ -1,4 +1,5 @@
 ﻿using ChampionsLeague.Domain.Entities;
+using ChampionsLeague.Repository.Interfaces;
 using ChampionsLeague.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,12 @@ namespace ChampionsLeague.Services
 {
     public class OrderService : IService<Order>
     {
+        private IDAO<Order> OrderDAO;
+    
+        public OrderService(IDAO<Order> DAO)
+        {
+            OrderDAO = DAO;
+        }
         public Task AddAsync(Order entity)
         {
             throw new NotImplementedException();
@@ -25,9 +32,9 @@ namespace ChampionsLeague.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Order>> GetAllAsync()
+        public async Task<IEnumerable<Order>?> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await OrderDAO.GetAllAsync();
         }
 
         public Task UpdateAsync(Order entity)
