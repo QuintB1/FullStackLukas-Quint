@@ -27,3 +27,4 @@ C:\Users\quint\OneDrive\Desktop\Advanced programming\FullStackLukas-Quint\Champi
 C:\Users\quint\OneDrive\Desktop\Advanced programming\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\ChampionsLeague.Domain.pdb
 C:\Users\quint\OneDrive\Desktop\Advanced programming\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\ChampionsLeague.Domain.genruntimeconfig.cache
 C:\Users\quint\OneDrive\Desktop\Advanced programming\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\ref\ChampionsLeague.Domain.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Domain\obj\Debug\net9.0\ChampionsLeague.Domain.csproj.AssemblyReference.cache
