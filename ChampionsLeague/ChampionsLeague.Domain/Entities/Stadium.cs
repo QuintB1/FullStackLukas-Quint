@@ -13,6 +13,8 @@ public partial class Stadium
 
     public int SubscriptionSeats { get; set; }
 
+    public virtual ICollection<Club> Clubs { get; set; } = new List<Club>();
+
     public virtual ICollection<Match> Matches { get; set; } = new List<Match>();
 
     public virtual ICollection<StadiumSection> StadiumSections { get; set; } = new List<StadiumSection>();
