@@ -1,4 +1,4 @@
-﻿using ChampionsLeague.Domain.Entities;
+﻿using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository.Interfaces;
 using ChampionsLeague.Services.Interfaces;
 using System;
@@ -38,6 +38,11 @@ namespace ChampionsLeague.Services
         }
 
         public Task UpdateAsync(Order entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<Order?> IService<Order>.FindByIdAsync(int Id)
         {
             throw new NotImplementedException();
         }

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using ChampionsLeague.Domain.Entities;
+using ChampionsLeague.Domain.EntitiesDB;
 using Microsoft.EntityFrameworkCore;
 
-namespace ChampionsLeague.Domain.Data;
+namespace ChampionsLeague.Domain.DataDB;
 
-public partial class StudentDbContext : DbContext
+public partial class ChampionsLeagueDbContext : DbContext
 {
-    public StudentDbContext()
+    public ChampionsLeagueDbContext()
     {
     }
 
-    public StudentDbContext(DbContextOptions<StudentDbContext> options)
+    public ChampionsLeagueDbContext(DbContextOptions<ChampionsLeagueDbContext> options)
         : base(options)
     {
     }
@@ -134,9 +134,14 @@ public partial class StudentDbContext : DbContext
             entity.Property(e => e.Address)
                 .HasMaxLength(100)
                 .IsUnicode(false);
+            entity.Property(e => e.HomeStadiumId).HasColumnName("HomeStadiumID");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+
+            entity.HasOne(d => d.HomeStadium).WithMany(p => p.Clubs)
+                .HasForeignKey(d => d.HomeStadiumId)
+                .HasConstraintName("FK_Team_HomeStadium");
         });
 
         modelBuilder.Entity<Match>(entity =>
@@ -169,6 +174,10 @@ public partial class StudentDbContext : DbContext
             entity.HasKey(e => e.OrderId).HasName("PK__Orders__C3905BAF67098B15");
 
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
+            entity.Property(e => e.Status)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasDefaultValue("Cart");
             entity.Property(e => e.UserId).HasMaxLength(450);
 
             entity.HasOne(d => d.User).WithMany(p => p.Orders)

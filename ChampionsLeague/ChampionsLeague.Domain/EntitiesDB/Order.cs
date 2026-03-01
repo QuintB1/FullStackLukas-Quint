@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ChampionsLeague.Domain.Entities;
+namespace ChampionsLeague.Domain.EntitiesDB;
 
 public partial class Order
 {
@@ -10,6 +10,8 @@ public partial class Order
     public DateOnly OrderDate { get; set; }
 
     public string UserId { get; set; } = null!;
+
+    public string Status { get; set; } = null!;
 
     public virtual ICollection<OrderLine> OrderLines { get; set; } = new List<OrderLine>();
 

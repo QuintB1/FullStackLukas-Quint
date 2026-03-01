@@ -1,41 +1,36 @@
 ﻿using ChampionsLeague.Domain.EntitiesDB;
-using ChampionsLeague.Repository.Interfaces;
+using ChampionsLeague.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChampionsLeague.Repository
+namespace ChampionsLeague.Services
 {
-    public class StadiumDAO : IDAO<Stadium>
+    public class ClubService : IService<Club>
     {
-        private IDAO<Stadium> dAO;
-        public StadiumDAO(IDAO<Stadium> stadium) {
-            dAO = stadium;
-           }
-
-        public Task AddAsync(Stadium entity)
+        public Task AddAsync(Club entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Stadium entity)
+        public Task DeleteAsync(Club entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task FindByAsync(int Id)
+        public Task<Club?> FindByIdAsync(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Stadium>?> GetAllAsync()
+        public Task<IEnumerable<Club>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Stadium entity)
+        public Task UpdateAsync(Club entity)
         {
             throw new NotImplementedException();
         }
