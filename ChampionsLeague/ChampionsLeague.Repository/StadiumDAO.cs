@@ -8,34 +8,34 @@ using System.Threading.Tasks;
 
 namespace ChampionsLeague.Repository
 {
-    public class OrderDAO : IDAO<Order>
+    public class StadiumDAO : IDAO<Stadium>
     {
-        private IDAO<Order> orderDAO;
-        public OrderDAO(IDAO<Order> dAO) {
-            orderDAO = dAO;
-        }
+        private IDAO<Stadium> dAO;
+        public StadiumDAO(IDAO<Stadium> stadium) {
+            dAO = stadium;
+           }
 
-        public Task AddAsync(Order entity)
+        public Task AddAsync(Stadium entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Order entity)
+        public Task DeleteAsync(Stadium entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task FindByAsync(int UserId)
+        public Task FindByAsync(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Order>?> GetAllAsync()
+        public Task<IEnumerable<Stadium>?> GetAllAsync()
         {
-            return orderDAO.GetAllAsync();
+            throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Order entity)
+        public Task UpdateAsync(Stadium entity)
         {
             throw new NotImplementedException();
         }

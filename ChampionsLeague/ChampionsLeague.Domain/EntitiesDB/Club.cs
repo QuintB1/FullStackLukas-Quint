@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ChampionsLeague.Domain.Entities;
+namespace ChampionsLeague.Domain.EntitiesDB;
 
 public partial class Club
 {
@@ -10,6 +10,10 @@ public partial class Club
     public string Name { get; set; } = null!;
 
     public string? Address { get; set; }
+
+    public int? HomeStadiumId { get; set; }
+
+    public virtual Stadium? HomeStadium { get; set; }
 
     public virtual ICollection<Match> MatchAwayClubNavigations { get; set; } = new List<Match>();
 
