@@ -1,4 +1,9 @@
 using ChampionsLeague.Data;
+using ChampionsLeague.Domain.EntitiesDB;
+using ChampionsLeague.Repository;
+using ChampionsLeague.Repository.Interfaces;
+using ChampionsLeague.Services;
+using ChampionsLeague.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +17,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddScoped<IService<Match>, MatchService>();
+builder.Services.AddScoped<IDAO<Match>, MatchDAO>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
