@@ -18,9 +18,6 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddScoped<IService<Match>, MatchService>();
-builder.Services.AddScoped<IDAO<Match>, MatchDAO>();
-
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

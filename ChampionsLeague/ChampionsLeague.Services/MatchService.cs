@@ -1,4 +1,5 @@
-﻿using ChampionsLeague.Domain.EntitiesDB;
+﻿using ChampionsLeague.Domain.DataDB;
+using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository.Interfaces;
 using ChampionsLeague.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +13,10 @@ namespace ChampionsLeague.Services
 {
     public class MatchService : IService<Match>
     {
-        private IDAO<Match> _matchDAO;
+        private IDAO<Match> matchDAO;
         public MatchService(IDAO<Match> context)
         {
-            _matchDAO = context;
+            matchDAO = context;
         }
 
         public Task AddAsync(Match entity)
@@ -35,7 +36,7 @@ namespace ChampionsLeague.Services
 
         public async Task<IEnumerable<Match>> GetAllAsync()
         {
-            return await _matchDAO.GetAllAsync();
+            return await matchDAO.GetAllAsync();
         }
 
         public Task UpdateAsync(Match entity)

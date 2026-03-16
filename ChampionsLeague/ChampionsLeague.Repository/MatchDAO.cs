@@ -1,4 +1,5 @@
-﻿using ChampionsLeague.Domain.EntitiesDB;
+﻿using ChampionsLeague.Domain.DataDB;
+using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,6 +12,11 @@ namespace ChampionsLeague.Repository
 {
     public class MatchDAO : IDAO<Match>
     {
+        private IDAO<Match> matchDAO;
+        public MatchDAO(IDAO<Match> dAO)
+        {
+            matchDAO = dAO;
+        }
         public Task AddAsync(Match entity)
         {
             throw new NotImplementedException();
@@ -26,9 +32,9 @@ namespace ChampionsLeague.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Match>?> GetAllAsync()
+        public Task<IEnumerable<Match>?> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return matchDAO.GetAllAsync();
         }
 
         public Task UpdateAsync(Match entity)

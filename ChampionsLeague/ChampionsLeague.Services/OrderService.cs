@@ -11,11 +11,11 @@ namespace ChampionsLeague.Services
 {
     public class OrderService : IService<Order>
     {
-        private IDAO<Order> OrderDAO;
+        private IDAO<Order> orderDAO;
     
         public OrderService(IDAO<Order> DAO)
         {
-            OrderDAO = DAO;
+            orderDAO = DAO;
         }
         public Task AddAsync(Order entity)
         {
@@ -34,7 +34,7 @@ namespace ChampionsLeague.Services
 
         public async Task<IEnumerable<Order>?> GetAllAsync()
         {
-            return await OrderDAO.GetAllAsync();
+            return await orderDAO.GetAllAsync();
         }
 
         public Task UpdateAsync(Order entity)
