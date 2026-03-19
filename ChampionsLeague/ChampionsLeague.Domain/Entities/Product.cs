@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ChampionsLeague.Domain.EntitiesDB;
+namespace ChampionsLeague.Domain.Entities;
 
 public partial class Product
 {
@@ -9,7 +9,9 @@ public partial class Product
 
     public decimal UnitPrice { get; set; }
 
-    public DateOnly StartDate { get; set; }
+    public string Name { get; set; } = null!;
+
+    public string Type { get; set; } = null!;
 
     public virtual ICollection<OrderLine> OrderLines { get; set; } = new List<OrderLine>();
 

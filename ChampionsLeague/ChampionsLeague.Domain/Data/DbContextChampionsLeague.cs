@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using ChampionsLeague.Domain.EntitiesDB;
+using ChampionsLeague.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ChampionsLeague.Domain.DataDB;
+namespace ChampionsLeague.Domain.Data;
 
-public partial class ChampionsLeagueDbContext : DbContext
+public partial class DbContext : DbContext
 {
-    public ChampionsLeagueDbContext()
+    public DbContext()
     {
     }
 
-    public ChampionsLeagueDbContext(DbContextOptions<ChampionsLeagueDbContext> options)
+    public DbContext(DbContextOptions<DbContext> options)
         : base(options)
     {
     }
@@ -37,6 +37,8 @@ public partial class ChampionsLeagueDbContext : DbContext
     public virtual DbSet<OrderLine> OrderLines { get; set; }
 
     public virtual DbSet<Product> Products { get; set; }
+
+    public virtual DbSet<Seat> Seats { get; set; }
 
     public virtual DbSet<Stadium> Stadia { get; set; }
 
@@ -192,7 +194,6 @@ public partial class ChampionsLeagueDbContext : DbContext
             entity.ToTable("OrderLine");
 
             entity.Property(e => e.LineId).HasColumnName("LineID");
-            entity.Property(e => e.Active).HasDefaultValue(true);
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
@@ -213,7 +214,30 @@ public partial class ChampionsLeagueDbContext : DbContext
             entity.ToTable("Product");
 
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
+            entity.Property(e => e.Name)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.Type)
+                .HasMaxLength(20)
+                .IsUnicode(false);
             entity.Property(e => e.UnitPrice).HasColumnType("decimal(8, 2)");
+        });
+
+        modelBuilder.Entity<Seat>(entity =>
+        {
+            entity.HasKey(e => e.SeatId).HasName("PK__Seat__311713D3A6402C8C");
+
+            entity.ToTable("Seat");
+
+            entity.HasIndex(e => new { e.SectionId, e.SeatNumber }, "UQ_Seat_Section_SeatNumber").IsUnique();
+
+            entity.Property(e => e.SeatId).HasColumnName("SeatID");
+            entity.Property(e => e.SectionId).HasColumnName("SectionID");
+
+            entity.HasOne(d => d.Section).WithMany(p => p.Seats)
+                .HasForeignKey(d => d.SectionId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Seat_Section");
         });
 
         modelBuilder.Entity<Stadium>(entity =>
@@ -250,12 +274,15 @@ public partial class ChampionsLeagueDbContext : DbContext
 
         modelBuilder.Entity<Subscription>(entity =>
         {
-            entity.HasKey(e => new { e.ClubId, e.ProductId });
+            entity.HasKey(e => e.SubscriptionId).HasName("PK__Subscription");
 
             entity.ToTable("Subscription");
 
+            entity.Property(e => e.SubscriptionId).HasColumnName("SubscriptionID");
+            entity.Property(e => e.Active).HasDefaultValue(true);
             entity.Property(e => e.ClubId).HasColumnName("ClubID");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
+            entity.Property(e => e.SeatId).HasColumnName("SeatID");
 
             entity.HasOne(d => d.Club).WithMany(p => p.Subscriptions)
                 .HasForeignKey(d => d.ClubId)
@@ -264,17 +291,22 @@ public partial class ChampionsLeagueDbContext : DbContext
             entity.HasOne(d => d.Product).WithMany(p => p.Subscriptions)
                 .HasForeignKey(d => d.ProductId)
                 .HasConstraintName("FK_Sub_Product");
+
+            entity.HasOne(d => d.Seat).WithMany(p => p.Subscriptions)
+                .HasForeignKey(d => d.SeatId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Subscription_Seat");
         });
 
         modelBuilder.Entity<Ticket>(entity =>
         {
-            entity.HasKey(e => new { e.MatchId, e.SectionId, e.SeatNr });
-
             entity.ToTable("Ticket");
 
+            entity.Property(e => e.TicketId).HasColumnName("TicketID");
+            entity.Property(e => e.Active).HasDefaultValue(true);
             entity.Property(e => e.MatchId).HasColumnName("MatchID");
-            entity.Property(e => e.SectionId).HasColumnName("SectionID");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
+            entity.Property(e => e.SeatId).HasColumnName("SeatID");
 
             entity.HasOne(d => d.Match).WithMany(p => p.Tickets)
                 .HasForeignKey(d => d.MatchId)
@@ -285,10 +317,10 @@ public partial class ChampionsLeagueDbContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Ticket_Product");
 
-            entity.HasOne(d => d.Section).WithMany(p => p.Tickets)
-                .HasForeignKey(d => d.SectionId)
+            entity.HasOne(d => d.Seat).WithMany(p => p.Tickets)
+                .HasForeignKey(d => d.SeatId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Ticket_Section");
+                .HasConstraintName("FK_Ticket_Seat");
         });
 
         OnModelCreatingPartial(modelBuilder);

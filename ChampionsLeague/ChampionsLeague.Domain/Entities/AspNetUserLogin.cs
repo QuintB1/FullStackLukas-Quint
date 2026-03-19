@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ChampionsLeague.Domain.EntitiesDB;
+namespace ChampionsLeague.Domain.Entities;
 
 public partial class AspNetUserLogin
 {
