@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChampionsLeague.Domain.Data;
 
-public partial class DbContext : DbContext
+public partial class DbContextChampionsLeague : DbContext
 {
-    public DbContext()
+    public DbContextChampionsLeague()
     {
     }
 
-    public DbContext(DbContextOptions<DbContext> options)
+    public DbContextChampionsLeague(DbContextOptions<DbContext> options)
         : base(options)
     {
     }

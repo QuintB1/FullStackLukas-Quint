@@ -1,40 +1,50 @@
-﻿using ChampionsLeague.Domain.EntitiesDB;
+﻿using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.Repository.Interfaces;
-using ChampionsLeague.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChampionsLeague.Services
 {
-    public class StadiumService : IService<Stadium>
+    public class StadiumService
     {
-        private IDAO<Stadium> StadiumDAO;
-        public Task AddAsync(Stadium entity)
+        private readonly IDAO<Stadium> _stadiumDao;
+
+        public StadiumService(IDAO<Stadium> stadiumDao)
         {
-            throw new NotImplementedException();
+            _stadiumDao = stadiumDao;
         }
 
-        public Task DeleteAsync(Stadium entity)
+        public async Task<IEnumerable<Stadium>?> GetAllStadiumsAsync()
         {
-            throw new NotImplementedException();
+            return await _stadiumDao.GetAllAsync();
         }
 
-        public Task<Stadium?> FindByIdAsync(int Id)
+        public async Task<Stadium?> GetStadiumByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _stadiumDao.FindByAsync(id);
         }
 
-        public Task<IEnumerable<Stadium>> GetAllAsync()
+        public async Task AddStadiumAsync(Stadium stadium)
         {
-            throw new NotImplementedException();
+            // Business rules could go here:
+            // - Validate capacity
+            // - Ensure stadium name uniqueness
+            // - Ensure subscription seat count is valid
+
+            await _stadiumDao.AddAsync(stadium);
         }
 
-        public Task UpdateAsync(Stadium entity)
+        public async Task UpdateStadiumAsync(Stadium stadium)
         {
-            throw new NotImplementedException();
+            await _stadiumDao.UpdateAsync(stadium);
+        }
+
+        public async Task DeleteStadiumAsync(int id)
+        {
+            var stadium = await _stadiumDao.FindByAsync(id);
+
+            if (stadium == null)
+                throw new KeyNotFoundException($"Stadium with ID {id} not found.");
+
+            await _stadiumDao.DeleteAsync(stadium);
         }
     }
 }

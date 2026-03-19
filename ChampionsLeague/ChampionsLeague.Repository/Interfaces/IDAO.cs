@@ -9,9 +9,9 @@ namespace ChampionsLeague.Repository.Interfaces
     public interface IDAO<T> where T : class
     {
         Task<IEnumerable<T>?> GetAllAsync();
+        Task<T?> FindByAsync(int id);
         Task AddAsync(T entity);
-        Task DeleteAsync(T entity);
         Task UpdateAsync(T entity);
-        Task FindByAsync(int Id);
+        Task DeleteAsync(T entity);
     }
 }
