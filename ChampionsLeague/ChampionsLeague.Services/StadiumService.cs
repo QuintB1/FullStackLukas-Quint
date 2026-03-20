@@ -1,4 +1,4 @@
-﻿using ChampionsLeague.Domain.EntitiesDB;
+﻿using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.Repository;
 using ChampionsLeague.Repository.Interfaces;
 using ChampionsLeague.Services.Interfaces;

@@ -1,5 +1,5 @@
-﻿using ChampionsLeague.Domain.DataDB;
-using ChampionsLeague.Domain.EntitiesDB;
+﻿using ChampionsLeague.Domain.Data;
+using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.Repository.Interfaces;
 using ChampionsLeague.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;

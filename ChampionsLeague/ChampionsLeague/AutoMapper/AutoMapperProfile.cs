@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ChampionsLeague.Domain.EntitiesDB;
+using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.ViewModels;
 
 namespace BeerschopNET9_Identity.AutoMapper

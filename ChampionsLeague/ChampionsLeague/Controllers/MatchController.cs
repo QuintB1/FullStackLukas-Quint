@@ -1,4 +1,4 @@
-﻿using ChampionsLeague.Domain.EntitiesDB;
+﻿using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
 using Microsoft.AspNetCore.Mvc;

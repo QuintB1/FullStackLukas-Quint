@@ -1,5 +1,5 @@
-﻿using ChampionsLeague.Domain.DataDB;
-using ChampionsLeague.Domain.EntitiesDB;
+﻿using ChampionsLeague.Domain.Data;
+using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,9 +13,9 @@ namespace ChampionsLeague.Repository
     public class MatchDAO : IDAO<Match>
     {
         private readonly IDAO<Match> _matchDAO;
-        private readonly ChampionsLeagueDbContext _context;
+        private readonly DbContextChampionsLeague _context;
 
-        public MatchDAO(IDAO<Match> dAO, ChampionsLeagueDbContext context)
+        public MatchDAO(IDAO<Match> dAO, DbContextChampionsLeague context)
         {
             _matchDAO = dAO;
             _context = context;
@@ -30,17 +30,17 @@ namespace ChampionsLeague.Repository
             throw new NotImplementedException();
         }
 
-        public Task FindByAsync(int Id)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<IEnumerable<Match>?> GetAllAsync()
         {
             return _matchDAO.GetAllAsync();
         }
 
         public Task UpdateAsync(Match entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<Match?> IDAO<Match>.FindByAsync(int id)
         {
             throw new NotImplementedException();
         }
