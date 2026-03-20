@@ -1,48 +1,55 @@
-﻿using ChampionsLeague.Domain.DataDB;
-using ChampionsLeague.Domain.EntitiesDB;
+﻿using ChampionsLeague.Domain.Data;
+using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
-namespace ChampionsLeague.Repository
+namespace ChampionsLeague.Repository.DAO
 {
     public class ClubDAO : IDAO<Club>
     {
-        private readonly IDAO<Club> _dAO;
-        private readonly ChampionsLeagueDbContext _context;
+        private readonly DbContextChampionsLeague _context;
 
-        public ClubDAO(IDAO<Club> club, ChampionsLeagueDbContext context)
+        public ClubDAO(DbContextChampionsLeague context)
         {
-            _dAO = club;
             _context = context;
         }
 
-        public Task AddAsync(Club entity)
+        public async Task<IEnumerable<Club>?> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Clubs
+                .Include(c => c.HomeStadium)
+                .Include(c => c.MatchHomeClubNavigations)
+                .Include(c => c.MatchAwayClubNavigations)
+                .Include(c => c.Subscriptions)
+                .ToListAsync();
         }
 
-        public Task DeleteAsync(Club entity)
+        public async Task<Club?> FindByAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Clubs
+                .Include(c => c.HomeStadium)
+                .Include(c => c.MatchHomeClubNavigations)
+                .Include(c => c.MatchAwayClubNavigations)
+                .Include(c => c.Subscriptions)
+                .FirstOrDefaultAsync(c => c.ClubId == id);
         }
 
-        public Task FindByAsync(int Id)
+        public async Task AddAsync(Club entity)
         {
-            throw new NotImplementedException();
+            await _context.Clubs.AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Club>?> GetAllAsync()
+        public async Task UpdateAsync(Club entity)
         {
-            throw new NotImplementedException();
+            _context.Clubs.Update(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public Task UpdateAsync(Club entity)
+        public async Task DeleteAsync(Club entity)
         {
-            throw new NotImplementedException();
+            _context.Clubs.Remove(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }

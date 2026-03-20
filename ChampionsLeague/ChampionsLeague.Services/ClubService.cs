@@ -1,38 +1,48 @@
-﻿using ChampionsLeague.Domain.EntitiesDB;
-using ChampionsLeague.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ChampionsLeague.Domain.Entities;
+using ChampionsLeague.Repository.Interfaces;
 
 namespace ChampionsLeague.Services
 {
-    public class ClubService : IService<Club>
+    public class ClubService
     {
-        public Task AddAsync(Club entity)
+        private readonly IDAO<Club> _clubDao;
+
+        public ClubService(IDAO<Club> clubDao)
         {
-            throw new NotImplementedException();
+            _clubDao = clubDao;
         }
 
-        public Task DeleteAsync(Club entity)
+        public async Task<IEnumerable<Club>?> GetAllClubsAsync()
         {
-            throw new NotImplementedException();
+            return await _clubDao.GetAllAsync();
         }
 
-        public Task<Club?> FindByIdAsync(int Id)
+        public async Task<Club?> GetClubByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _clubDao.FindByAsync(id);
         }
 
-        public Task<IEnumerable<Club>> GetAllAsync()
+        public async Task AddClubAsync(Club club)
         {
-            throw new NotImplementedException();
+            // Business rules can go here
+            // Example: Validate name uniqueness, stadium assignment, etc.
+
+            await _clubDao.AddAsync(club);
         }
 
-        public Task UpdateAsync(Club entity)
+        public async Task UpdateClubAsync(Club club)
         {
-            throw new NotImplementedException();
+            await _clubDao.UpdateAsync(club);
+        }
+
+        public async Task DeleteClubAsync(int id)
+        {
+            var club = await _clubDao.FindByAsync(id);
+
+            if (club == null)
+                throw new KeyNotFoundException($"Club with ID {id} not found.");
+
+            await _clubDao.DeleteAsync(club);
         }
     }
 }

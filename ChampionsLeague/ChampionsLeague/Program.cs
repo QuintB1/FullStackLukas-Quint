@@ -1,6 +1,7 @@
 using ChampionsLeague.Data;
-using ChampionsLeague.Domain.EntitiesDB;
+using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.Repository;
+using ChampionsLeague.Repository.DAO;
 using ChampionsLeague.Repository.Interfaces;
 using ChampionsLeague.Services;
 using ChampionsLeague.Services.Interfaces;
@@ -15,8 +16,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddScoped<IDAO<Club>, ClubDAO>();
+builder.Services.AddScoped<IDAO<StadiumSection>, StadiumSectionDAO>();
+builder.Services.AddScoped<IDAO<Club>, ClubDAO>();
+builder.Services.AddScoped<StadiumService>();
+builder.Services.AddScoped<ClubService>();
+builder.Services.AddScoped<StadiumSectionService>();
+
+
+
 
 builder.Services.AddControllersWithViews();
 
