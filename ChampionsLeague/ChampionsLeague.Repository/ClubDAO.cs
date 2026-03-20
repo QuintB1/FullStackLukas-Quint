@@ -1,4 +1,5 @@
-﻿using ChampionsLeague.Domain.EntitiesDB;
+﻿using ChampionsLeague.Domain.DataDB;
+using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,13 @@ namespace ChampionsLeague.Repository
 {
     public class ClubDAO : IDAO<Club>
     {
-        private IDAO<Club> dAO;
-        public ClubDAO(IDAO<Club> club)
+        private readonly IDAO<Club> _dAO;
+        private readonly ChampionsLeagueDbContext _context;
+
+        public ClubDAO(IDAO<Club> club, ChampionsLeagueDbContext context)
         {
-            dAO = club;
+            _dAO = club;
+            _context = context;
         }
 
         public Task AddAsync(Club entity)

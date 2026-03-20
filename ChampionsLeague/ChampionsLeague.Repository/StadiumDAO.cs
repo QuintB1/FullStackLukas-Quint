@@ -1,5 +1,7 @@
-﻿using ChampionsLeague.Domain.EntitiesDB;
+﻿using ChampionsLeague.Domain.DataDB;
+using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,12 @@ namespace ChampionsLeague.Repository
 {
     public class StadiumDAO : IDAO<Stadium>
     {
-        private IDAO<Stadium> dAO;
-        public StadiumDAO(IDAO<Stadium> stadium) {
-            dAO = stadium;
+        private readonly IDAO<Stadium> _dAO;
+        private readonly ChampionsLeagueDbContext _context;
+
+        public StadiumDAO(IDAO<Stadium> stadium, ChampionsLeagueDbContext context) {
+            _dAO = stadium;
+            _context = context;
            }
 
         public Task AddAsync(Stadium entity)
@@ -30,9 +35,9 @@ namespace ChampionsLeague.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Stadium>?> GetAllAsync()
+        public async Task<IEnumerable<Stadium>?> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Stadia.ToListAsync();
         }
 
         public Task UpdateAsync(Stadium entity)

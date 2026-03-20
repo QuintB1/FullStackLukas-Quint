@@ -1,4 +1,5 @@
-﻿using ChampionsLeague.Domain.EntitiesDB;
+﻿using ChampionsLeague.Domain.DataDB;
+using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,13 @@ namespace ChampionsLeague.Repository
 {
     public class OrderLineDAO : IDAO<OrderLine>
     {
-            private IDAO<OrderLine> dAO;
-        public OrderLineDAO(IDAO<OrderLine> orderLine) {
-            dAO = orderLine;
-            }
+        private readonly IDAO<OrderLine> _dAO;
+        private readonly ChampionsLeagueDbContext _context;
+
+        public OrderLineDAO(IDAO<OrderLine> orderLine, ChampionsLeagueDbContext context) {
+            _dAO = orderLine;
+            _context = context;
+        }
         public Task AddAsync(OrderLine entity)
         {
             throw new NotImplementedException();

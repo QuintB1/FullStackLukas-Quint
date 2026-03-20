@@ -13,10 +13,10 @@ namespace ChampionsLeague.Services
 {
     public class MatchService : IService<Match>
     {
-        private IDAO<Match> matchDAO;
+        private readonly IDAO<Match> _matchDAO;
         public MatchService(IDAO<Match> context)
         {
-            matchDAO = context;
+            _matchDAO = context;
         }
 
         public Task AddAsync(Match entity)
@@ -36,7 +36,7 @@ namespace ChampionsLeague.Services
 
         public async Task<IEnumerable<Match>> GetAllAsync()
         {
-            return await matchDAO.GetAllAsync();
+            return await _matchDAO.GetAllAsync();
         }
 
         public Task UpdateAsync(Match entity)

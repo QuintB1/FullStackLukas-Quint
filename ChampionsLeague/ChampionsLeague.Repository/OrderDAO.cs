@@ -1,4 +1,5 @@
-﻿using ChampionsLeague.Domain.EntitiesDB;
+﻿using ChampionsLeague.Domain.DataDB;
+using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,12 @@ namespace ChampionsLeague.Repository
 {
     public class OrderDAO : IDAO<Order>
     {
-        private IDAO<Order> orderDAO;
-        public OrderDAO(IDAO<Order> dAO) {
-            orderDAO = dAO;
+        private readonly IDAO<Order> _orderDAO;
+        private readonly ChampionsLeagueDbContext _context;
+
+        public OrderDAO(IDAO<Order> dAO, ChampionsLeagueDbContext context) {
+            _orderDAO = dAO;
+            _context = context;
         }
 
         public Task AddAsync(Order entity)
@@ -32,7 +36,7 @@ namespace ChampionsLeague.Repository
 
         public Task<IEnumerable<Order>?> GetAllAsync()
         {
-            return orderDAO.GetAllAsync();
+            return _orderDAO.GetAllAsync();
         }
 
         public Task UpdateAsync(Order entity)
