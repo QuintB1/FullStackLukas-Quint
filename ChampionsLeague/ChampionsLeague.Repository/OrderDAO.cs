@@ -11,11 +11,9 @@ namespace ChampionsLeague.Repository
 {
     public class OrderDAO : IDAO<Order>
     {
-        private readonly IDAO<Order> _orderDAO;
         private readonly DbContextChampionsLeague _context;
 
-        public OrderDAO(IDAO<Order> dAO, DbContextChampionsLeague context) {
-            _orderDAO = dAO;
+        public OrderDAO(DbContextChampionsLeague context) {
             _context = context;
         }
 
@@ -31,7 +29,7 @@ namespace ChampionsLeague.Repository
 
         public Task<IEnumerable<Order>?> GetAllAsync()
         {
-            return _orderDAO.GetAllAsync();
+            throw new NotImplementedException();
         }
 
         public Task UpdateAsync(Order entity)

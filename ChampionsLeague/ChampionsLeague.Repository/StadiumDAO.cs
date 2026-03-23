@@ -14,9 +14,10 @@ namespace ChampionsLeague.Repository
     {
         private readonly DbContextChampionsLeague _context;
 
-        public StadiumDAO(DbContextChampionsLeague context) {
+        public StadiumDAO(DbContextChampionsLeague context)
+        {
             _context = context;
-           }
+        }
 
         public Task AddAsync(Stadium entity)
         {

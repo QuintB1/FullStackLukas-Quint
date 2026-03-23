@@ -12,12 +12,10 @@ namespace ChampionsLeague.Repository
 {
     public class MatchDAO : IDAO<Match>
     {
-        private readonly IDAO<Match> _matchDAO;
         private readonly DbContextChampionsLeague _context;
 
-        public MatchDAO(IDAO<Match> dAO, DbContextChampionsLeague context)
+        public MatchDAO(DbContextChampionsLeague context)
         {
-            _matchDAO = dAO;
             _context = context;
         }
         public Task AddAsync(Match entity)
@@ -32,7 +30,7 @@ namespace ChampionsLeague.Repository
 
         public Task<IEnumerable<Match>?> GetAllAsync()
         {
-            return _matchDAO.GetAllAsync();
+            throw new NotImplementedException();
         }
 
         public Task UpdateAsync(Match entity)

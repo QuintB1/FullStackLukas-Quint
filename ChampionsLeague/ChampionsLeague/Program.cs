@@ -1,4 +1,5 @@
 using ChampionsLeague.Data;
+using ChampionsLeague.Domain.Data;
 using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.Repository;
 using ChampionsLeague.Repository.DAO;
@@ -13,6 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddDbContext<DbContextChampionsLeague>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
