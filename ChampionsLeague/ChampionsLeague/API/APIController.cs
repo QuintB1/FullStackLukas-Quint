@@ -1,11 +1,26 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ChampionsLeague.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChampionsLeague.API
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class APIController : ControllerBase
+    [Route("api/[controller]")]
+    public class MatchesController : ControllerBase
     {
+        private readonly MatchService _matchService;
+
+        public MatchesController(MatchService matchService)
+        {
+            _matchService = matchService;
+        }
+        [HttpGet("top10")]
+        public async Task<IActionResult> GetTop10UpcomingMatches()
+        {
+            var matches = await _matchService.GetTop10UpcomingMatchesAsync();
+            return Ok(matches);
+        }
+
     }
+
 }

@@ -12,13 +12,15 @@ using System.Threading.Tasks;
 
 namespace ChampionsLeague.Services
 {
-    public class MatchService : IService<Match>
+    public class MatchService
     {
-        private readonly IDAO<Match> _matchDAO;
-        public MatchService(IDAO<Match> context)
+        private readonly MatchDAO _matchDao;
+
+        public MatchService(MatchDAO matchDao)
         {
-            _matchDAO = context;
+            _matchDao = matchDao;
         }
+
 
         public Task AddAsync(Match entity)
         {
@@ -37,7 +39,7 @@ namespace ChampionsLeague.Services
 
         public async Task<IEnumerable<Match>> GetAllAsync()
         {
-            return await _matchDAO.GetAllAsync();
+            return await _matchDao.GetAllAsync();
         }
 
         public Task UpdateAsync(Match entity)
@@ -48,7 +50,7 @@ namespace ChampionsLeague.Services
         {
             var now = DateTime.UtcNow;
 
-            var matches = await _matchDAO.GetAllAsync();
+            var matches = await _matchDao.GetAllAsync();
 
             if (matches == null)
                 return Enumerable.Empty<Match>();

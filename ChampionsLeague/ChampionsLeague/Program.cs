@@ -16,8 +16,9 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDbContext<ChampionsLeague.Data.DbContextChampionsLeague>(options =>
-    options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ChampionsLeague.Domain.Data.DbContextChampionsLeague>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
@@ -30,7 +31,10 @@ builder.Services.AddScoped<IService<Stadium>, StadiumService>();
 builder.Services.AddScoped<IDAO<StadiumSection>, StadiumSectionDAO>();
 builder.Services.AddScoped<IService<StadiumSection>, StadiumSectionService>();
 builder.Services.AddScoped<IDAO<Order>, OrderDAO>();
+builder.Services.AddScoped<MatchDAO>();
 builder.Services.AddScoped<IService<Order>, OrderService>();
+builder.Services.AddScoped<MatchService>();
+
 
 
 

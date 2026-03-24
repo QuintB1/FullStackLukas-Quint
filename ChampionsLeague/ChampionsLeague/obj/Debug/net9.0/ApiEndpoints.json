@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "ContainingType": "ChampionsLeague.API.MatchesController",
+    "Method": "GetTop10UpcomingMatches",
+    "RelativePath": "api/Matches/top10",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

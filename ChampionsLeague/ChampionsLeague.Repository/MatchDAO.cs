@@ -28,10 +28,11 @@ namespace ChampionsLeague.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Match>?> GetAllAsync()
+        public async Task<IEnumerable<Match>?> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Matches.ToListAsync();
         }
+
 
         public Task UpdateAsync(Match entity)
         {
