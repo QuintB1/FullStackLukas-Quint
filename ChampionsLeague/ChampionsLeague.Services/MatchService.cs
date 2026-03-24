@@ -1,5 +1,6 @@
 ﻿using ChampionsLeague.Domain.Data;
 using ChampionsLeague.Domain.Entities;
+using ChampionsLeague.Repository;
 using ChampionsLeague.Repository.Interfaces;
 using ChampionsLeague.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -43,5 +44,23 @@ namespace ChampionsLeague.Services
         {
             throw new NotImplementedException();
         }
+        public async Task<IEnumerable<Match>> GetTop10UpcomingMatchesAsync()
+        {
+            var now = DateTime.UtcNow;
+
+            var matches = await _matchDAO.GetAllAsync();
+
+            if (matches == null)
+                return Enumerable.Empty<Match>();
+
+            return matches
+                .Where(m => m.MatchDate.CompareTo(now) > 0)
+
+                .OrderBy(m => m.MatchDate)
+                .Take(10)
+                .ToList();
+        }
+
+
     }
 }

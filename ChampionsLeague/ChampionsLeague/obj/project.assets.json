@@ -9084,23 +9084,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lukas\\.nuget\\packages\\": {},
+    "C:\\Users\\Quint\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\ChampionsLeague.csproj",
+      "projectUniqueName": "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\ChampionsLeague.csproj",
       "projectName": "ChampionsLeague",
-      "projectPath": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\ChampionsLeague.csproj",
-      "packagesPath": "C:\\Users\\Lukas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\obj\\",
+      "projectPath": "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\ChampionsLeague.csproj",
+      "packagesPath": "C:\\Users\\Quint\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Lukas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Quint\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -9109,18 +9109,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj": {
-              "projectPath": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj"
+            "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj": {
+              "projectPath": "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj"
             },
-            "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Services\\ChampionsLeague.Services.csproj": {
-              "projectPath": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Services\\ChampionsLeague.Services.csproj"
+            "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Services\\ChampionsLeague.Services.csproj": {
+              "projectPath": "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Services\\ChampionsLeague.Services.csproj"
             }
           }
         }
@@ -9135,7 +9134,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net9.0": {
@@ -9195,17 +9194,11 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
   "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0."
-    },
     {
       "code": "NU1903",
       "level": "Warning",
