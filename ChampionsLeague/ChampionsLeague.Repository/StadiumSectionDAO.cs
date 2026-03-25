@@ -47,5 +47,12 @@ namespace ChampionsLeague.Repository.DAO
             _context.StadiumSections.Remove(entity);
             await _context.SaveChangesAsync();
         }
+        public async Task<IEnumerable<StadiumSection>> GetByStadiumIdAsync(int stadiumId)
+        {
+            return await _context.StadiumSections
+                .Where(s => s.StadiumId == stadiumId)
+                .ToListAsync();
+        }
+
     }
 }

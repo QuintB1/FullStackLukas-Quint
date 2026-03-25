@@ -1,4 +1,5 @@
 ﻿using ChampionsLeague.Domain.Entities;
+using ChampionsLeague.Repository.DAO;
 using ChampionsLeague.Repository.Interfaces;
 using ChampionsLeague.Services.Interfaces;
 
@@ -6,9 +7,9 @@ namespace ChampionsLeague.Services
 {
     public class StadiumSectionService : IService<StadiumSection>
     {
-        private readonly IDAO<StadiumSection> _stadiumSectionDao;
+        private readonly StadiumSectionDAO _stadiumSectionDao;
 
-        public StadiumSectionService(IDAO<StadiumSection> stadiumSectionDao)
+        public StadiumSectionService(StadiumSectionDAO stadiumSectionDao)
         {
             _stadiumSectionDao = stadiumSectionDao;
         }
@@ -52,5 +53,10 @@ namespace ChampionsLeague.Services
         {
             throw new NotImplementedException();
         }
+        public async Task<IEnumerable<StadiumSection>> GetByStadiumIdAsync(int stadiumId)
+        {
+            return await _stadiumSectionDao.GetByStadiumIdAsync(stadiumId);
+        }
+
     }
 }
