@@ -17,7 +17,7 @@ namespace ChampionsLeague.API
             _matchService = matchService;
             _stadiumService = stadiumService;
         }
-        /*
+        
         // 1. Stadiums
         [HttpGet("stadiums")]
         public async Task<IActionResult> GetAllStadiums(
@@ -59,7 +59,6 @@ namespace ChampionsLeague.API
 
             return Ok(result);
         }
-        */
 
 
         // 3. Users
