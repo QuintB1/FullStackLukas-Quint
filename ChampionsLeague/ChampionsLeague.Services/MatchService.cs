@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ChampionsLeague.Services
 {
-    public class MatchService
+    public class MatchService : IService<Match>
     {
         private readonly MatchDAO _matchDao;
 

@@ -16,28 +16,28 @@ namespace ChampionsLeague.Controllers
             _stadiumDBService = stadiumDBService;
         }
 
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(int id)
         {
-            try
+            if (id <= 0)
+                return BadRequest();
+
+            // Ophalen via service (FindByIdAsync)
+            var stadium = await _stadiumDBService.FindByIdAsync(id);
+
+            if (stadium == null)
+                return NotFound();
+
+            // Stadium -> StadiumVM mappen (indien service geen VM teruggeeft)
+            var vm = new StadiumVM
             {
-                var lstStadiums = await _stadiumDBService.GetAllAsync();
-                List<StadiumVM>? stadiumVMs = null;
+                StadiumId = stadium.StadiumId,
+                Name = stadium.Name,
+                Address = stadium.Address,
+                SubscriptionSeats = stadium.SubscriptionSeats
+            };
 
-
-                if (lstStadiums != null)
-                {
-                    stadiumVMs = new List<StadiumVM>();
-                    stadiumVMs = _mapper.Map<List<StadiumVM>>(lstStadiums);
-                    return View(stadiumVMs);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log de fout en geef een vriendelijke foutmelding terug
-                ModelState.AddModelError("", "Er is een fout opgetreden bij het ophalen van de stadiums: " + ex.Message);
-
-            }
-            return View();
+            return View(vm);
         }
     }
 }

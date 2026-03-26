@@ -33,11 +33,11 @@ builder.Services.AddScoped<IDAO<Stadium>, StadiumDAO>();
 builder.Services.AddScoped<IDAO<Order>, OrderDAO>();
 builder.Services.AddScoped<IDAO<StadiumSection>, StadiumSectionDAO>();
 builder.Services.AddScoped<IDAO<Match>, MatchDAO>();
-builder.Services.AddScoped<ClubService>();
-builder.Services.AddScoped<StadiumService>();
-builder.Services.AddScoped<OrderService>();
-builder.Services.AddScoped<StadiumSectionService>();
-builder.Services.AddScoped<MatchService>();
+builder.Services.AddScoped <IService<Club>, ClubService>();
+builder.Services.AddScoped<IService<Stadium>, StadiumService>();
+builder.Services.AddScoped<IService<Order>, OrderService>();
+builder.Services.AddScoped<IService<StadiumSection>, StadiumSectionService>();
+builder.Services.AddScoped<IService<Match>, MatchService>();
 
 
 

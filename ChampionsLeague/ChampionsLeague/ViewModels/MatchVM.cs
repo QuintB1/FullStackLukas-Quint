@@ -5,5 +5,6 @@
         public DateOnly Date { get; set; }
         public int HomeClub { get; set; }
         public int AwayClub { get; set; }
+        public int StadiumId { get; set; }
     }
 }

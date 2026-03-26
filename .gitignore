@@ -13,3 +13,6 @@
 /ChampionsLeague/ChampionsLeague.Domain/Data/DbContextChampionsLeague.cs
 /ChampionsLeague/ChampionsLeague.Domain/Entities/AspNetRole.cs
 /ChampionsLeague/ChampionsLeague.Domain/DataDB/ChampionsLeagueDbContext.cs
+bin/
+obj/
+Debug/

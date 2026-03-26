@@ -1,70 +1,9 @@
-﻿@model IEnumerable<ChampionsLeague.ViewModels.StadiumVM>
+﻿@model ChampionsLeague.ViewModels.StadiumVM
 
-@{
-    ViewData["Title"] = "Index";
-}
+<h2>@Model.Name</h2>
 
-@section Styles
-{
-    <link href="~/lib/datatables/css/jquery.datatables.min.css" rel="stylesheet" />
-}
+<p><strong>Name:</strong> @Model.Name</p>
+<p><strong>Adres:</strong> @Model.Address</p>
+<p><strong>Abonnement plaatsen:</strong> @Model.SubscriptionSeats</p>
 
-<h1>Index</h1>
-
-@if (Model != null)
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.StadiumId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Address)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SubscriptionSeats)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StadiumId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SubscriptionSeats)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>er is geen data beschikbaar</p>
-}
-@section Scripts
-{
-    <script src="~/lib/datatables/js/jquery.datatables.min.js"></script>
-    <script>
-        $(() => {
-            $('#myTable').DataTable();
-        });
-    </script>
-}
+<a asp-controller="Match" asp-action="Index" class="btn btn-primary">Terug</a>
