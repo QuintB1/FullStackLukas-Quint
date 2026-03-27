@@ -3,6 +3,7 @@ using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace ChampionsLeague.Controllers
 {
@@ -13,12 +14,23 @@ namespace ChampionsLeague.Controllers
         {
             _match = match;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
 
-            var matches = _match.GetAllAsync();
+            var matches = await _match.GetAllAsync();
 
-            return View(matches);
+            var vm = matches.Select(m => new MatchVM
+            {
+                Id = m.MatchId,
+                Date = m.MatchDate,
+                HomeClubName = m.HomeClubNavigation.Name,
+                AwayClubName = m.AwayClubNavigation.Name,
+                HomeClubId = m.HomeClubNavigation.ClubId,
+                AwayClubId = m.AwayClubNavigation.ClubId,
+                StadiumId = m.Stadium.StadiumId
+            });
+
+            return View(vm);
         }
 
     }

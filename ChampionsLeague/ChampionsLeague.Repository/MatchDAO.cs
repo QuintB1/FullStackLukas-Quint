@@ -30,7 +30,12 @@ namespace ChampionsLeague.Repository
 
         public async Task<IEnumerable<Match>?> GetAllAsync()
         {
-            return await _context.Matches.ToListAsync();
+            return await _context.Matches
+            .Include(m => m.HomeClubNavigation)
+            .Include(m => m.AwayClubNavigation)
+            .Include(m => m.Stadium)
+            .Include(m => m.Tickets)
+            .ToListAsync();
         }
 
 
