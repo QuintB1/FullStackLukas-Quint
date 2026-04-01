@@ -18,14 +18,16 @@ namespace ChampionsLeague.Repository
         {
             _context = context;
         }
-        public Task AddAsync(Match entity)
+        public async Task AddAsync(Match entity)
         {
-            throw new NotImplementedException();
+            _context.Matches.Add(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(Match entity)
+        public async Task DeleteAsync(Match entity)
         {
-            throw new NotImplementedException();
+            _context.Matches.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Match>?> GetAllAsync()
@@ -39,14 +41,20 @@ namespace ChampionsLeague.Repository
         }
 
 
-        public Task UpdateAsync(Match entity)
+        public async Task UpdateAsync(Match entity)
         {
-            throw new NotImplementedException();
+            _context.Matches.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
-        Task<Match?> IDAO<Match>.FindByAsync(int id)
+        public async Task<Match?> FindByAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Matches
+                .Include(m => m.HomeClubNavigation)
+                .Include(m => m.AwayClubNavigation)
+                .Include(m => m.Stadium)
+                .Include(m => m.Tickets)
+                .FirstOrDefaultAsync(m => m.MatchId == id);
         }
     }
 }

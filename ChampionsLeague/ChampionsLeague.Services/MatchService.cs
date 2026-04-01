@@ -34,7 +34,7 @@ namespace ChampionsLeague.Services
 
         public async Task<Match?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return await _matchDao.FindByAsync(Id);
         }
 
         public async Task<IEnumerable<Match>> GetAllAsync()

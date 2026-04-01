@@ -19,19 +19,19 @@ namespace ChampionsLeague.Services
             _stadiumDAO = stadiumDAO;
         }
 
-        public Task AddAsync(Stadium entity)
+        public async Task AddAsync(Stadium entity)
         {
-            throw new NotImplementedException();
+            await _stadiumDAO.AddAsync(entity);
         }
 
-        public Task DeleteAsync(Stadium entity)
+        public async Task DeleteAsync(Stadium entity)
         {
-            throw new NotImplementedException();
+            await _stadiumDAO.DeleteAsync(entity);
         }
 
-        public Task<Stadium?> FindByIdAsync(int Id)
+        public async Task<Stadium?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return await _stadiumDAO.FindByAsync(Id);
         }
 
         public async Task<IEnumerable<Stadium>> GetAllAsync()
@@ -39,9 +39,9 @@ namespace ChampionsLeague.Services
             return await _stadiumDAO.GetAllAsync();
         }
 
-        public Task UpdateAsync(Stadium entity)
+        public async Task UpdateAsync(Stadium entity)
         {
-            throw new NotImplementedException();
+            await _stadiumDAO.UpdateAsync(entity);
         }
     }
 }
