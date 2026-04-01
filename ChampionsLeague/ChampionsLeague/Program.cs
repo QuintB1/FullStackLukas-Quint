@@ -27,7 +27,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddScoped<StadiumSectionDAO>();
 builder.Services.AddScoped<MatchDAO>();
-
 builder.Services.AddScoped<IDAO<Club>, ClubDAO>();
 builder.Services.AddScoped<IDAO<Stadium>, StadiumDAO>();
 builder.Services.AddScoped<IDAO<Order>, OrderDAO>();
@@ -38,6 +37,11 @@ builder.Services.AddScoped<IService<Stadium>, StadiumService>();
 builder.Services.AddScoped<IService<Order>, OrderService>();
 builder.Services.AddScoped<IService<StadiumSection>, StadiumSectionService>();
 builder.Services.AddScoped<IService<Match>, MatchService>();
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 
 
 
@@ -50,6 +54,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 else
 {
