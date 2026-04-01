@@ -46,9 +46,9 @@ namespace ChampionsLeague.Services
             await _clubDao.DeleteAsync(club);
         }
 
-        public Task DeleteAsync(Club entity)
+        public async Task DeleteAsync(Club entity)
         {
-            throw new NotImplementedException();
+            await _clubDao.DeleteAsync(entity);
         }
     }
 }
