@@ -1,11 +1,7 @@
 ﻿using ChampionsLeague.Domain.Data;
 using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChampionsLeague.Repository
 {
@@ -13,37 +9,44 @@ namespace ChampionsLeague.Repository
     {
         private readonly DbContextChampionsLeague _context;
 
-        public OrderLineDAO(DbContextChampionsLeague context) {
+        public OrderLineDAO(DbContextChampionsLeague context)
+        {
             _context = context;
         }
-        public Task AddAsync(OrderLine entity)
+
+        public async Task AddAsync(OrderLine entity)
         {
-            throw new NotImplementedException();
+            await _context.OrderLines.AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(OrderLine entity)
+        public async Task DeleteAsync(OrderLine entity)
         {
-            throw new NotImplementedException();
+            _context.OrderLines.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public Task FindByAsync(int Id)
+        public async Task<IEnumerable<OrderLine>?> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.OrderLines.ToListAsync();
         }
 
-        public Task<IEnumerable<OrderLine>?> GetAllAsync()
+        public async Task UpdateAsync(OrderLine entity)
         {
-            throw new NotImplementedException();
+            _context.OrderLines.Update(entity);
+            await _context.SaveChangesAsync();
         }
-
-        public Task UpdateAsync(OrderLine entity)
-        {
-            throw new NotImplementedException();
-        }
-
+        // overload function nessisary to ratin interface DO NOT REMOVE!
         Task<OrderLine?> IDAO<OrderLine>.FindByAsync(int id)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException("OrderLine requires composite key.");
         }
+
+        public async Task<OrderLine?> FindByAsync(int orderId, int lineNumber)
+        {
+            return await _context.OrderLines
+                .FirstOrDefaultAsync(ol => ol.OrderId == orderId && ol.LineId == lineNumber);
+        }
+
+
     }
-}

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36603.0
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11626.88 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChampionsLeague", "ChampionsLeague\ChampionsLeague.csproj", "{D50CC754-22BE-408E-8CB3-D57956C7F28C}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChampionsLeague.Repository", "ChampionsLeague.Repository\ChampionsLeague.Repository.csproj", "{0F7A111E-169D-4FE8-8CEF-C24C9442A7AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChampionsLeague.Services", "ChampionsLeague.Services\ChampionsLeague.Services.csproj", "{35F39425-3A67-4CA5-BF65-05C2FC27C7B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChampionLeague.utils", "ChampionLeague.utils\ChampionLeague.utils.csproj", "{28777E81-F68F-4064-AFED-C58E7CD2FE79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{35F39425-3A67-4CA5-BF65-05C2FC27C7B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35F39425-3A67-4CA5-BF65-05C2FC27C7B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35F39425-3A67-4CA5-BF65-05C2FC27C7B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28777E81-F68F-4064-AFED-C58E7CD2FE79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28777E81-F68F-4064-AFED-C58E7CD2FE79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28777E81-F68F-4064-AFED-C58E7CD2FE79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28777E81-F68F-4064-AFED-C58E7CD2FE79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

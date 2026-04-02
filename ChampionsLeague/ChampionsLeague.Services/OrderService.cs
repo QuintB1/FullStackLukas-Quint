@@ -19,17 +19,17 @@ namespace ChampionsLeague.Services
         }
         public Task AddAsync(Order entity)
         {
-            throw new NotImplementedException();
+            return _orderDAO.AddAsync(entity);
         }
 
         public Task DeleteAsync(Order entity)
         {
-            throw new NotImplementedException();
+            return _orderDAO.DeleteAsync(entity);
         }
 
         public Task<Order?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return _orderDAO.FindByAsync(Id);
         }
 
         public async Task<IEnumerable<Order>?> GetAllAsync()
@@ -39,12 +39,12 @@ namespace ChampionsLeague.Services
 
         public Task UpdateAsync(Order entity)
         {
-            throw new NotImplementedException();
+            return _orderDAO.UpdateAsync(entity);
         }
 
-        Task<Order?> IService<Order>.FindByIdAsync(int Id)
+        async Task<Order?> IService<Order>.FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return await _orderDAO.FindByAsync(Id);
         }
     }
 }

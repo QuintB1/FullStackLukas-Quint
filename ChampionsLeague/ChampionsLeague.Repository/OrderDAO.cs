@@ -1,11 +1,7 @@
 ﻿using ChampionsLeague.Domain.Data;
 using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChampionsLeague.Repository
 {
@@ -13,33 +9,38 @@ namespace ChampionsLeague.Repository
     {
         private readonly DbContextChampionsLeague _context;
 
-        public OrderDAO(DbContextChampionsLeague context) {
+        public OrderDAO(DbContextChampionsLeague context)
+        {
             _context = context;
         }
 
-        public Task AddAsync(Order entity)
+        public async Task AddAsync(Order entity)
         {
-            throw new NotImplementedException();
+            await _context.Orders.AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(Order entity)
+        public async Task DeleteAsync(Order entity)
         {
-            throw new NotImplementedException();
+            _context.Orders.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Order>?> GetAllAsync()
+        public async Task<IEnumerable<Order>?> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Orders.ToListAsync();
         }
 
-        public Task UpdateAsync(Order entity)
+        public async Task UpdateAsync(Order entity)
         {
-            throw new NotImplementedException();
+            _context.Orders.Update(entity);
+            await _context.SaveChangesAsync();
         }
 
-        Task<Order?> IDAO<Order>.FindByAsync(int id)
+        async Task<Order?> IDAO<Order>.FindByAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Orders
+                .FirstOrDefaultAsync(o => o.OrderId == id);
         }
     }
 }
