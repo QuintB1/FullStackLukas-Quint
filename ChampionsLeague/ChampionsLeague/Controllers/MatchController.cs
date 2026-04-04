@@ -33,5 +33,29 @@ namespace ChampionsLeague.Controllers
             return View(vm);
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<MatchVM>> GetById(int id)
+        {
+            var match = await _match.FindByIdAsync(id);
+
+            if (match == null)
+            {
+                return NotFound();
+            }
+
+            var vm = new MatchVM
+            {
+                Id = match.MatchId,
+                Date = match.MatchDate,
+                HomeClubName = match.HomeClubNavigation.Name,
+                AwayClubName = match.AwayClubNavigation.Name,
+                HomeClubId = match.HomeClubNavigation.ClubId,
+                AwayClubId = match.AwayClubNavigation.ClubId,
+                StadiumId = match.Stadium.StadiumId
+            };
+
+            return Ok(vm);
+        }
+
     }
 }
