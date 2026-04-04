@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Repository\\ChampionsLeague.Repository.csproj": {}
+    "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Repository\\ChampionsLeague.Repository.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj": {
+    "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj",
         "projectName": "ChampionsLeague.Domain",
-        "projectPath": "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj",
-        "packagesPath": "C:\\Users\\Quint\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj",
+        "packagesPath": "C:\\Users\\Lukas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Quint\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lukas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -44,13 +45,17 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite.Core": {
               "target": "Package",
               "version": "[9.0.10, )"
             },
@@ -77,24 +82,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Repository\\ChampionsLeague.Repository.csproj": {
+    "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Repository\\ChampionsLeague.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Repository\\ChampionsLeague.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Repository\\ChampionsLeague.Repository.csproj",
         "projectName": "ChampionsLeague.Repository",
-        "projectPath": "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Repository\\ChampionsLeague.Repository.csproj",
-        "packagesPath": "C:\\Users\\Quint\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Repository\\obj\\",
+        "projectPath": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Repository\\ChampionsLeague.Repository.csproj",
+        "packagesPath": "C:\\Users\\Lukas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Quint\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lukas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -103,14 +108,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj": {
-                "projectPath": "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj"
+              "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj": {
+                "projectPath": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj"
               }
             }
           }
@@ -125,11 +131,23 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite.Core": {
+              "target": "Package",
+              "version": "[9.0.10, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -146,7 +164,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

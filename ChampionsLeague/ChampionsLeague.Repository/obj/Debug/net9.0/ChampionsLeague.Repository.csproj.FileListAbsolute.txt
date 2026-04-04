@@ -46,3 +46,5 @@ C:\Users\Quint\Documents\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLe
 C:\Users\Quint\Documents\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\refint\ChampionsLeague.Repository.dll
 C:\Users\Quint\Documents\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ChampionsLeague.Repository.pdb
 C:\Users\Quint\Documents\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ref\ChampionsLeague.Repository.dll
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\bin\Debug\net9.0\ChampionsLeague.Repository.runtimeconfig.json
+C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Repository\obj\Debug\net9.0\ChampionsLeague.Repository.genruntimeconfig.cache
