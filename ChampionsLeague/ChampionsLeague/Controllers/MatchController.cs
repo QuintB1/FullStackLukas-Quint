@@ -33,8 +33,8 @@ namespace ChampionsLeague.Controllers
             return View(vm);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<MatchVM>> GetById(int id)
+        [HttpGet]
+        public async Task<ActionResult<MatchVM>> Detail(int id)
         {
             var match = await _match.FindByIdAsync(id);
 
@@ -54,7 +54,7 @@ namespace ChampionsLeague.Controllers
                 StadiumId = match.Stadium.StadiumId
             };
 
-            return Ok(vm);
+            return View(vm);
         }
 
     }
