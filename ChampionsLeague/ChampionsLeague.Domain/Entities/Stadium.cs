@@ -11,8 +11,6 @@ public partial class Stadium
 
     public string? Address { get; set; }
 
-    public int SubscriptionSeats { get; set; }
-
     public virtual ICollection<Club> Clubs { get; set; } = new List<Club>();
 
     public virtual ICollection<Match> Matches { get; set; } = new List<Match>();

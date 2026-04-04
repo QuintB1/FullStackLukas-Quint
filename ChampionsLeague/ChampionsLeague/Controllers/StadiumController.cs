@@ -34,7 +34,6 @@ namespace ChampionsLeague.Controllers
                 StadiumId = stadium.StadiumId,
                 Name = stadium.Name,
                 Address = stadium.Address,
-                SubscriptionSeats = stadium.SubscriptionSeats
             };
 
             return View(vm);
