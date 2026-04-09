@@ -17,13 +17,18 @@ namespace ChampionsLeague.Controllers
         public async Task<IActionResult> Index()
         {
             var orders = await _order.GetAllAsync();
-            var filtered = orders.Where(x => x.Status == "shoppingcart");
-            var orderLines = filtered.Select(f => f.OrderLines);
 
-            var viewModels = orderLines.Select(ol => new OrderLineVM
-            {
-                
-            }).ToList();
+            var viewModels = orders
+                .Where(x => x.Status == "shoppingcart")
+                .SelectMany(o => o.OrderLines)
+                .Select(ol => new OrderLineVM
+                {
+                    ProductId = ol.ProductId,
+                    ProductName = ol.Product.Name,
+                    UnitPrice = ol.Product.UnitPrice,
+                    OrderDate = ol.Order.OrderDate
+                })
+                .ToList();
 
             return View(viewModels);
         }
