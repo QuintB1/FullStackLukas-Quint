@@ -1,0 +1,18 @@
+﻿@using ChampionsLeague.ViewModels
+@model List<OrderVM>
+
+<p>The shoppingcart would be here if we had one</p>
+
+@foreach (var order in Model)
+{
+    <h3>Order Date: @order.OrderDate</h3>
+
+    <ul>
+        @foreach (var line in order.OrderLines)
+        {
+            <li>
+                @line.ProductName - @line.UnitPrice
+            </li>
+        }
+    </ul>
+}

@@ -1,6 +1,7 @@
 ﻿using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -14,19 +15,22 @@ namespace ChampionsLeague.Controllers
             _order = order;
         }
 
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var orders = await _order.GetAllAsync();
 
             var viewModels = orders
-                .Where(x => x.Status == "shoppingcart")
-                .SelectMany(o => o.OrderLines)
-                .Select(ol => new OrderLineVM
+                .Where(o => o.Status == "cart")
+                .Select(o => new OrderVM
                 {
-                    ProductId = ol.ProductId,
-                    ProductName = ol.Product.Name,
-                    UnitPrice = ol.Product.UnitPrice,
-                    OrderDate = ol.Order.OrderDate
+                    OrderDate = o.OrderDate,
+                    OrderLines = o.OrderLines.Select(ol => new OrderLineVM
+                    {
+                        ProductId = ol.ProductId,
+                        ProductName = ol.Product.Name,
+                        UnitPrice = ol.Product.UnitPrice
+                    }).ToList()
                 })
                 .ToList();
 

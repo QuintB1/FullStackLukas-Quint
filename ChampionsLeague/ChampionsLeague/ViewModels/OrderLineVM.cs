@@ -7,6 +7,5 @@ namespace ChampionsLeague.ViewModels
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public decimal UnitPrice { get; set; }
-        public DateOnly OrderDate {  get; set; }
     }
 }
