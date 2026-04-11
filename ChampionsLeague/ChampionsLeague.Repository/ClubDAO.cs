@@ -1,5 +1,5 @@
-﻿using ChampionsLeague.Domain.Data;
-using ChampionsLeague.Domain.Entities;
+﻿using ChampionsLeague.Domain.DataDB;
+using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,9 +7,9 @@ namespace ChampionsLeague.Repository.DAO
 {
     public class ClubDAO : IDAO<Club>
     {
-        private readonly DbContextChampionsLeague _context;
+        private readonly ChampionLeagueDbContext _context;
 
-        public ClubDAO(DbContextChampionsLeague context)
+        public ClubDAO(ChampionLeagueDbContext context)
         {
             _context = context;
         }

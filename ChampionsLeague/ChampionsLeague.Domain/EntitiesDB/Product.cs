@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ChampionsLeague.Domain.Entities;
+namespace ChampionsLeague.Domain.EntitiesDB;
 
 public partial class Product
 {
     public int ProductId { get; set; }
 
-    public decimal UnitPrice { get; set; }
+    public decimal DynamicUnitPrice { get; set; }
 
     public string Name { get; set; } = null!;
 

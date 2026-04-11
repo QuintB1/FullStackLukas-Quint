@@ -1,4 +1,4 @@
-﻿using ChampionsLeague.Domain.Entities;
+﻿using ChampionsLeague.Domain.EntitiesDB;
 
 namespace ChampionsLeague.ViewModels
 {

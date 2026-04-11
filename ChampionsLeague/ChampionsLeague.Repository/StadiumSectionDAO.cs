@@ -1,5 +1,5 @@
-﻿using ChampionsLeague.Domain.Data;
-using ChampionsLeague.Domain.Entities;
+﻿using ChampionsLeague.Domain.DataDB;
+using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,27 +7,21 @@ namespace ChampionsLeague.Repository.DAO
 {
     public class StadiumSectionDAO : IDAO<StadiumSection>
     {
-        private readonly DbContextChampionsLeague _context;
+        private readonly ChampionLeagueDbContext _context;
 
-        public StadiumSectionDAO(DbContextChampionsLeague context)
+        public StadiumSectionDAO(ChampionLeagueDbContext context)
         {
             _context = context;
         }
 
         public async Task<IEnumerable<StadiumSection>?> GetAllAsync()
         {
-            return await _context.StadiumSections
-                .Include(ss => ss.Stadium)
-                .Include(ss => ss.Seats)
-                .ToListAsync();
+            return await _context.StadiumSections.ToListAsync();
         }
 
         public async Task<StadiumSection?> FindByAsync(int id)
         {
-            return await _context.StadiumSections
-                .Include(ss => ss.Stadium)
-                .Include(ss => ss.Seats)
-                .FirstOrDefaultAsync(ss => ss.SectionId == id);
+            return await _context.StadiumSections.FindAsync(id);
         }
 
         public async Task AddAsync(StadiumSection entity)

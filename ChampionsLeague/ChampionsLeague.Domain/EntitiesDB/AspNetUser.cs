@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ChampionsLeague.Domain.Entities;
+namespace ChampionsLeague.Domain.EntitiesDB;
 
 public partial class AspNetUser
 {
@@ -42,6 +42,10 @@ public partial class AspNetUser
     public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; } = new List<AspNetUserToken>();
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
+    public virtual ICollection<SubscriptionAssignment> SubscriptionAssignments { get; set; } = new List<SubscriptionAssignment>();
+
+    public virtual ICollection<TicketAssignment> TicketAssignments { get; set; } = new List<TicketAssignment>();
 
     public virtual ICollection<AspNetRole> Roles { get; set; } = new List<AspNetRole>();
 }

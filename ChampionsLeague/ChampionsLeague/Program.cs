@@ -1,6 +1,4 @@
-using ChampionsLeague.Domain.Data;
 using ChampionsLeague.Data;
-using ChampionsLeague.Domain.Entities;
 using ChampionsLeague.Repository;
 using ChampionsLeague.Repository.DAO;
 using ChampionsLeague.Repository.Interfaces;
@@ -8,6 +6,8 @@ using ChampionsLeague.Services;
 using ChampionsLeague.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ChampionsLeague.Domain.DataDB;
+using ChampionsLeague.Domain.EntitiesDB;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +16,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDbContext<ChampionsLeague.Domain.Data.DbContextChampionsLeague>(options =>
+builder.Services.AddDbContext<ChampionsLeague.Domain.DataDB.ChampionLeagueDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();

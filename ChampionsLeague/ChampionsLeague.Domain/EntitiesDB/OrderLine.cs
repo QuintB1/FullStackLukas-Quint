@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ChampionsLeague.Domain.Entities;
+namespace ChampionsLeague.Domain.EntitiesDB;
 
 public partial class OrderLine
 {
@@ -10,6 +10,10 @@ public partial class OrderLine
     public int OrderId { get; set; }
 
     public int ProductId { get; set; }
+
+    public decimal? StaticUnitPrice { get; set; }
+
+    public int? Quantity { get; set; }
 
     public virtual Order Order { get; set; } = null!;
 

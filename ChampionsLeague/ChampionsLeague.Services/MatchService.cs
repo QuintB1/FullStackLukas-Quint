@@ -1,5 +1,4 @@
-﻿using ChampionsLeague.Domain.Data;
-using ChampionsLeague.Domain.Entities;
+﻿using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository;
 using ChampionsLeague.Repository.Interfaces;
 using ChampionsLeague.Services.Interfaces;
@@ -53,16 +52,17 @@ namespace ChampionsLeague.Services
             var matches = await _matchDao.GetAllAsync();
 
             if (matches == null)
+            {
                 return Enumerable.Empty<Match>();
+            }
+                return matches;
 
-            return matches
-                .Where(m => m.MatchDate.CompareTo(now) > 0)
-
-                .OrderBy(m => m.MatchDate)
-                .Take(10)
-                .ToList();
+            
         }
 
-
+        Task<Match?> IService<Match>.FindByIdAsync(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

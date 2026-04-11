@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ChampionsLeague.Domain.Entities;
+namespace ChampionsLeague.Domain.EntitiesDB;
 
 public partial class StadiumSection
 {
@@ -12,8 +12,6 @@ public partial class StadiumSection
     public string Name { get; set; } = null!;
 
     public int Capacity { get; set; }
-
-    public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();
 
     public virtual Stadium Stadium { get; set; } = null!;
 }

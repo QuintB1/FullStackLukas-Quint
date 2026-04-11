@@ -1,5 +1,5 @@
-﻿using ChampionsLeague.Domain.Data;
-using ChampionsLeague.Domain.Entities;
+﻿using ChampionsLeague.Domain.DataDB;
+using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,9 +7,9 @@ namespace ChampionsLeague.Repository
 {
     public class OrderLineDAO : IDAO<OrderLine>
     {
-        private readonly DbContextChampionsLeague _context;
+        private readonly ChampionLeagueDbContext _context;
 
-        public OrderLineDAO(DbContextChampionsLeague context)
+        public OrderLineDAO(ChampionLeagueDbContext context)
         {
             _context = context;
         }

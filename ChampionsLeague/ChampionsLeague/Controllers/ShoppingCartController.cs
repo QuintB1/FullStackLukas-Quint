@@ -1,4 +1,4 @@
-﻿using ChampionsLeague.Domain.Entities;
+﻿using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -29,7 +29,7 @@ namespace ChampionsLeague.Controllers
                     {
                         ProductId = ol.ProductId,
                         ProductName = ol.Product.Name,
-                        UnitPrice = ol.Product.UnitPrice
+                        UnitPrice = ol.Product.DynamicUnitPrice
                     }).ToList()
                 })
                 .ToList();

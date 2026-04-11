@@ -1,5 +1,5 @@
-﻿using ChampionsLeague.Domain.Data;
-using ChampionsLeague.Domain.Entities;
+﻿using ChampionsLeague.Domain.DataDB;
+using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,9 +12,9 @@ namespace ChampionsLeague.Repository
 {
     public class StadiumDAO : IDAO<Stadium>
     {
-        private readonly DbContextChampionsLeague _context;
+        private readonly ChampionLeagueDbContext _context;
 
-        public StadiumDAO(DbContextChampionsLeague context)
+        public StadiumDAO(ChampionLeagueDbContext context)
         {
             _context = context;
         }
@@ -45,6 +45,11 @@ namespace ChampionsLeague.Repository
         public async Task<Stadium?> FindByAsync(int id)
         {
             return await _context.Stadia.FirstOrDefaultAsync(s => s.StadiumId == id);
+        }
+
+        Task<Stadium?> IDAO<Stadium>.FindByAsync(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

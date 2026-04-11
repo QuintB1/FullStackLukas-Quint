@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ChampionsLeague.Domain.Entities;
+namespace ChampionsLeague.Domain.EntitiesDB;
 
 public partial class Match
 {
     public int MatchId { get; set; }
-
-    public DateOnly MatchDate { get; set; }
 
     public int HomeClub { get; set; }
 
     public int AwayClub { get; set; }
 
     public int StadiumId { get; set; }
+
+    public DateTime DateTime { get; set; }
 
     public virtual Club AwayClubNavigation { get; set; } = null!;
 

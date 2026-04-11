@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using ChampionsLeague.Domain.Entities;
+using ChampionsLeague.Domain.EntitiesDB;
 using Microsoft.EntityFrameworkCore;
 
-namespace ChampionsLeague.Domain.Data;
+namespace ChampionsLeague.Domain.DataDB;
 
-public partial class DbContextChampionsLeague : DbContext
+public partial class ChampionLeagueDbContext : DbContext
 {
-    public DbContextChampionsLeague()
+    public ChampionLeagueDbContext()
     {
     }
 
-    public DbContextChampionsLeague(DbContextOptions<DbContext> options)
+    public ChampionLeagueDbContext(DbContextOptions<ChampionLeagueDbContext> options)
         : base(options)
     {
     }
@@ -38,6 +38,8 @@ public partial class DbContextChampionsLeague : DbContext
 
     public virtual DbSet<Product> Products { get; set; }
 
+    public virtual DbSet<Season> Seasons { get; set; }
+
     public virtual DbSet<Seat> Seats { get; set; }
 
     public virtual DbSet<Stadium> Stadia { get; set; }
@@ -46,11 +48,15 @@ public partial class DbContextChampionsLeague : DbContext
 
     public virtual DbSet<Subscription> Subscriptions { get; set; }
 
+    public virtual DbSet<SubscriptionAssignment> SubscriptionAssignments { get; set; }
+
     public virtual DbSet<Ticket> Tickets { get; set; }
+
+    public virtual DbSet<TicketAssignment> TicketAssignments { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=.\\SQL22_VIVES; Database=ChampionsLeague;Trusted_Connection=True; TrustServerCertificate=True; MultipleActiveResultSets=true;");
+        => optionsBuilder.UseSqlServer("Server=.\\SQL22_VIVES;Database=ChampionsLeague;Trusted_Connection=True;TrustServerCertificate=True; MultipleActiveResultSets=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -150,7 +156,7 @@ public partial class DbContextChampionsLeague : DbContext
         {
             entity.HasKey(e => e.MatchId).HasName("PK__Match__4218C8373ECD3C9A");
 
-            entity.ToTable("Match");
+            entity.ToTable("Match", tb => tb.HasTrigger("TRG_StadiumMinimumCapacity"));
 
             entity.Property(e => e.MatchId).HasColumnName("MatchID");
             entity.Property(e => e.StadiumId).HasColumnName("StadiumID");
@@ -189,13 +195,19 @@ public partial class DbContextChampionsLeague : DbContext
 
         modelBuilder.Entity<OrderLine>(entity =>
         {
-            entity.HasKey(e => e.LineId).HasName("PK__OrderLin__2EAE64C9679B375C");
+            entity.HasKey(e => new { e.OrderId, e.LineId });
 
-            entity.ToTable("OrderLine");
+            entity.ToTable("OrderLine", tb => tb.HasTrigger("trg_OrderLine_AutoNumber"));
 
-            entity.Property(e => e.LineId).HasColumnName("LineID");
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
+            entity.Property(e => e.LineId)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("LineID");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
+            entity.Property(e => e.Quantity)
+                .HasDefaultValue(1)
+                .HasColumnName("quantity");
+            entity.Property(e => e.StaticUnitPrice).HasColumnType("decimal(8, 2)");
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderLines)
                 .HasForeignKey(d => d.OrderId)
@@ -214,30 +226,34 @@ public partial class DbContextChampionsLeague : DbContext
             entity.ToTable("Product");
 
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
+            entity.Property(e => e.DynamicUnitPrice).HasColumnType("decimal(8, 2)");
             entity.Property(e => e.Name)
                 .HasMaxLength(100)
                 .IsUnicode(false);
             entity.Property(e => e.Type)
                 .HasMaxLength(20)
                 .IsUnicode(false);
-            entity.Property(e => e.UnitPrice).HasColumnType("decimal(8, 2)");
+        });
+
+        modelBuilder.Entity<Season>(entity =>
+        {
+            entity.HasKey(e => e.SeasonId).HasName("PK__Season__C1814E189EF4D4FB");
+
+            entity.ToTable("Season");
+
+            entity.Property(e => e.SeasonId).HasColumnName("SeasonID");
         });
 
         modelBuilder.Entity<Seat>(entity =>
         {
             entity.HasKey(e => e.SeatId).HasName("PK__Seat__311713D3A6402C8C");
 
-            entity.ToTable("Seat");
+            entity.ToTable("Seat", tb => tb.HasTrigger("TRG_SectionCapacityLimit"));
 
             entity.HasIndex(e => new { e.SectionId, e.SeatNumber }, "UQ_Seat_Section_SeatNumber").IsUnique();
 
             entity.Property(e => e.SeatId).HasColumnName("SeatID");
             entity.Property(e => e.SectionId).HasColumnName("SectionID");
-
-            entity.HasOne(d => d.Section).WithMany(p => p.Seats)
-                .HasForeignKey(d => d.SectionId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Seat_Section");
         });
 
         modelBuilder.Entity<Stadium>(entity =>
@@ -257,9 +273,15 @@ public partial class DbContextChampionsLeague : DbContext
 
         modelBuilder.Entity<StadiumSection>(entity =>
         {
-            entity.HasKey(e => e.SectionId).HasName("PK__StadiumS__80EF08923407988F");
+            entity.HasKey(e => e.SectionId).HasName("PK_StadiumSection_1");
 
-            entity.ToTable("StadiumSection");
+            entity.ToTable("StadiumSection", tb =>
+                {
+                    tb.HasTrigger("trg_CreateSeatsForSection");
+                    tb.HasTrigger("trg_StadiumSection_AutoNumber");
+                });
+
+            entity.HasIndex(e => e.SectionId, "IX_StadiumSection");
 
             entity.Property(e => e.SectionId).HasColumnName("SectionID");
             entity.Property(e => e.Name)
@@ -279,10 +301,9 @@ public partial class DbContextChampionsLeague : DbContext
             entity.ToTable("Subscription");
 
             entity.Property(e => e.SubscriptionId).HasColumnName("SubscriptionID");
-            entity.Property(e => e.Active).HasDefaultValue(true);
             entity.Property(e => e.ClubId).HasColumnName("ClubID");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
-            entity.Property(e => e.SeatId).HasColumnName("SeatID");
+            entity.Property(e => e.SeasonId).HasColumnName("SeasonID");
 
             entity.HasOne(d => d.Club).WithMany(p => p.Subscriptions)
                 .HasForeignKey(d => d.ClubId)
@@ -292,10 +313,38 @@ public partial class DbContextChampionsLeague : DbContext
                 .HasForeignKey(d => d.ProductId)
                 .HasConstraintName("FK_Sub_Product");
 
-            entity.HasOne(d => d.Seat).WithMany(p => p.Subscriptions)
+            entity.HasOne(d => d.Season).WithMany(p => p.Subscriptions)
+                .HasForeignKey(d => d.SeasonId)
+                .HasConstraintName("FK_Subscription_Season");
+        });
+
+        modelBuilder.Entity<SubscriptionAssignment>(entity =>
+        {
+            entity.HasKey(e => e.AssignmentId).HasName("PK_SubscriptionAssignment_1");
+
+            entity.ToTable("SubscriptionAssignment");
+
+            entity.HasIndex(e => new { e.UserId, e.Active, e.SubscriptionId }, "UQ_SubscriptionPerUserPerClub").IsUnique();
+
+            entity.Property(e => e.AssignmentId).HasColumnName("AssignmentID");
+            entity.Property(e => e.Active).HasDefaultValue(true);
+            entity.Property(e => e.SeatId).HasColumnName("SeatID");
+            entity.Property(e => e.SubscriptionId).HasColumnName("SubscriptionID");
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+
+            entity.HasOne(d => d.Seat).WithMany(p => p.SubscriptionAssignments)
                 .HasForeignKey(d => d.SeatId)
+                .HasConstraintName("FK_SubscriptionAssignment_Seat");
+
+            entity.HasOne(d => d.Subscription).WithMany(p => p.SubscriptionAssignments)
+                .HasForeignKey(d => d.SubscriptionId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Subscription_Seat");
+                .HasConstraintName("FK_SubscriptionAssignment_Subscription");
+
+            entity.HasOne(d => d.User).WithMany(p => p.SubscriptionAssignments)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_SubscriptionAssignment_User");
         });
 
         modelBuilder.Entity<Ticket>(entity =>
@@ -303,24 +352,52 @@ public partial class DbContextChampionsLeague : DbContext
             entity.ToTable("Ticket");
 
             entity.Property(e => e.TicketId).HasColumnName("TicketID");
-            entity.Property(e => e.Active).HasDefaultValue(true);
             entity.Property(e => e.MatchId).HasColumnName("MatchID");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
-            entity.Property(e => e.SeatId).HasColumnName("SeatID");
 
             entity.HasOne(d => d.Match).WithMany(p => p.Tickets)
                 .HasForeignKey(d => d.MatchId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Ticket_Match");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Tickets)
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Ticket_Product");
+        });
 
-            entity.HasOne(d => d.Seat).WithMany(p => p.Tickets)
+        modelBuilder.Entity<TicketAssignment>(entity =>
+        {
+            entity.HasKey(e => e.AssignmentId).HasName("PK_TicketAssignment_1");
+
+            entity.ToTable("TicketAssignment", tb =>
+                {
+                    tb.HasTrigger("TRG_LimitUserTicketsPerMatch");
+                    tb.HasTrigger("TRG_LimitUserTicketsSameDay");
+                    tb.HasTrigger("TRG_TicketPurchaseWindow");
+                });
+
+            entity.Property(e => e.AssignmentId).HasColumnName("AssignmentID");
+            entity.Property(e => e.Active).HasDefaultValue(true);
+            entity.Property(e => e.SeatId).HasColumnName("SeatID");
+            entity.Property(e => e.TicketId).HasColumnName("TicketID");
+            entity.Property(e => e.UserId)
+                .HasMaxLength(450)
+                .HasColumnName("UserID");
+
+            entity.HasOne(d => d.Seat).WithMany(p => p.TicketAssignments)
                 .HasForeignKey(d => d.SeatId)
+                .HasConstraintName("FK_TicketAssignment_Seat");
+
+            entity.HasOne(d => d.Ticket).WithMany(p => p.TicketAssignments)
+                .HasForeignKey(d => d.TicketId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Ticket_Seat");
+                .HasConstraintName("FK_TicketAssignment_Ticket");
+
+            entity.HasOne(d => d.User).WithMany(p => p.TicketAssignments)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_TicketAssignment_User");
         });
 
         OnModelCreatingPartial(modelBuilder);

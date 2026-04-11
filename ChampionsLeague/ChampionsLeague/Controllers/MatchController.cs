@@ -1,4 +1,4 @@
-﻿using ChampionsLeague.Domain.Entities;
+﻿using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -19,18 +19,7 @@ namespace ChampionsLeague.Controllers
 
             var matches = await _match.GetAllAsync();
 
-            var vm = matches.Select(m => new MatchVM
-            {
-                Id = m.MatchId,
-                Date = m.MatchDate,
-                HomeClubName = m.HomeClubNavigation.Name,
-                AwayClubName = m.AwayClubNavigation.Name,
-                HomeClubId = m.HomeClubNavigation.ClubId,
-                AwayClubId = m.AwayClubNavigation.ClubId,
-                StadiumId = m.Stadium.StadiumId
-            });
-
-            return View(vm);
+            return View();
         }
 
         [HttpGet]
@@ -46,7 +35,7 @@ namespace ChampionsLeague.Controllers
             var vm = new MatchVM
             {
                 Id = match.MatchId,
-                Date = match.MatchDate,
+                DateTime = match.DateTime,
                 HomeClubName = match.HomeClubNavigation.Name,
                 AwayClubName = match.AwayClubNavigation.Name,
                 HomeClubId = match.HomeClubNavigation.ClubId,
