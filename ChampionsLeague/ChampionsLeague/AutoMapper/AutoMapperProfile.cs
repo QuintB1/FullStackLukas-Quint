@@ -13,6 +13,7 @@ namespace BeerschopNET9_Identity.AutoMapper
             CreateMap<Stadium, StadiumVM>();
             CreateMap<Club, CalendarSelectVM>();
             CreateMap<Club,HomeclubStadiumSelectVM>();
+            CreateMap<Match, MatchVM>();
 
 
 

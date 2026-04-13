@@ -1,4 +1,6 @@
-﻿using ChampionsLeague.Domain.EntitiesDB;
+﻿using AutoMapper;
+using ChampionsLeague.Domain.EntitiesDB;
+using ChampionsLeague.Services;
 using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -9,15 +11,19 @@ namespace ChampionsLeague.Controllers
 {
     public class MatchController : Controller
     {
-        private readonly IService<Match> _match;
-        public MatchController(IService<Match> match)
+        private readonly IService<Club> _clubService;
+        private readonly IService<Match> _MatchService;
+        private readonly IMapper _mapper;
+        public MatchController(IService<Club> clubService,IService<Match> matchService, IMapper mapper)
         {
-            _match = match;
+            _clubService = clubService;
+            _MatchService = matchService;
+            _mapper = mapper;
         }
         public async Task<IActionResult> Index()
         {
 
-            var matches = await _match.GetAllAsync();
+            var clubs = await _clubService.GetAllAsync();
 
             return View();
         }
@@ -25,7 +31,7 @@ namespace ChampionsLeague.Controllers
         [HttpGet]
         public async Task<ActionResult<MatchVM>> Detail(int id)
         {
-            var match = await _match.FindByIdAsync(id);
+            var match = await _MatchService.FindByIdAsync(id);
 
             if (match == null)
             {
