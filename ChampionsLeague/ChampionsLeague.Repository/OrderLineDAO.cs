@@ -30,6 +30,11 @@ namespace ChampionsLeague.Repository
         {
             return await _context.OrderLines.ToListAsync();
         }
+        public async Task<IEnumerable<OrderLine>?> GetAllByOrderIdAsync(int id)
+        {
+            return await _context.OrderLines.Where(ol => ol.OrderId == id).ToListAsync();
+        }
+
 
         public async Task UpdateAsync(OrderLine entity)
         {

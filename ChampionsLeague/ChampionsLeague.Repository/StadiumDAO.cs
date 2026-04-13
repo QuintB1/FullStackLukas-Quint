@@ -47,9 +47,9 @@ namespace ChampionsLeague.Repository
             return await _context.Stadia.FirstOrDefaultAsync(s => s.StadiumId == id);
         }
 
-        Task<Stadium?> IDAO<Stadium>.FindByAsync(int id)
+        async Task<Stadium?> IDAO<Stadium>.FindByAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Stadia.FindAsync(id);
         }
     }
 }

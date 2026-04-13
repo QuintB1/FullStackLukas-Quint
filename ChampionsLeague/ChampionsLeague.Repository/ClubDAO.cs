@@ -16,22 +16,21 @@ namespace ChampionsLeague.Repository.DAO
 
         public async Task<IEnumerable<Club>?> GetAllAsync()
         {
-            return await _context.Clubs
-                .Include(c => c.HomeStadium)
-                .Include(c => c.MatchHomeClubNavigations)
-                .Include(c => c.MatchAwayClubNavigations)
-                .Include(c => c.Subscriptions)
-                .ToListAsync();
+            return await _context.Clubs.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Club>?> GetAllWithHomeStadiumAsync()
+        {
+            return await _context.Clubs.Where(c => c.HomeStadiumId != null).ToListAsync();
+        }
+        public async Task<IEnumerable<Club>?> GetAllWithMatchesAsync()
+        {
+            return await _context.Clubs.Where(c => c.MatchAwayClubNavigations.Any() || c.MatchHomeClubNavigations.Any()).ToListAsync();
         }
 
         public async Task<Club?> FindByAsync(int id)
         {
-            return await _context.Clubs
-                .Include(c => c.HomeStadium)
-                .Include(c => c.MatchHomeClubNavigations)
-                .Include(c => c.MatchAwayClubNavigations)
-                .Include(c => c.Subscriptions)
-                .FirstOrDefaultAsync(c => c.ClubId == id);
+            return await _context.Clubs.FirstOrDefaultAsync(c => c.ClubId == id);
         }
 
         public async Task AddAsync(Club entity)

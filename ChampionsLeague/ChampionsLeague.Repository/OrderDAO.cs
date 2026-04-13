@@ -39,8 +39,7 @@ namespace ChampionsLeague.Repository
 
         async Task<Order?> IDAO<Order>.FindByAsync(int id)
         {
-            return await _context.Orders
-                .FirstOrDefaultAsync(o => o.OrderId == id);
+            return await _context.Orders.FindAsync(id);
         }
     }
 }

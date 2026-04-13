@@ -40,6 +40,10 @@ namespace ChampionsLeague.Repository
         {
             return _orderLineService.GetAllAsync();
         }
+        public Task<IEnumerable<OrderLine>> GetAllByOrderIdAsync()
+        {
+            return _orderLineService.GetAllByOrderIdAsync();
+        }
 
         public Task UpdateAsync(OrderLine entity)
         {
