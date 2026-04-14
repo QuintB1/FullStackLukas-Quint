@@ -3,40 +3,37 @@ using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ChampionsLeague.Controllers
 {
     public class StadiumController : Controller
     {
-        private readonly IService<Stadium> _stadiumDBService;
+        private readonly IClubService _clubService;
+        private readonly IService<Stadium> _stadiumService;
         private readonly IMapper _mapper;
 
-        public StadiumController(IService<Stadium> stadiumDBService)
+        public StadiumController(
+            IService<Stadium> stadiumService,
+            IClubService clubService,
+            IMapper mapper)
         {
-            _stadiumDBService = stadiumDBService;
+            _stadiumService = stadiumService;
+            _clubService = clubService;
+            _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> Index()
         {
-            if (id <= 0)
-                return BadRequest();
+            // 1. Get clubs with a home stadium
+            var clubs = await _clubService.GetAllAsync();
 
-            // Ophalen via service (FindByIdAsync)
-            var stadium = await _stadiumDBService.FindByIdAsync(id);
+            // 2. Map to CalendarSelectVM list
+            var vmList = _mapper.Map<List<CalendarSelectVM>>(clubs);
 
-            if (stadium == null)
-                return NotFound();
-
-            // Stadium -> StadiumVM mappen (indien service geen VM teruggeeft)
-            var vm = new StadiumVM
-            {
-                StadiumId = stadium.StadiumId,
-                Name = stadium.Name,
-                Address = stadium.Address,
-            };
-
-            return View(vm);
+            // 3. Return the view with the mapped list
+            return View(vmList);
         }
     }
 }

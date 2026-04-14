@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChampionsLeague.Repository.DAO
 {
-    public class ClubDAO : IDAO<Club>
+    public class ClubDAO : IClubDAO
     {
         private readonly ChampionLeagueDbContext _context;
 
@@ -17,15 +17,6 @@ namespace ChampionsLeague.Repository.DAO
         public async Task<IEnumerable<Club>?> GetAllAsync()
         {
             return await _context.Clubs.ToListAsync();
-        }
-
-        public async Task<IEnumerable<Club>?> GetAllWithHomeStadiumAsync()
-        {
-            return await _context.Clubs.Where(c => c.HomeStadiumId != null).ToListAsync();
-        }
-        public async Task<IEnumerable<Club>?> GetAllWithMatchesAsync()
-        {
-            return await _context.Clubs.Where(c => c.MatchAwayClubNavigations.Any() || c.MatchHomeClubNavigations.Any()).ToListAsync();
         }
 
         public async Task<Club?> FindByAsync(int id)
@@ -49,6 +40,16 @@ namespace ChampionsLeague.Repository.DAO
         {
             _context.Clubs.Remove(entity);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Club>?> GetAllWithHomeStadium()
+        {
+            return await _context.Clubs.Where(c => c.HomeStadiumId != null).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Club>?> GetAllWithMatches()
+        {
+            return await _context.Clubs.Where(c => c.MatchAwayClubNavigations.Any() || c.MatchHomeClubNavigations.Any()).ToListAsync();
         }
     }
 }

@@ -4,11 +4,11 @@ using ChampionsLeague.Services.Interfaces;
 
 namespace ChampionsLeague.Services
 {
-    public class ClubService : IService<Club> 
+    public class ClubService : IClubService 
     {
-        private readonly IDAO<Club> _clubDao;
+        private readonly IClubDAO _clubDao;
 
-        public ClubService(IDAO<Club> clubDao)
+        public ClubService(IClubDAO clubDao)
         {
             _clubDao = clubDao;
         }
@@ -49,6 +49,16 @@ namespace ChampionsLeague.Services
         public async Task DeleteAsync(Club entity)
         {
             await _clubDao.DeleteAsync(entity);
+        }
+
+        public Task<IEnumerable<Club>?> GetAllWithHomeStadium()
+        {
+            return _clubDao.GetAllWithHomeStadium();
+        }
+
+        public async Task<IEnumerable<Club>?> GetAllWithMatches()
+        {
+            return await _clubDao.GetAllWithMatches();
         }
     }
 }
