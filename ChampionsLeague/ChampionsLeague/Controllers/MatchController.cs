@@ -11,10 +11,10 @@ namespace ChampionsLeague.Controllers
 {
     public class MatchController : Controller
     {
-        private readonly IService<Club> _clubService;
+        private readonly IClubService _clubService;
         private readonly IService<Match> _MatchService;
         private readonly IMapper _mapper;
-        public MatchController(IService<Club> clubService,IService<Match> matchService, IMapper mapper)
+        public MatchController(IClubService clubService,IService<Match> matchService, IMapper mapper)
         {
             _clubService = clubService;
             _MatchService = matchService;

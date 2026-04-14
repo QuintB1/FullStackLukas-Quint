@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ChampionsLeague.Domain.DataDB;
 using ChampionsLeague.Domain.EntitiesDB;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,11 +33,16 @@ builder.Services.AddScoped<IDAO<Stadium>, StadiumDAO>();
 builder.Services.AddScoped<IDAO<Order>, OrderDAO>();
 builder.Services.AddScoped<IDAO<StadiumSection>, StadiumSectionDAO>();
 builder.Services.AddScoped<IDAO<Match>, MatchDAO>();
-builder.Services.AddScoped <IService<Club>, ClubService>();
 builder.Services.AddScoped<IService<Stadium>, StadiumService>();
 builder.Services.AddScoped<IService<Order>, OrderService>();
 builder.Services.AddScoped<IService<StadiumSection>, StadiumSectionService>();
 builder.Services.AddScoped<IService<Match>, MatchService>();
+builder.Services.AddScoped<IClubDAO, ClubDAO>();
+builder.Services.AddScoped<IClubService, ClubService>();
+builder.Services.AddAutoMapper(typeof(Program));
+
+
+
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
