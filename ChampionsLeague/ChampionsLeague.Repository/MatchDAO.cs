@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ChampionsLeague.Repository
 {
-    public class MatchDAO : IDAO<Match>
+    public class MatchDAO : IMatchDAO
     {
         private readonly ChampionLeagueDbContext _context;
 
@@ -49,12 +49,12 @@ namespace ChampionsLeague.Repository
 
         public async Task<Match?> FindByAsync(int id)
         {
-            return await _context.Matches
-                .Include(m => m.HomeClubNavigation)
-                .Include(m => m.AwayClubNavigation)
-                .Include(m => m.Stadium)
-                .Include(m => m.Tickets)
-                .FirstOrDefaultAsync(m => m.MatchId == id);
+            return await _context.Matches.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<Match>?> GetAllMatchesWithClubIdAsync(int id)
+        {
+            return await _context.Matches.Where(m => m.HomeClub == id || m.AwayClub == id).ToListAsync();
         }
     }
 }

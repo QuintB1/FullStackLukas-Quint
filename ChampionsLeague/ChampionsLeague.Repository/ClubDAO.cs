@@ -21,7 +21,7 @@ namespace ChampionsLeague.Repository.DAO
 
         public async Task<Club?> FindByAsync(int id)
         {
-            return await _context.Clubs.FirstOrDefaultAsync(c => c.ClubId == id);
+            return await _context.Clubs.FindAsync(id);
         }
 
         public async Task AddAsync(Club entity)
