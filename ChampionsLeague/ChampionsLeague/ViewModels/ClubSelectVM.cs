@@ -1,6 +1,6 @@
 ﻿namespace ChampionsLeague.ViewModels
 {
-    public class CalendarSelectVM
+    public class ClubSelectVM
     {
         public int ClubId { get; set; }
         public string Name { get; set; } = null!;

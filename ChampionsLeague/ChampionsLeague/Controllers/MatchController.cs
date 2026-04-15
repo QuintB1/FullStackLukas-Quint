@@ -14,20 +14,12 @@ namespace ChampionsLeague.Controllers
         private readonly IClubService _clubService;
         private readonly IService<Match> _MatchService;
         private readonly IMapper _mapper;
-        public MatchController(IClubService clubService,IService<Match> matchService, IMapper mapper)
+        public MatchController(IClubService clubService, IService<Match> matchService, IMapper mapper)
         {
             _clubService = clubService;
             _MatchService = matchService;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Index()
-        {
-
-            var clubs = await _clubService.GetAllAsync();
-
-            return View();
-        }
-
         [HttpGet]
         public async Task<ActionResult<MatchVM>> Detail(int id)
         {
@@ -51,6 +43,16 @@ namespace ChampionsLeague.Controllers
 
             return View(vm);
         }
+        public async Task<IActionResult> Index()
+        {
+            // 1. Get clubs with a home stadium
+            var clubs = await _clubService.GetAllWithMatches();
 
+            // 2. Map to CalendarSelectVM list
+            var vmList = _mapper.Map<List<ClubSelectVM>>(clubs);
+
+            // 3. Return the view with the mapped list
+            return View(vmList);
+        }
     }
 }

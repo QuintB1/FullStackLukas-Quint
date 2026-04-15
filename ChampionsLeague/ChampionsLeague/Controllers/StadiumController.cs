@@ -27,10 +27,10 @@ namespace ChampionsLeague.Controllers
         public async Task<IActionResult> Index()
         {
             // 1. Get clubs with a home stadium
-            var clubs = await _clubService.GetAllAsync();
+            var clubs = await _clubService.GetAllWithHomeStadium();
 
             // 2. Map to CalendarSelectVM list
-            var vmList = _mapper.Map<List<CalendarSelectVM>>(clubs);
+            var vmList = _mapper.Map<List<ClubSelectVM>>(clubs);
 
             // 3. Return the view with the mapped list
             return View(vmList);

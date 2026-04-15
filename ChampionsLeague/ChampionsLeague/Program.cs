@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using ChampionsLeague.Domain.DataDB;
 using ChampionsLeague.Domain.EntitiesDB;
 using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,7 +40,11 @@ builder.Services.AddScoped<IService<StadiumSection>, StadiumSectionService>();
 builder.Services.AddScoped<IService<Match>, MatchService>();
 builder.Services.AddScoped<IClubDAO, ClubDAO>();
 builder.Services.AddScoped<IClubService, ClubService>();
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+
+
+
 
 
 

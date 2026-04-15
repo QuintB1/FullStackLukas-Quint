@@ -1,0 +1,12 @@
+﻿@model IEnumerable<ChampionsLeague.ViewModels.ClubSelectVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Match calendar</h1>
+<select id="sltClub">
+@foreach (var item in Model) {
+    <option value="@item.ClubId">@item.Name</option>
+}
+</select>
