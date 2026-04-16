@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChampionsLeague.Repository
 {
-    public class OrderDAO : IDAO<Order>
+    public class OrderDAO : IOrderDAO
     {
         private readonly ChampionLeagueDbContext _context;
 
@@ -26,20 +26,25 @@ namespace ChampionsLeague.Repository
             await _context.SaveChangesAsync();
         }
 
+        public async Task<Order?> FindByAsync(int id)
+        {
+            return await _context.Orders.FindAsync(id);
+        }
+
         public async Task<IEnumerable<Order>?> GetAllAsync()
         {
             return await _context.Orders.ToListAsync();
+        }
+
+        public async Task<Order> GetUserShoppingCart(String id)
+        {
+            return _context.Orders.Where(c => c.UserId.Equals(id) && c.Status.Equals("Cart")).First();
         }
 
         public async Task UpdateAsync(Order entity)
         {
             _context.Orders.Update(entity);
             await _context.SaveChangesAsync();
-        }
-
-        async Task<Order?> IDAO<Order>.FindByAsync(int id)
-        {
-            return await _context.Orders.FindAsync(id);
         }
     }
 }
