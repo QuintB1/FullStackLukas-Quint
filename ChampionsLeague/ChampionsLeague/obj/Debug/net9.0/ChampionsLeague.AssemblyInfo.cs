@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChampionsLeague")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d179cf145f8cae7389289dc4c948ebcab696d6b5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d1044c12c671dd11f88af5bf5df6b6ec385d8be")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChampionsLeague")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChampionsLeague")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
