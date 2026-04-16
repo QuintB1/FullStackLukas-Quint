@@ -37,7 +37,7 @@ builder.Services.AddScoped<IDAO<Match>, MatchDAO>();
 builder.Services.AddScoped<IService<Stadium>, StadiumService>();
 builder.Services.AddScoped<IService<Order>, OrderService>();
 builder.Services.AddScoped<IService<StadiumSection>, StadiumSectionService>();
-builder.Services.AddScoped<IService<Match>, MatchService>();
+builder.Services.AddScoped<IMatchService, MatchService>();
 builder.Services.AddScoped<IClubDAO, ClubDAO>();
 builder.Services.AddScoped<IClubService, ClubService>();
 builder.Services.AddScoped<IOrderDAO, OrderDAO>();
