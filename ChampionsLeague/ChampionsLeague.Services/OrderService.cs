@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ChampionsLeague.Services
 {
-    public class OrderService : IService<Order>
+    public class OrderService : IOrderService
     {
-        private readonly IDAO<Order> _orderDAO;
+        private readonly IOrderDAO _orderDAO;
     
-        public OrderService(IDAO<Order> DAO)
+        public OrderService(IOrderDAO DAO)
         {
             _orderDAO = DAO;
         }
@@ -35,6 +35,11 @@ namespace ChampionsLeague.Services
         public async Task<IEnumerable<Order>?> GetAllAsync()
         {
             return await _orderDAO.GetAllAsync();
+        }
+
+        public Task<Order?> GetUserShoppingCart(string id)
+        {
+            return _orderDAO.GetUserShoppingCart(id);
         }
 
         public Task UpdateAsync(Order entity)

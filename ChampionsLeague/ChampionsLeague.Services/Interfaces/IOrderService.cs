@@ -9,5 +9,6 @@ namespace ChampionsLeague.Services.Interfaces
 {
     public interface IOrderService: IService<Order>
     {
+        Task<Order?> GetUserShoppingCart(String id);
     }
 }

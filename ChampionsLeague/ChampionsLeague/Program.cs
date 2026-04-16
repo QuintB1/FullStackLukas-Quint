@@ -40,6 +40,8 @@ builder.Services.AddScoped<IService<StadiumSection>, StadiumSectionService>();
 builder.Services.AddScoped<IService<Match>, MatchService>();
 builder.Services.AddScoped<IClubDAO, ClubDAO>();
 builder.Services.AddScoped<IClubService, ClubService>();
+builder.Services.AddScoped<IOrderDAO, OrderDAO>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 

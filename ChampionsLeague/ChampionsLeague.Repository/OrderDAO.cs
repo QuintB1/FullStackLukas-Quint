@@ -46,4 +46,5 @@ namespace ChampionsLeague.Repository
             _context.Orders.Update(entity);
             await _context.SaveChangesAsync();
         }
+    }
 }
