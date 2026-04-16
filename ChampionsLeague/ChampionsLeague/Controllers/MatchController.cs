@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ChampionsLeague.Data;
+using ChampionsLeague.Domain.DataDB;
 using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Services;
 using ChampionsLeague.Services.Interfaces;
@@ -12,18 +14,20 @@ namespace ChampionsLeague.Controllers
     public class MatchController : Controller
     {
         private readonly IClubService _clubService;
-        private readonly IService<Match> _MatchService;
+        private readonly IService<Match> _matchService;
         private readonly IMapper _mapper;
-        public MatchController(IClubService clubService, IService<Match> matchService, IMapper mapper)
+        private readonly ChampionLeagueDbContext _context;
+        public MatchController(IClubService clubService, IService<Match> matchService, IMapper mapper, ChampionLeagueDbContext applicationDbContext)
         {
             _clubService = clubService;
-            _MatchService = matchService;
+            _matchService = matchService;
             _mapper = mapper;
+            _context = applicationDbContext;
         }
         [HttpGet]
         public async Task<ActionResult<MatchVM>> Detail(int id)
         {
-            var match = await _MatchService.FindByIdAsync(id);
+            var match = await _matchService.FindByIdAsync(id);
 
             if (match == null)
             {
@@ -53,6 +57,34 @@ namespace ChampionsLeague.Controllers
 
             // 3. Return the view with the mapped list
             return View(vmList);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(ClubSelectVM club)
+        {
+            if (club.ClubId == 0)
+            {
+                return NotFound();
+            }
+
+            var filteredMatches = await _context.Matches
+                .Include(m => m.HomeClubNavigation)
+                .Include(m => m.AwayClubNavigation)
+                .Where(m => m.HomeClub == club.ClubId)
+                .ToListAsync();
+
+            var result = filteredMatches.Select(m => new MatchVM
+            {
+                Id = m.MatchId,
+                DateTime = m.DateTime,
+                HomeClubId = m.HomeClub,
+                AwayClubId = m.AwayClub,
+                HomeClubName = m.HomeClubNavigation.Name,
+                AwayClubName = m.AwayClubNavigation.Name,
+                StadiumId = m.StadiumId
+            }).ToList();
+
+            return PartialView("_MatchList", result);
         }
     }
 }

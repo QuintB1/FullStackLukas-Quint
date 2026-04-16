@@ -5,8 +5,42 @@
 }
 
 <h1>Match calendar</h1>
-<select id="sltClub">
-@foreach (var item in Model) {
-    <option value="@item.ClubId">@item.Name</option>
-}
+<select id="sltClub" class="form-control">
+    <option value="">Select a club</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.ClubId">@item.Name</option>
+    }
 </select>
+
+<div id="content"></div>
+<div id="divloading" style="display:none;">Loading...</div>
+
+
+
+@section scripts {
+
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+            $("#sltClub").change(function () {
+            var clubId = $(this).val();
+
+            $.ajax({
+                url: '@Url.Action("Index", "YourControllerName")',
+                type: 'POST',
+                data: { ClubId: clubId },
+                beforeSend: function () {
+                    $("#divloading").show();
+                },
+                success: function (result) {
+                    $("#content").html(result);
+                    $("#divloading").hide();
+                },
+                error: function () {
+                    alert("Error loading matches");
+                }
+            });
+        });
+    </script>
+}
