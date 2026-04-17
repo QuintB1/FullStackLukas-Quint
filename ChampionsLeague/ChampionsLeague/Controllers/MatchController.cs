@@ -17,7 +17,7 @@ namespace ChampionsLeague.Controllers
         private readonly IService<Match> _matchService;
         private readonly IMapper _mapper;
         private readonly ChampionLeagueDbContext _context;
-        public MatchController(IClubService clubService, IService<Match> matchService, IMapper mapper, ChampionLeagueDbContext applicationDbContext)
+        public MatchController(IClubService clubService, IMatchService matchService, IMapper mapper, ChampionLeagueDbContext applicationDbContext)
         {
             _clubService = clubService;
             _matchService = matchService;
