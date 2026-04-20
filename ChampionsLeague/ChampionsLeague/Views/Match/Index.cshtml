@@ -27,7 +27,7 @@
             var clubId = $(this).val();
 
             $.ajax({
-                url: '@Url.Action("Index", "YourControllerName")',
+                url: '@Url.Action("Index", "MatchController")',
                 type: 'POST',
                 data: { ClubId: clubId },
                 beforeSend: function () {

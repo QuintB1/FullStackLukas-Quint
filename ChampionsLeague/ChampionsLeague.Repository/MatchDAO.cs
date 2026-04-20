@@ -54,7 +54,8 @@ namespace ChampionsLeague.Repository
 
         public async Task<IEnumerable<Match>?> GetAllMatchesWithClubIdAsync(int id)
         {
-            return await _context.Matches.Where(m => m.HomeClub == id || m.AwayClub == id).ToListAsync();
+            var time = DateTime.UtcNow;
+            return await _context.Matches.Where(m => m.HomeClub == id || m.AwayClub == id && m.DateTime > time).ToListAsync();
         }
     }
 }
