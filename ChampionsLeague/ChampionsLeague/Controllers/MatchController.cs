@@ -14,7 +14,7 @@ namespace ChampionsLeague.Controllers
     public class MatchController : Controller
     {
         private readonly IClubService _clubService;
-        private readonly IService<Match> _matchService;
+        private readonly IMatchService _matchService;
         private readonly IMapper _mapper;
         private readonly ChampionLeagueDbContext _context;
         public MatchController(IClubService clubService, IMatchService matchService, IMapper mapper, ChampionLeagueDbContext applicationDbContext)
@@ -33,17 +33,7 @@ namespace ChampionsLeague.Controllers
             {
                 return NotFound();
             }
-
-            var vm = new MatchVM
-            {
-                Id = match.MatchId,
-                DateTime = match.DateTime,
-                HomeClubName = match.HomeClubNavigation.Name,
-                AwayClubName = match.AwayClubNavigation.Name,
-                HomeClubId = match.HomeClubNavigation.ClubId,
-                AwayClubId = match.AwayClubNavigation.ClubId,
-                StadiumId = match.Stadium.StadiumId
-            };
+            var vm = _mapper.Map<MatchVM>(match);
 
             return View(vm);
         }
@@ -67,24 +57,10 @@ namespace ChampionsLeague.Controllers
                 return NotFound();
             }
 
-            var filteredMatches = await _context.Matches
-                .Include(m => m.HomeClubNavigation)
-                .Include(m => m.AwayClubNavigation)
-                .Where(m => m.HomeClub == club.ClubId)
-                .ToListAsync();
+            var filteredMatches = _matchService.GetAllByClubID(club.ClubId);
+            var MatchVMs = _mapper.Map<List<ClubSelectVM>>(filteredMatches);
 
-            var result = filteredMatches.Select(m => new MatchVM
-            {
-                Id = m.MatchId,
-                DateTime = m.DateTime,
-                HomeClubId = m.HomeClub,
-                AwayClubId = m.AwayClub,
-                HomeClubName = m.HomeClubNavigation.Name,
-                AwayClubName = m.AwayClubNavigation.Name,
-                StadiumId = m.StadiumId
-            }).ToList();
-
-            return PartialView("_MatchList", result);
+            return PartialView("_MatchList", MatchVMs);
         }
     }
 }
