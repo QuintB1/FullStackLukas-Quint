@@ -35,5 +35,18 @@ namespace ChampionsLeague.Controllers
             // 3. Return the view with the mapped list
             return View(vmList);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetStadiumByClub(int stadiumId)
+        {
+            var stadium = await _stadiumService.FindByIdAsync(stadiumId);
+
+            if (stadium == null)
+                return NotFound();
+
+            var vm = _mapper.Map<StadiumVM>(stadium);
+
+            return Json(vm);
+        }
+
     }
 }
