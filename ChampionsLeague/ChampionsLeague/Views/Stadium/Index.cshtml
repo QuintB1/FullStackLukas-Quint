@@ -1,17 +1,84 @@
 ﻿@model IEnumerable<ChampionsLeague.ViewModels.ClubSelectVM>
 
 @{
-    ViewData["Title"] = "StadiumSelect";
+    ViewData["Title"] = "Stadium Select";
 }
 
 <h1>Select a Stadium</h1>
 
-<select>
+<select id="clubSelect" class="form-select">
+    <option value="">-- Select a club --</option>
     @foreach (var item in Model)
     {
         <option value="@item.ClubId">@item.Name</option>
     }
-
 </select>
 
-    
+<hr />
+
+<div id="stadiumContainer" style="display:none;">
+    <h2 id="stadiumName"></h2>
+    <p id="stadiumAddress"></p>
+
+    <h3>Sections</h3>
+    <table class="table table-bordered" id="sectionsTable">
+        <thead>
+            <tr>
+                <th>Section</th>
+                <th>Capacity</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div id="noStadiumMessage" style="display:none; color:red;">
+    No stadium found for this club.
+</div>
+
+@section Scripts {
+    <script>
+        $("#clubSelect").on("change", function () {
+            const clubId = $(this).val();
+
+            // Reset UI
+            $("#stadiumContainer").hide();
+            $("#noStadiumMessage").hide();
+            $("#sectionsTable tbody").empty();
+
+            if (!clubId) return;
+
+            $.ajax({
+                url: "/Stadium/GetStadiumByClub",
+                type: "GET",
+                data: { clubId: clubId },
+                success: function (data) {
+
+                    if (!data) {
+                        $("#noStadiumMessage").show();
+                        return;
+                    }
+
+                    // Fill stadium info
+                    $("#stadiumName").text(data.name);
+                    $("#stadiumAddress").text(data.address);
+
+                    // Fill sections
+                    data.sections.forEach(section => {
+                        $("#sectionsTable tbody").append(`
+                            <tr>
+                                <td>${section.name}</td>
+                                <td>${section.capacity}</td>
+                            </tr>
+                        `);
+                    });
+
+                    $("#stadiumContainer").show();
+                },
+                error: function () {
+                    $("#noStadiumMessage").show();
+                }
+            });
+        });
+    </script>
+}

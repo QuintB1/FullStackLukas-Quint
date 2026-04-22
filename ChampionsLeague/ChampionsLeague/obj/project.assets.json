@@ -9576,6 +9576,7 @@
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "projectReferences": {
             "C:\\Users\\Quint\\Documents\\GitHub\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj": {
@@ -9601,6 +9602,7 @@
     },
     "frameworks": {
       "net9.0": {
+        "framework": "net9.0",
         "targetAlias": "net9.0",
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
@@ -9673,7 +9675,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

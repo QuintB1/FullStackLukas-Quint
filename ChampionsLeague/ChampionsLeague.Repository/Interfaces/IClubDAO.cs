@@ -11,6 +11,7 @@ namespace ChampionsLeague.Repository.Interfaces
     {
         Task<IEnumerable<Club>?> GetAllWithHomeStadium();
         Task<IEnumerable<Club>?> GetAllWithMatches();
+        Task<Stadium> FindStadiumByClubId(int id);
 
     }
 }
