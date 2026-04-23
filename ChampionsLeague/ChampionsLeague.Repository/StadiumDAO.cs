@@ -44,12 +44,19 @@ namespace ChampionsLeague.Repository
 
         public async Task<Stadium?> FindByAsync(int id)
         {
-            return await _context.Stadia.FirstOrDefaultAsync(s => s.StadiumId == id);
+            return await _context.Stadia
+                .Include(s => s.StadiumSections)
+                .FirstOrDefaultAsync(s => s.StadiumId == id);
         }
 
-        async Task<Stadium?> IDAO<Stadium>.FindByAsync(int id)
+
+        public async Task<Stadium?> FetchStadiumByClubId(int clubId)
         {
-            return await _context.Stadia.FindAsync(id);
+            return await _context.Stadia
+                .Include(s => s.StadiumSections)
+                .Include(s => s.Clubs)
+                .FirstOrDefaultAsync(s => s.Clubs.Any(c => c.ClubId == clubId));
         }
+
     }
 }

@@ -30,23 +30,22 @@ namespace ChampionsLeague.Controllers
             var clubs = await _clubService.GetAllWithHomeStadium();
 
             // 2. Map to CalendarSelectVM list
-            var vmList = _mapper.Map<List<ClubSelectVM>>(clubs);
+            var vmList = _mapper.Map<List<HomeclubStadiumSelectVM>>(clubs);
 
             // 3. Return the view with the mapped list
             return View(vmList);
         }
         [HttpGet]
-        public async Task<IActionResult> GetStadiumByClub(int stadiumId)
+        public async Task<IActionResult> GetStadium(int stadiumId)
         {
             var stadium = await _stadiumService.FindByIdAsync(stadiumId);
 
             if (stadium == null)
                 return NotFound();
 
-            var vm = _mapper.Map<StadiumVM>(stadium);
+            var vmlist = _mapper.Map<StadiumVM>(stadium);
 
-            return Json(vm);
+            return Json(vmlist);
         }
-
     }
 }

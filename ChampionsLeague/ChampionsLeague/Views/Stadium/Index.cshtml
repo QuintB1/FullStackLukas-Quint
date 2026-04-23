@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ChampionsLeague.ViewModels.ClubSelectVM>
+﻿@model IEnumerable<ChampionsLeague.ViewModels.HomeclubStadiumSelectVM>
 
 @{
     ViewData["Title"] = "Stadium Select";
@@ -10,7 +10,7 @@
     <option value="">-- Select a club --</option>
     @foreach (var item in Model)
     {
-        <option value="@item.ClubId">@item.Name</option>
+        <option value="@item.HomeStadiumId">@item.Name</option>
     }
 </select>
 
@@ -38,20 +38,20 @@
 
 @section Scripts {
     <script>
-        $("#clubSelect").on("change", function () {
-            const clubId = $(this).val();
+                $("#clubSelect").on("change", function () {
+            const stadiumId = $(this).val();   // now this is a StadiumId
 
             // Reset UI
             $("#stadiumContainer").hide();
             $("#noStadiumMessage").hide();
             $("#sectionsTable tbody").empty();
 
-            if (!clubId) return;
+            if (!stadiumId) return;
 
             $.ajax({
-                url: "/Stadium/GetStadiumByClub",
+                url: "/Stadium/GetStadium",
                 type: "GET",
-                data: { clubId: clubId },
+                data: { stadiumId: stadiumId },   // send StadiumId now
                 success: function (data) {
 
                     if (!data) {

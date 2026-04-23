@@ -1,0 +1,19 @@
+﻿@model ChampionsLeague.ViewModels.MatchVM
+<div>
+    <table>
+    <tr>
+        <td>
+            <ul>
+    <li>@Html.DisplayName(@Model.HomeClubName)</li>
+    <li>@Html.DisplayName(@Model.AwayClubName)</li>
+</ul>
+        </td>
+        <td>
+            <b>@Html.DisplayName(@Model.Name)</b>
+        </td>
+        <td>
+            <b>Date & time: </b>
+        </td>
+    </tr>
+</table>
+</div>

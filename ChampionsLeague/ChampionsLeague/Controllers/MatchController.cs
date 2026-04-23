@@ -62,5 +62,17 @@ namespace ChampionsLeague.Controllers
 
             return PartialView("_MatchList", MatchVMs);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetMatches(int ClubId)
+        {
+            var matches = await _matchService.GetAllByClubID(ClubId);
+            if (matches == null)
+            {
+                return NotFound();
+            }
+            var vmlist = _mapper.Map<List<MatchVM>>(matches);
+            return Json(vmlist);
+
+        }
     }
 }

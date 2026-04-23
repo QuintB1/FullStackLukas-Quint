@@ -1,4 +1,6 @@
-﻿namespace ChampionsLeague.ViewModels
+﻿using ChampionsLeague.Entities;
+
+namespace ChampionsLeague.ViewModels
 {
     public class StadiumVM
     {
