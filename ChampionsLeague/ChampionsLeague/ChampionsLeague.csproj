@@ -30,4 +30,12 @@
     <ProjectReference Include="..\ChampionsLeague.Services\ChampionsLeague.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\Views\Home\" />
+    <Folder Include="Resources\Views\Match\" />
+    <Folder Include="Resources\Views\Stadium\" />
+    <Folder Include="Resources\Views\ShoppingCart\" />
+    <Folder Include="Resources\Views\Shared\" />
+  </ItemGroup>
+
 </Project>
