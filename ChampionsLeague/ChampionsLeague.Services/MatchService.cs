@@ -65,9 +65,9 @@ namespace ChampionsLeague.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Match>?> GetAllByClubID(int club)
+        public async Task<IEnumerable<Match>?> GetAllByClubID(int club)
         {
-            return _matchDao.GetAllMatchesWithClubIdAsync(club);
+            return await _matchDao.GetAllMatchesWithClubIdAsync(club);
         }
     }
 }

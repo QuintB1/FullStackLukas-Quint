@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lukas\\source\\repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj": {}
+    "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lukas\\source\\repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj": {
+    "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lukas\\source\\repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj",
         "projectName": "ChampionsLeague.Domain",
-        "projectPath": "C:\\Users\\Lukas\\source\\repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj",
+        "projectPath": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj",
         "packagesPath": "C:\\Users\\Lukas\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Lukas\\source\\repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\obj\\",
         "projectStyle": "PackageReference",

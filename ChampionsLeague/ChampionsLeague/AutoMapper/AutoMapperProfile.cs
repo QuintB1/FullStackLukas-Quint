@@ -11,7 +11,12 @@ namespace BeerschopNET9_Identity.AutoMapper
 
             CreateMap<Club, ClubSelectVM>();
             CreateMap<Club,HomeclubStadiumSelectVM>();
-            CreateMap<Match, MatchVM>();
+            CreateMap<Match, MatchVM>().ForMember(dest => dest.HomeClubName, opts => opts.MapFrom(
+                src => src.HomeClubNavigation.Name))
+
+                .ForMember(dest => dest.AwayClubName, opts => opts.MapFrom(
+                src => src.AwayClubNavigation.Name));
+
             CreateMap<Stadium, StadiumVM>()
     .ForMember(dest => dest.Sections, opt => opt.MapFrom(src => src.StadiumSections));
 

@@ -1,21 +1,38 @@
-﻿@model IEnumerable<ChampionsLeague.ViewModels.ClubSelectVM>
+﻿@model ChampionsLeague.ViewModels.ClubSelectVM
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Match calendar</h1>
-<select id="sltClub" class="form-control">
-    <option value="">Select a club</option>
-    @foreach (var item in Model)
-    {
-        <option value="@item.ClubId">@item.Name</option>
-    }
-</select>
 
-<div id="content"></div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index"
+              data-ajax="true"
+              data-ajax-method="POST"
+              data-ajax-mode="replace"
+              data-ajax-update="#content"
+              data-ajax-loading="#divloading"
+              data-ajax-success="Success"
+              data-ajax-failure="Failure">
+            <div class="form-group">
+                <label for="ClubId" class="control-label"></label>
+                <select asp-for="ClubId" asp-items="@Model.Clubs">
+                    asp-items="@Model.Clubs">
+                    <option>Select a club</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <div id="divloading" style="display:none;">Loading...</div>
-
+<div id="content">
+    <p>No club has been selected yet</p>
+</div>
 
 
 @section scripts {
@@ -23,24 +40,34 @@
     <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
 
     <script>
-            $("#sltClub").change(function () {
-            var clubId = $(this).val();
+        //     $("#ClubId").change(function () {
+        //     var clubId = $(this).val();
 
-            $.ajax({
-                url: '@Url.Action("Index", "MatchController")',
-                type: 'POST',
-                data: { ClubId: clubId },
-                beforeSend: function () {
-                    $("#divloading").show();
-                },
-                success: function (result) {
-                    $("#content").html(result);
-                    $("#divloading").hide();
-                },
-                error: function () {
-                    alert("Error loading matches");
-                }
-            });
+        //     $.ajax({
+        //         url: '@Url.Action("Index", "MatchController")',
+        //         type: 'POST',
+        //         data: { ClubId: clubId },
+        //         beforeSend: function () {
+        //             $("#divloading").show();
+        //         },
+        //         success: function (result) {
+        //             $("#content").html(result);
+        //             $("#divloading").hide();
+        //         },
+        //         error: function () {
+        //             alert("Error loading matches");
+        //         }
+        //     });
+        // });
+
+        $("#ClubId").on("change", () => {
+
+            $("form").trigger("submit");
         });
+
+        let Success = () => {
+            $("#divloading").hide();
+
+        }
     </script>
 }

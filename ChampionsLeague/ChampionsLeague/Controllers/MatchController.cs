@@ -6,6 +6,7 @@ using ChampionsLeague.Services;
 using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
@@ -37,16 +38,26 @@ namespace ChampionsLeague.Controllers
 
             return View(vm);
         }
+
         public async Task<IActionResult> Index()
         {
-            // 1. Get clubs with a home stadium
-            var clubs = await _clubService.GetAllWithMatches();
+            try
+            {
+                ClubSelectVM clubSelectVM = new ClubSelectVM();
 
-            // 2. Map to CalendarSelectVM list
-            var vmList = _mapper.Map<List<ClubSelectVM>>(clubs);
+                clubSelectVM.Clubs = new SelectList(
+                    await _clubService.GetAllAsync(),
+                    "ClubId",
+                    "Name"
+                );
 
-            // 3. Return the view with the mapped list
-            return View(vmList);
+                return View(clubSelectVM);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = "Er is een probleem opgetreden bij het laden van de gegevens.";
+                return View("Error");
+            }
         }
 
         [HttpPost]
@@ -57,11 +68,12 @@ namespace ChampionsLeague.Controllers
                 return NotFound();
             }
 
-            var filteredMatches = _matchService.GetAllByClubID(club.ClubId);
-            var MatchVMs = _mapper.Map<List<ClubSelectVM>>(filteredMatches);
+            var filteredMatches = await _matchService.GetAllByClubID(club.ClubId);
+            List<MatchVM> MatchVM = _mapper.Map<List<MatchVM>>(filteredMatches);
 
-            return PartialView("_MatchList", MatchVMs);
+            return PartialView("_MatchList", MatchVM);
         }
+
         [HttpGet]
         public async Task<IActionResult> GetMatches(int ClubId)
         {
