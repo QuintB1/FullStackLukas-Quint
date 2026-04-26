@@ -28,6 +28,22 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Stadium" asp-action="Index">Stadiums</a>
                         </li>
                     </ul>
+                    @using Microsoft.AspNetCore.Identity
+                    @using System.Security.Claims
+
+                    @{
+                        bool isLoggedIn = User.Identity?.IsAuthenticated ?? false;
+                    }
+
+                    @* ⭐ Shopping Cart Icon (only when logged in) *@
+                    @if (isLoggedIn)
+                    {
+                        <a asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                            <img src="~/images/shoppingcart.png"
+                                 alt="Shopping Cart"
+                                 style="width:32px; height:32px; margin-right:10px;" />
+                        </a>
+                    }
                     <partial name="_LoginPartial" />
                 </div>
             </div>

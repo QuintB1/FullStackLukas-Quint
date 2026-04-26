@@ -1,18 +1,46 @@
 ﻿@using ChampionsLeague.ViewModels
-@model List<OrderVM>
+@model OrderVM
 
-<p>The shoppingcart would be here if we had one</p>
+<h2>Your Shopping Cart</h2>
 
-@foreach (var order in Model)
+@if (Model == null)
 {
-    <h3>Order Date: @order.OrderDate</h3>
+    <div class="alert alert-info">
+        Your shopping cart is empty.
+    </div>
+}
+else
+{
+    <p>Order Date: @Model.OrderDate</p>
 
-    <ul>
-        @foreach (var line in order.OrderLines)
-        {
-            <li>
-                @line.ProductName - @line.UnitPrice
-            </li>
-        }
-    </ul>
+    @if (Model.OrderLines == null || !Model.OrderLines.Any())
+    {
+        <div class="alert alert-warning">
+            Your cart contains no items.
+        </div>
+    }
+    else
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>LineNumber</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var line in Model.OrderLines)
+                {
+                    <tr>
+                        <td>@line.LineId</td>
+                        <td>@line.ProductId</td>
+                        <td>@line.Quantity</td>
+                        <td>@line.StaticUnitPrice</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 }

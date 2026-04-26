@@ -38,7 +38,7 @@ namespace ChampionsLeague.Repository
 
         public async Task<Order> GetUserShoppingCart(String id)
         {
-            return _context.Orders.Where(c => c.UserId.Equals(id) && c.Status.Equals("Cart")).First();
+            return _context.Orders.Where(c => c.UserId.Equals(id) && c.Status.Equals("Cart")).FirstOrDefault();
         }
 
         public async Task UpdateAsync(Order entity)

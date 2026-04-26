@@ -1,40 +1,38 @@
-﻿using ChampionsLeague.Domain.EntitiesDB;
+﻿using AutoMapper;
+using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ChampionsLeague.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        private readonly IService<Order> _order;
-        public ShoppingCartController(IService<Order> order)
+        private readonly IOrderService _order;
+        private readonly IMapper _mapper;
+        public ShoppingCartController(IOrderService order, IMapper mapper)
         {
             _order = order;
+            _mapper = mapper;
         }
 
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            var orders = await _order.GetAllAsync();
+            string userID = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var viewModels = orders
-                .Where(o => o.Status == "cart")
-                .Select(o => new OrderVM
-                {
-                    OrderDate = o.OrderDate,
-                    OrderLines = o.OrderLines.Select(ol => new OrderLineVM
-                    {
-                        ProductId = ol.ProductId,
-                        ProductName = ol.Product.Name,
-                        UnitPrice = ol.Product.DynamicUnitPrice
-                    }).ToList()
-                })
-                .ToList();
+            var cart = await _order.GetUserShoppingCart(userID);
 
-            return View(viewModels);
+            // Pass null to the view if no cart exists
+            if (cart == null)
+                return View(null);
+
+            var vm = _mapper.Map<OrderVM>(cart);
+            return View(vm);
         }
+
     }
 }
