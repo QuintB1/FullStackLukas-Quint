@@ -46,5 +46,12 @@ namespace ChampionsLeague.Repository
             _context.Orders.Update(entity);
             await _context.SaveChangesAsync();
         }
+
+        public async Task UpdatePriceAsync(int id)
+        {
+            await _context.Database.ExecuteSqlRawAsync(
+             "EXEC UpdateOrderLineStaticPrices @p0",
+             id);
+        }
     }
 }

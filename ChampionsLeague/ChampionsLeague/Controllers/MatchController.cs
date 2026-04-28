@@ -84,7 +84,20 @@ namespace ChampionsLeague.Controllers
             }
             var vmlist = _mapper.Map<List<MatchVM>>(matches);
             return Json(vmlist);
-
         }
-    }
+        public async Task<IActionResult> Details(MatchVM vm)
+        {
+            return View(vm);
+        }
+        public async Task<IActionResult> PurchaseTicket(int matchId)
+        {
+            try
+            {
+                return View("success");
+            }
+            catch (Exception ex)
+            {
+                return View(ex);
+            }
+        }
 }

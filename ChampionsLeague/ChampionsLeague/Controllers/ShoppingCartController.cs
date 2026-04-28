@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ChampionsLeague.Domain.EntitiesDB;
+using ChampionsLeague.Services;
 using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -28,7 +29,10 @@ namespace ChampionsLeague.Controllers
 
             // Pass null to the view if no cart exists
             if (cart == null)
+            {
                 return View(null);
+            }
+            _order.UpdatePriceAsync(cart.OrderId);
 
             var vm = _mapper.Map<OrderVM>(cart);
             return View(vm);
