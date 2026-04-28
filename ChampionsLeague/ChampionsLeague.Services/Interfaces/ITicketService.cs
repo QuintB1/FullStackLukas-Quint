@@ -8,7 +8,6 @@ namespace ChampionsLeague.Services.Interfaces
 {
     public interface ITicketService
     {
-        Task AsssignTicketAsync(int ticketId,String userId);s
+        Task AsssignTicketAsync(int ticketId,String userId);
     }
-}
 }

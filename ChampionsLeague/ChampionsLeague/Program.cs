@@ -42,19 +42,20 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<StadiumSectionDAO>();
-builder.Services.AddScoped<MatchDAO>();
-builder.Services.AddScoped<IDAO<Club>, ClubDAO>();
+builder.Services.AddScoped<IMatchDAO,MatchDAO>();
+builder.Services.AddScoped<IClubDAO, ClubDAO>();
+builder.Services.AddScoped<IOrderDAO, OrderDAO>();
+builder.Services.AddScoped<IticketDAO, TicketDAO>();
 builder.Services.AddScoped<IDAO<Stadium>, StadiumDAO>();
 builder.Services.AddScoped<IDAO<Order>, OrderDAO>();
 builder.Services.AddScoped<IDAO<StadiumSection>, StadiumSectionDAO>();
-builder.Services.AddScoped<IDAO<Match>, MatchDAO>();
 builder.Services.AddScoped<IService<Stadium>, StadiumService>();
 builder.Services.AddScoped<IService<Order>, OrderService>();
 builder.Services.AddScoped<IService<StadiumSection>, StadiumSectionService>();
 builder.Services.AddScoped<IMatchService, MatchService>();
 builder.Services.AddScoped<IClubDAO, ClubDAO>();
 builder.Services.AddScoped<IClubService, ClubService>();
-builder.Services.AddScoped<IOrderDAO, OrderDAO>();
+builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 

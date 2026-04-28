@@ -1,4 +1,5 @@
-﻿using ChampionsLeague.Services.Interfaces;
+﻿using ChampionsLeague.Repository.Interfaces;
+using ChampionsLeague.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace ChampionsLeague.Services
 {
     public class TicketService : ITicketService
     {
-        private readonly ITicketService _ticketService;
-        public TicketService(ITicketService ticketService)
+        private readonly IticketDAO _Ticketdao;
+        public TicketService(IticketDAO dao)
         {
-            _ticketService = ticketService;
+            _Ticketdao = dao;
         }
         public Task AsssignTicketAsync(int ticketId, string userId)
         {

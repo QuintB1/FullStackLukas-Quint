@@ -13,9 +13,9 @@ namespace ChampionsLeague.Services
 {
     public class MatchService : IMatchService
     {
-        private readonly MatchDAO _matchDao;
+        private readonly IMatchDAO _matchDao;
 
-        public MatchService(MatchDAO matchDao)
+        public MatchService(IMatchDAO matchDao)
         {
             _matchDao = matchDao;
         }

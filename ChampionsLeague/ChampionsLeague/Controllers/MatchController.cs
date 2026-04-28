@@ -100,4 +100,5 @@ namespace ChampionsLeague.Controllers
                 return View(ex);
             }
         }
+    }
 }

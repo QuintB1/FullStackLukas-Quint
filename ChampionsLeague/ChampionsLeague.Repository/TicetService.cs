@@ -14,7 +14,8 @@ namespace ChampionsLeague.Repository
         {
             _ticketDAO = ticketDAO;
         }
-        public Task AsssignTicketAsync(int id)
+
+        public Task AsssignTicketAsync(int ticketId, string userId)
         {
             throw new NotImplementedException();
         }
