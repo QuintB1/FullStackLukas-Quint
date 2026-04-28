@@ -54,11 +54,16 @@ namespace ChampionsLeague.Repository
 
         public async Task<IEnumerable<Match>?> GetAllMatchesWithClubIdAsync(int id)
         {
-            var time = DateTime.UtcNow;
+            var now = DateTime.UtcNow;
+
             return await _context.Matches
                 .Include(m => m.HomeClubNavigation)
                 .Include(m => m.AwayClubNavigation)
+                .Where(m =>
+                    m.DateTime > now &&
+                    (m.HomeClub == id || m.AwayClub == id))
                 .ToListAsync();
         }
+
     }
 }
