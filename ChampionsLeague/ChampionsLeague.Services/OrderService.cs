@@ -22,6 +22,18 @@ namespace ChampionsLeague.Services
             return _orderDAO.AddAsync(entity);
         }
 
+        public Task AddSubscriptionToCart(int productId, string userId)
+        {
+            _orderDAO.AddSubscriptionToCart(productId, userId);
+            return Task.CompletedTask;
+        }
+
+        public Task AddTicketToCart(int productId, string userId)
+        {
+            _orderDAO.AddTicketToCart(productId, userId);
+            return Task.CompletedTask;
+        }
+
         public Task DeleteAsync(Order entity)
         {
             return _orderDAO.DeleteAsync(entity);
@@ -47,7 +59,7 @@ namespace ChampionsLeague.Services
             return _orderDAO.UpdateAsync(entity);
         }
 
-        public Task UpdatePriceAsync(int id)
+        public Task UpdatePriceAsync(String id)
         {
             return _orderDAO.UpdatePriceAsync(id);
         }

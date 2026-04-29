@@ -27,7 +27,7 @@ else
                     <th>LineNumber</th>
                     <th>Product</th>
                     <th>Quantity</th>
-                    <th>Price</th>
+                    <th>Price per unit</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +35,7 @@ else
                 {
                     <tr>
                         <td>@line.LineId</td>
-                        <td>@line.ProductId</td>
+                        <td>@line.productVM.Name</td>
                         <td>@line.Quantity</td>
                         <td>@line.StaticUnitPrice</td>
                     </tr>

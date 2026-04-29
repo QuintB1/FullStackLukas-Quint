@@ -12,15 +12,18 @@ namespace ChampionsLeague.Controllers
     {
         private readonly IClubService _clubService;
         private readonly IService<Stadium> _stadiumService;
+        private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
 
         public StadiumController(
             IService<Stadium> stadiumService,
             IClubService clubService,
+            IOrderService orderService,
             IMapper mapper)
         {
             _stadiumService = stadiumService;
             _clubService = clubService;
+            _orderService = orderService;
             _mapper = mapper;
         }
 
@@ -46,6 +49,13 @@ namespace ChampionsLeague.Controllers
             var vmlist = _mapper.Map<StadiumVM>(stadium);
 
             return Json(vmlist);
+        }
+        public async Task<IActionResult> AddToCart(int clubId)
+        {
+            return View("success");
+
+
+
         }
     }
 }

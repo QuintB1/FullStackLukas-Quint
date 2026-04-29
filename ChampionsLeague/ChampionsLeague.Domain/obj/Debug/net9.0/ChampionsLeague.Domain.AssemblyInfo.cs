@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChampionsLeague.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9fc41d052ec7cae87c4c254a7483ef9207f20a3e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+040acc7ed00bb088080f8f0c0d1d390206a9e70d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChampionsLeague.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChampionsLeague.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

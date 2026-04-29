@@ -10,6 +10,8 @@ namespace ChampionsLeague.Repository.Interfaces
     public interface IOrderDAO: IDAO<Order>
     {
         Task<Order?> GetUserShoppingCart(String id);
-        Task UpdatePriceAsync(int id);
+        Task UpdatePriceAsync(String id);
+        Task AddSubscriptionToCart(int MatchId, String userId);
+        Task AddTicketToCart(int MatchId, String userId);
     }
 }

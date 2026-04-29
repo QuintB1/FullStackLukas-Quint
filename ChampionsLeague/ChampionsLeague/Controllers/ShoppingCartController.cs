@@ -32,10 +32,15 @@ namespace ChampionsLeague.Controllers
             {
                 return View(null);
             }
-            _order.UpdatePriceAsync(cart.OrderId);
+            _order.UpdatePriceAsync(userID);
 
             var vm = _mapper.Map<OrderVM>(cart);
             return View(vm);
+        }
+        public async Task<IActionResult> CheckOut(OrderVM order)
+        {
+            return View("success");
+
         }
 
     }

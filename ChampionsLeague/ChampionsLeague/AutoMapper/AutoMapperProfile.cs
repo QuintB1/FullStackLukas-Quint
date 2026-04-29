@@ -10,7 +10,7 @@ namespace BeerschopNET9_Identity.AutoMapper
         {
 
             CreateMap<Club, ClubSelectVM>();
-            CreateMap<Club,HomeclubStadiumSelectVM>();
+            CreateMap<Club, HomeclubStadiumSelectVM>();
             CreateMap<Match, MatchVM>().ForMember(dest => dest.HomeClubName, opts => opts.MapFrom(
                 src => src.HomeClubNavigation.Name))
 
@@ -24,13 +24,19 @@ namespace BeerschopNET9_Identity.AutoMapper
             CreateMap<Order, OrderVM>()
                 .ForMember(dest => dest.OrderLines, opt => opt.MapFrom(src => src.OrderLines));
             CreateMap<OrderLine, OrderLineVM>();
+            CreateMap<Product, ProductVM>();
 
-
-
-
-
-
-
+            CreateMap<OrderLine, OrderLineVM>()
+                .ForMember(dest => dest.productVM,
+                           opt => opt.MapFrom(src => src.Product));
         }
+
+
+
+
+
+
+
+
     }
 }

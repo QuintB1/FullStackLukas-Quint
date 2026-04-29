@@ -20,6 +20,43 @@ namespace ChampionsLeague.Repository
             await _context.SaveChangesAsync();
         }
 
+        public async Task AddSubscriptionToCart(int clubId, string userId)
+        {
+            // Step 1: Find the subscription product for this club
+            var productId = await _context.Subscriptions
+                .Where(s => s.ClubId == clubId)
+                .Select(p => p.ProductId)
+                .FirstOrDefaultAsync();
+
+            if (productId == 0)
+                throw new KeyNotFoundException($"No subscription product found for ClubId {clubId}");
+
+            // Step 2: Call the stored procedure
+            await _context.Database.ExecuteSqlRawAsync(
+                "EXEC AddProductToCart @UserID = {0}, @ProductID = {1}",
+                userId,
+                productId
+            );
+        }
+
+
+        public  async Task AddTicketToCart(int matchId, string userId)
+        {
+            var productId = await _context.Tickets
+                .Where(t => t.MatchId == matchId)
+                .Select(t => t.ProductId).FirstOrDefaultAsync();
+            if(productId == 0)
+            {
+                throw new KeyNotFoundException("no product found for match");
+            }
+            await _context.Database.ExecuteSqlRawAsync(
+                "EXEC AddProductToCart @UserID = {0}, @ProductID = {1}",
+                userId,
+                productId
+            );
+
+        }
+
         public async Task DeleteAsync(Order entity)
         {
             _context.Orders.Remove(entity);
@@ -36,10 +73,15 @@ namespace ChampionsLeague.Repository
             return await _context.Orders.ToListAsync();
         }
 
-        public async Task<Order> GetUserShoppingCart(String id)
+        public async Task<Order?> GetUserShoppingCart(string userId)
         {
-            return _context.Orders.Where(c => c.UserId.Equals(id) && c.Status.Equals("Cart")).FirstOrDefault();
+            return await _context.Orders
+                .Include(o => o.OrderLines)
+                    .ThenInclude(ol => ol.Product)
+                .FirstOrDefaultAsync(o => o.UserId == userId && o.Status == "Cart");
         }
+
+
 
         public async Task UpdateAsync(Order entity)
         {
@@ -47,8 +89,14 @@ namespace ChampionsLeague.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdatePriceAsync(int id)
+        public async Task UpdatePriceAsync(String userId)
         {
+            var id = _context.Orders.Where(o =>  o.UserId == userId && o.Status == "Cart").Select(o => o.OrderId).FirstOrDefault();
+            if(id == 0)
+            {
+                throw new KeyNotFoundException("cart not found");
+            }
+
             await _context.Database.ExecuteSqlRawAsync(
              "EXEC UpdateOrderLineStaticPrices @p0",
              id);
