@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ChampionLeague.utils\ChampionLeague.utils.csproj" />
     <ProjectReference Include="..\ChampionsLeague.Domain\ChampionsLeague.Domain.csproj" />
     <ProjectReference Include="..\ChampionsLeague.Services\ChampionsLeague.Services.csproj" />
   </ItemGroup>

@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mail\" />
+    <Folder Include="PDF\Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChampionsLeague.Domain\ChampionsLeague.Domain.csproj" />
   </ItemGroup>
 
 </Project>
