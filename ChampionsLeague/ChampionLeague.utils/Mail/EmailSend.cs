@@ -1,4 +1,5 @@
 ﻿using ChampionLeague.utils.Mail.Interfaces;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,9 @@ namespace ChampionLeague.utils.Mail
     {
         private readonly EmailSettings _emailSettings;
 
-        public EmailSend(EmailSettings emailSettings)
+        public EmailSend(IOptions<EmailSettings> emailSettings)
         {
-            _emailSettings = emailSettings;
+            _emailSettings = emailSettings.Value;
         }
 
         public async Task SendEmailAsync(string email, string subject, string message)
@@ -30,7 +31,6 @@ namespace ChampionLeague.utils.Mail
             mail.IsBodyHtml = true;
             try
             {
-
                 await SmtpMailAsync(mail);
             }
             catch (Exception ex)
@@ -49,8 +49,7 @@ namespace ChampionLeague.utils.Mail
             using var stream = new MemoryStream(pdfBytes);
 
 
-            mail.Attachments.Add(
-                new Attachment(stream, "ticket.pdf", MediaTypeNames.Application.Pdf));
+            mail.Attachments.Add(new Attachment(stream, "ticket.pdf", MediaTypeNames.Application.Pdf));
 
             try
             {

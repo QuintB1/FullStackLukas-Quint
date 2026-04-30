@@ -10,6 +10,8 @@ using ChampionsLeague.Domain.DataDB;
 using ChampionsLeague.Domain.EntitiesDB;
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
+using ChampionLeague.utils.Mail;
+using ChampionLeague.utils.Mail.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,10 @@ builder.Services.Configure<RequestLocalizationOptions>(options => {
     .AddSupportedCultures(supportedCultures);
 });
 
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
+builder.Services.AddSingleton<IEmailSend, EmailSend>();
+
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -40,6 +46,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
 
 builder.Services.AddScoped<StadiumSectionDAO>();
 builder.Services.AddScoped<IMatchDAO,MatchDAO>();
