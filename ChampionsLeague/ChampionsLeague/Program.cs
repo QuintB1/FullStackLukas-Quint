@@ -12,26 +12,28 @@ using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using ChampionLeague.utils.Mail;
 using ChampionLeague.utils.Mail.Interfaces;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
+builder.Services.AddSingleton<IEmailSend, EmailSend>();
 
 builder.Services.AddLocalization(
     options => options.ResourcesPath = "Resources");
 
 builder.Services.AddControllersWithViews().AddDataAnnotationsLocalization()
-    .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.SubFolder);
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.SubFolder);
 
 var supportedCultures = new[] { "nl", "en", "fr" };
 
 builder.Services.Configure<RequestLocalizationOptions>(options => {
     options.SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)
-    .AddSupportedCultures(supportedCultures);
+    .AddSupportedUICultures(supportedCultures);
 });
 
-builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-
-builder.Services.AddSingleton<IEmailSend, EmailSend>();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
