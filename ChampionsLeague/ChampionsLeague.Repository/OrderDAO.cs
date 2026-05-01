@@ -81,6 +81,19 @@ namespace ChampionsLeague.Repository
                 .FirstOrDefaultAsync(o => o.UserId == userId && o.Status == "Cart");
         }
 
+        public async Task RemoveFromCart(int lineId, string userId)
+        {
+            var line = await _context.OrderLines
+                .Include(ol => ol.Order)
+                .FirstOrDefaultAsync(ol => ol.LineId == lineId && ol.Order.UserId == userId);
+
+            if (line == null)
+                return;
+
+            _context.OrderLines.Remove(line);
+            await _context.SaveChangesAsync();
+        }
+
 
 
         public async Task UpdateAsync(Order entity)

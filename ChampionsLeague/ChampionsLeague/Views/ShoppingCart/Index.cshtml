@@ -24,23 +24,100 @@ else
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>LineNumber</th>
                     <th>Product</th>
                     <th>Quantity</th>
                     <th>Price per unit</th>
+                    <th>Line Total</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var line in Model.OrderLines)
+                @for (int i = 0; i < Model.OrderLines.Count; i++)
                 {
-                    <tr>
-                        <td>@line.LineId</td>
+                    var line = Model.OrderLines[i];
+                    var max = line.productVM.Type == "Ticket" ? 4 : 1;
+                    var min = 1;
+
+                    <tr class="cart-line">
                         <td>@line.productVM.Name</td>
-                        <td>@line.Quantity</td>
-                        <td>@line.StaticUnitPrice</td>
+
+                        <td>
+                            <input type="number"
+                                   class="form-control quantity-input"
+                                   name="OrderLines[@i].Quantity"
+                                   value="@line.Quantity"
+                                   min="@min"
+                                   max="@max"
+                                   data-price="@line.productVM.DynamicUnitPrice"
+                                   data-index="@i" />
+
+                            <input type="hidden"
+                                   name="OrderLines[@i].OrderLineId"
+                                   value="@line.LineId" />
+                        </td>
+
+                        <td>@line.productVM.DynamicUnitPrice €</td>
+
+                        <td class="line-total">
+                            @(line.Quantity* line.productVM.DynamicUnitPrice) €
+                        </td>
+
+                        <td>
+                            <a asp-action="RemoveFromCart"
+                               asp-route-lineId="@line.LineId"
+                               class="btn btn-danger btn-sm">
+                                Remove
+                            </a>
+                        </td>
                     </tr>
                 }
             </tbody>
+            <h3>Total: <span id="cart-total"></span> €</h3>
+
         </table>
+        <script>
+            function updateTotals() {
+                let cartTotal = 0;
+
+                document.querySelectorAll(".cart-line").forEach(row => {
+                    const qtyInput = row.querySelector(".quantity-input");
+                    const lineTotalCell = row.querySelector(".line-total");
+
+                    if (!qtyInput) return;
+
+                    const price = parseFloat(qtyInput.dataset.price);
+                    const qty = parseInt(qtyInput.value);
+
+                    // Calculate line total
+                    const lineTotal = price * qty;
+                    lineTotalCell.textContent = lineTotal.toFixed(2) + " €";
+
+                    cartTotal += lineTotal;
+                });
+
+                document.getElementById("cart-total").textContent = cartTotal.toFixed(2);
+            }
+
+            // Attach listeners
+            document.querySelectorAll(".quantity-input").forEach(input => {
+                input.addEventListener("input", function () {
+                    const min = parseInt(this.min);
+                    const max = parseInt(this.max);
+                    let value = parseInt(this.value);
+
+                    // Enforce min/max
+                    if (value < min) value = min;
+                    if (value > max) value = max;
+
+                    this.value = value;
+
+                    updateTotals();
+                });
+            });
+
+            // Initial calculation
+            updateTotals();
+        </script>
+
     }
 }

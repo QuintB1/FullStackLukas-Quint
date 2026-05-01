@@ -13,6 +13,7 @@ namespace ChampionsLeague.Services.Interfaces
         Task UpdatePriceAsync(String id);
         Task AddTicketToCart(int productId, string userId);
         Task AddSubscriptionToCart(int productId, string userId);
+        Task RemoveFromCart(int lineId, String userId);
 
     }
 }

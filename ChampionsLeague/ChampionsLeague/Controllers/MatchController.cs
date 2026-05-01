@@ -2,12 +2,15 @@
 using ChampionsLeague.Data;
 using ChampionsLeague.Domain.DataDB;
 using ChampionsLeague.Domain.EntitiesDB;
+using ChampionsLeague.Entities;
 using ChampionsLeague.Services;
 using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ChampionsLeague.Controllers
@@ -16,12 +19,14 @@ namespace ChampionsLeague.Controllers
     {
         private readonly IClubService _clubService;
         private readonly IMatchService _matchService;
+        private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
         private readonly ChampionLeagueDbContext _context;
-        public MatchController(IClubService clubService, IMatchService matchService, IMapper mapper, ChampionLeagueDbContext applicationDbContext)
+        public MatchController(IClubService clubService, IMatchService matchService, IMapper mapper, ChampionLeagueDbContext applicationDbContext, IOrderService orderService)
         {
             _clubService = clubService;
             _matchService = matchService;
+            _orderService = orderService;
             _mapper = mapper;
             _context = applicationDbContext;
         }
@@ -89,10 +94,14 @@ namespace ChampionsLeague.Controllers
         {
             return View(vm);
         }
+        [Authorize]
+        [HttpGet]
         public async Task<IActionResult> PurchaseTicket(int matchId)
         {
+            string userID = User.FindFirstValue(ClaimTypes.NameIdentifier);
             try
             {
+                await _orderService.AddTicketToCart(matchId, userID);
                 return View("success");
             }
             catch (Exception ex)

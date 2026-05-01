@@ -6,6 +6,7 @@
 
         public string Type { get; set; } = null!;
         public int ProductId { get; set; }
+        public decimal DynamicUnitPrice { get; set; }
 
     }
 }

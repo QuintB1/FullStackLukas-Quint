@@ -54,6 +54,11 @@ namespace ChampionsLeague.Services
             return _orderDAO.GetUserShoppingCart(id);
         }
 
+        public async Task RemoveFromCart(int lineId,String userId)
+        {
+            await _orderDAO.RemoveFromCart(lineId, userId);
+        }
+
         public Task UpdateAsync(Order entity)
         {
             return _orderDAO.UpdateAsync(entity);
