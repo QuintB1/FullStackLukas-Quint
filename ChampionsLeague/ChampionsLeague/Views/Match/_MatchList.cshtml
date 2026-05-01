@@ -6,6 +6,7 @@
             <th>Date</th>
             <th>Match</th>
             <th>Stadium</th>
+            <th>Add ticket</th>
         </tr>
     </thead>
     <tbody>
@@ -14,7 +15,15 @@
             <tr>
                 <td>@match.DateTime</td>
                 <td>@match.HomeClubName vs @match.AwayClubName</td>
-                <td>@match.StadiumId</td>
+                <td>@match.Name</td>
+                <td>
+                    <a asp-controller="Match"
+                       asp-action="AddTicketToCart"
+                       asp-route-matchId="@match.Id"
+                       class="btn btn-primary btn-sm">
+                        Add Ticket
+                    </a>
+                </td>
             </tr>
         }
     </tbody>
