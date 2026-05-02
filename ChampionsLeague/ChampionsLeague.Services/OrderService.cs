@@ -22,11 +22,18 @@ namespace ChampionsLeague.Services
             return _orderDAO.AddAsync(entity);
         }
 
-        public Task AddSubscriptionToCart(int productId, string userId)
+        public async Task AddSubscriptionToCart(int clubId, string userId)
         {
-            _orderDAO.AddSubscriptionToCart(productId, userId);
-            return Task.CompletedTask;
+            try
+            {
+                await _orderDAO.AddSubscriptionToCart(clubId, userId);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
+
 
         public async Task AddTicketToCart(int matchId, string userId)
         {
@@ -36,7 +43,7 @@ namespace ChampionsLeague.Services
             }
             catch (Exception ex)
             {
-                throw new KeyNotFoundException("Couldn't find product", ex);
+                throw ex;
             }
         }
 

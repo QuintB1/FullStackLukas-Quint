@@ -2,8 +2,11 @@
 using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Build.Tasks.Deployment.ManifestUtilities;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ChampionsLeague.Controllers
@@ -14,6 +17,8 @@ namespace ChampionsLeague.Controllers
         private readonly IService<Stadium> _stadiumService;
         private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
+
+        private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         public StadiumController(
             IService<Stadium> stadiumService,
@@ -27,17 +32,15 @@ namespace ChampionsLeague.Controllers
             _mapper = mapper;
         }
 
+        // MAIN PAGE
         public async Task<IActionResult> Index()
         {
-            // 1. Get clubs with a home stadium
             var clubs = await _clubService.GetAllWithHomeStadium();
-
-            // 2. Map to CalendarSelectVM list
             var vmList = _mapper.Map<List<HomeclubStadiumSelectVM>>(clubs);
-
-            // 3. Return the view with the mapped list
             return View(vmList);
         }
+
+        // AJAX: GET STADIUM DETAILS
         [HttpGet]
         public async Task<IActionResult> GetStadium(int stadiumId)
         {
@@ -46,16 +49,21 @@ namespace ChampionsLeague.Controllers
             if (stadium == null)
                 return NotFound();
 
-            var vmlist = _mapper.Map<StadiumVM>(stadium);
-
-            return Json(vmlist);
+            var vm = _mapper.Map<StadiumVM>(stadium);
+            return Json(vm);
         }
-        public async Task<IActionResult> AddToCart(int clubId)
+
+        // ADD SUBSCRIPTION TO CART
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> AddSubscriptionToCart(int clubId)
         {
-            return View("success");
+            var userId = GetUserId();
 
+            await _orderService.AddSubscriptionToCart(clubId, userId);
 
-
+            return RedirectToAction("Index", "ShoppingCart");
         }
+
     }
 }

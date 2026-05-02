@@ -27,8 +27,7 @@ namespace ChampionsLeague.Controllers
             _mapper = mapper;
         }
 
-        private string GetUserId() =>
-            User.FindFirstValue(ClaimTypes.NameIdentifier);
+        private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         // -------------------------
         // MAIN PAGE

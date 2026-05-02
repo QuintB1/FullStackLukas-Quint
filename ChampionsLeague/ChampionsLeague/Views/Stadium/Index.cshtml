@@ -1,18 +1,20 @@
 ﻿@model IEnumerable<ChampionsLeague.ViewModels.HomeclubStadiumSelectVM>
 
-@{
-    ViewData["Title"] = "Stadium Select";
-}
-
 <h1>Select a Stadium</h1>
 
 <select id="clubSelect" class="form-select">
     <option value="">-- Select a club --</option>
     @foreach (var item in Model)
     {
-        <option value="@item.HomeStadiumId">@item.Name</option>
+        <option value="@item.HomeStadiumId" data-club="@item.ClubId">
+            @item.Name
+        </option>
     }
 </select>
+
+<button id="addSubscriptionBtn" class="btn btn-primary btn-sm" disabled>
+    Add subscription to cart
+</button>
 
 <hr />
 
@@ -38,8 +40,15 @@
 
 @section Scripts {
     <script>
-                $("#clubSelect").on("change", function () {
-            const stadiumId = $(this).val();   // now this is a StadiumId
+        let selectedClubId = null;
+
+        $("#clubSelect").on("change", function () {
+
+            const stadiumId = $(this).val();
+            selectedClubId = $(this).find(":selected").data("club");
+
+            // Enable button only if a valid club is selected
+            $("#addSubscriptionBtn").prop("disabled", !selectedClubId);
 
             // Reset UI
             $("#stadiumContainer").hide();
@@ -48,10 +57,11 @@
 
             if (!stadiumId) return;
 
+            // Load stadium info
             $.ajax({
                 url: "/Stadium/GetStadium",
                 type: "GET",
-                data: { stadiumId: stadiumId },   // send StadiumId now
+                data: { stadiumId: stadiumId },
                 success: function (data) {
 
                     if (!data) {
@@ -59,11 +69,9 @@
                         return;
                     }
 
-                    // Fill stadium info
                     $("#stadiumName").text(data.name);
                     $("#stadiumAddress").text(data.address);
 
-                    // Fill sections
                     data.sections.forEach(section => {
                         $("#sectionsTable tbody").append(`
                             <tr>
@@ -79,6 +87,14 @@
                     $("#noStadiumMessage").show();
                 }
             });
+        });
+
+        // Add subscription to cart
+        $("#addSubscriptionBtn").on("click", function () {
+            if (!selectedClubId) return;
+
+            window.location.href =
+                `/Stadium/AddSubscriptionToCart?clubId=${selectedClubId}`;
         });
     </script>
 }

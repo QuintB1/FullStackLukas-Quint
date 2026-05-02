@@ -25,7 +25,7 @@ namespace ChampionsLeague.Repository
             // Step 1: Find the subscription product for this club
             var productId = await _context.Subscriptions
                 .Where(s => s.ClubId == clubId)
-                .Select(p => p.ProductId)
+                .Select(s => s.ProductId)
                 .FirstOrDefaultAsync();
 
             if (productId == 0)
@@ -40,7 +40,7 @@ namespace ChampionsLeague.Repository
         }
 
 
-        public  async Task AddTicketToCart(int matchId, string userId)
+        public async Task AddTicketToCart(int matchId, string userId)
         {
             var productId = await _context.Tickets
                 .Where(t => t.MatchId == matchId)
