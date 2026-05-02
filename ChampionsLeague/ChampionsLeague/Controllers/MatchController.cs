@@ -57,7 +57,6 @@ namespace ChampionsLeague.Controllers
         {
             if (club.ClubId == 0)
             {
-                // Return empty list instead of NotFound
                 return PartialView("_MatchList", new List<MatchVM>());
             }
 
@@ -72,13 +71,16 @@ namespace ChampionsLeague.Controllers
         // -------------------------
         [Authorize]
         [HttpGet]
+        [Authorize]
+        [HttpGet]
         public async Task<IActionResult> AddTicketToCart(int matchId)
         {
             var userId = GetUserId();
 
             await _orderService.AddTicketToCart(matchId, userId);
 
-            return View("Success");
+            return RedirectToAction("Index", "ShoppingCart");
         }
+
     }
 }

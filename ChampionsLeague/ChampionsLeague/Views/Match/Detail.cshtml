@@ -9,7 +9,7 @@
 
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Match @Model.Id</h4>
+        <h4 class="card-title">Match @Model.MatchId</h4>
 
         <dl class="row">
             <dt class="col-sm-3">Datum</dt>
@@ -26,6 +26,6 @@
         </dl>
 
         <a asp-action="Index" class="btn btn-secondary">Terug</a>
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Bewerken</a>
+        <a asp-action="Edit" asp-route-id="@Model.MatchId" class="btn btn-primary">Bewerken</a>
     </div>
 </div>
