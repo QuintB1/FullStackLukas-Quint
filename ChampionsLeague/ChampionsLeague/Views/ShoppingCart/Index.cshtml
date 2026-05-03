@@ -28,6 +28,7 @@ else
                     <th>Quantity</th>
                     <th>Price per unit</th>
                     <th>Line Total</th>
+                    <th>StadiumSection</th>
                     <th>Remove</th>
                 </tr>
             </thead>
@@ -61,7 +62,11 @@ else
                         <td class="line-total">
                             @(line.Quantity* line.productVM.DynamicUnitPrice) €
                         </td>
+                        <td>
+                            <select>
 
+                            </select>
+                        </td>
                         <td>
                             <a asp-action="RemoveFromCart"
                                asp-route-lineId="@line.LineId"

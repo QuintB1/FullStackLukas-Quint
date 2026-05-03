@@ -115,5 +115,48 @@ namespace ChampionsLeague.Repository
              "EXEC UpdateOrderLineStaticPrices @p0",
              id);
         }
+        public async Task<List<StadiumSection>> GetSectionsForProduct(int productId)
+        {
+            // 1. Try to load as a ticket product
+            var ticket = await _context.Tickets
+                .Include(t => t.Match)
+                .FirstOrDefaultAsync(t => t.ProductId == productId);
+
+            int stadiumId = 0;
+
+            if (ticket != null)
+            {
+                // Ticket → Match → Stadium
+                if (ticket.Match == null)
+                    throw new KeyNotFoundException($"Match not found for Ticket ProductId {productId}");
+
+                stadiumId = ticket.Match.StadiumId;
+            }
+            else
+            {
+                // 2. Try to load as a subscription product
+                var subscription = await _context.Subscriptions
+                    .Include(s => s.Club)
+                    .FirstOrDefaultAsync(s => s.ProductId == productId);
+
+                if (subscription == null)
+                    throw new KeyNotFoundException($"ProductId {productId} is neither a ticket nor a subscription");
+
+                if (subscription.Club == null)
+                    throw new KeyNotFoundException($"Club not found for Subscription ProductId {productId}");
+
+                // Subscription → Club → HomeStadium
+                stadiumId = (int)subscription.Club.HomeStadiumId;
+            }
+
+            if (stadiumId == 0)
+                throw new KeyNotFoundException($"No stadium found for ProductId {productId}");
+
+            // 3. Load sections for the stadium
+            return await _context.StadiumSections
+                .Where(s => s.StadiumId == stadiumId)
+                .ToListAsync();
+        }
+
     }
 }

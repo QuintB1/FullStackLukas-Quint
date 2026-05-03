@@ -14,5 +14,6 @@ namespace ChampionsLeague.Repository.Interfaces
         Task AddSubscriptionToCart(int MatchId, String userId);
         Task AddTicketToCart(int MatchId, String userId);
         Task RemoveFromCart(int lineId, String userId);
+        Task<List<StadiumSection>> GetSectionsForProduct(int productId);
     }
 }

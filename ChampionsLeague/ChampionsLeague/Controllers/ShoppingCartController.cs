@@ -50,6 +50,21 @@ namespace ChampionsLeague.Controllers
 
             return RedirectToAction("Index", "ShoppingCart");
         }
+        [HttpGet]
+        public async Task<IActionResult> GetSectionsForProduct(int productId)
+        {
+            var sections = await _order.GetSectionsForProduct(productId);
+
+            var vm = sections.Select(s => new
+            {
+                sectionId = s.SectionId,
+                name = s.Name,
+                capacity = s.Capacity
+            });
+
+            return Json(vm);
+        }
+
 
     }
 }
