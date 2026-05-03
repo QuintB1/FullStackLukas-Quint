@@ -54,13 +54,11 @@ namespace ChampionsLeague.Controllers
         public async Task<IActionResult> GetSectionsForProduct(int productId)
         {
             var sections = await _order.GetSectionsForProduct(productId);
-
-            var vm = sections.Select(s => new
+            if (sections == null && sections.Count < 1)
             {
-                sectionId = s.SectionId,
-                name = s.Name,
-                capacity = s.Capacity
-            });
+                throw new Exception("no sections found");
+            }
+            var vm = _mapper.Map<List<StadiumSectionVM>>(sections);
 
             return Json(vm);
         }

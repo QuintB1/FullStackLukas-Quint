@@ -63,9 +63,14 @@ else
                             @(line.Quantity* line.productVM.DynamicUnitPrice) €
                         </td>
                         <td>
-                            <select>
-
+                        <td>
+                            <select class="form-select section-select"
+                                    data-product="@line.productVM.ProductId"
+                                    data-line="@line.LineId">
+                                <option value="">Loading...</option>
                             </select>
+                        </td>
+
                         </td>
                         <td>
                             <a asp-action="RemoveFromCart"
@@ -99,6 +104,36 @@ else
 
                     cartTotal += lineTotal;
                 });
+
+            // Load sections for each order line
+            document.querySelectorAll(".section-select").forEach(select => {
+
+                const productId = select.dataset.product;
+                const lineId = select.dataset.line;
+
+                fetch(`/ShoppingCart/GetSectionsForProduct?productId=${productId}`)
+                    .then(response => response.json())
+                    .then(sections => {
+
+                        // Clear existing options
+                        select.innerHTML = `<option value="">-- Select section --</option>`;
+
+                        sections.forEach(sec => {
+                            const opt = document.createElement("option");
+                            opt.value = sec.sectionId;
+                            opt.textContent = `${sec.name} (Cap: ${sec.capacity})`;
+
+                            // Preselect if the line already has a section
+                            if (sec.sectionId == sec.sectionId)
+                                opt.selected = true;
+
+                            select.appendChild(opt);
+                        });
+                    })
+                    .catch(err => {
+                        select.innerHTML = `<option value="">Error loading sections</option>`;
+                    });
+            });
 
                 document.getElementById("cart-total").textContent = cartTotal.toFixed(2);
             }
