@@ -1,4 +1,5 @@
 ﻿using ChampionLeague.utils.Mail.Interfaces;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace ChampionLeague.utils.Mail
             var mail = new MailMessage();  // aanmaken van een mail-object
             mail.To.Add(new MailAddress(email));
 
-            mail.From = new MailAddress("lukasdevos2005@gmail.com");  // hier komt jullie Gmail-adres
+            mail.From = new MailAddress(_emailSettings.Sender, _emailSettings.SenderName);  // hier komt jullie Gmail-adres
             mail.Subject = subject;
             mail.Body = message;
             mail.IsBodyHtml = true;
@@ -34,14 +35,17 @@ namespace ChampionLeague.utils.Mail
                 await SmtpMailAsync(mail);
             }
             catch (Exception ex)
-            { throw ex; }
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
 
         public async Task SendEmailAttachmentAsync(string to, string subject, string message, byte[] pdfBytes)
         {
             var mail = new MailMessage();  // aanmaken van een mail-object
             mail.To.Add(new MailAddress(to));
-            mail.From = new MailAddress("lukasdevos2005@gmail.com");  // hier komt jullie Gmail-adres
+            mail.From = new MailAddress(_emailSettings.Sender, _emailSettings.SenderName);  // hier komt jullie Gmail-adres
             mail.Subject = subject;
             mail.Body = subject;
             mail.IsBodyHtml = true;
@@ -57,7 +61,10 @@ namespace ChampionLeague.utils.Mail
                 await SmtpMailAsync(mail);
             }
             catch (Exception ex)
-            { throw ex; }
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
 
         private async Task SmtpMailAsync(MailMessage mail)
