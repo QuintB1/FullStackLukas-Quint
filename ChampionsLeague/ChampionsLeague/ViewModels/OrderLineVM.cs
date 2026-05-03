@@ -8,5 +8,6 @@ namespace ChampionsLeague.ViewModels
         public decimal? StaticUnitPrice { get; set; }
         public int? Quantity { get; set; }
         public int LineId { get; set; }
+        public int? StadiumSectionId { get; set; }
     }
 }

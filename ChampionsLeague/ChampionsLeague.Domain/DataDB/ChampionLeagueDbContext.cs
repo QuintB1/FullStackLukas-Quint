@@ -195,18 +195,17 @@ public partial class ChampionLeagueDbContext : DbContext
 
         modelBuilder.Entity<OrderLine>(entity =>
         {
-            entity.HasKey(e => new { e.OrderId, e.LineId });
+            entity.HasKey(e => e.LineId);
 
-            entity.ToTable("OrderLine", tb => tb.HasTrigger("trg_OrderLine_AutoNumber"));
+            entity.ToTable("OrderLine", tb => tb.HasTrigger("trg_OrderLine_QuantityRules"));
 
+            entity.Property(e => e.LineId).HasColumnName("LineID");
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
-            entity.Property(e => e.LineId)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("LineID");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
             entity.Property(e => e.Quantity)
                 .HasDefaultValue(1)
                 .HasColumnName("quantity");
+            entity.Property(e => e.StadiumSectionId).HasColumnName("StadiumSectionID");
             entity.Property(e => e.StaticUnitPrice).HasColumnType("decimal(8, 2)");
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderLines)
@@ -217,6 +216,10 @@ public partial class ChampionLeagueDbContext : DbContext
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_OrderLine_Product");
+
+            entity.HasOne(d => d.StadiumSection).WithMany(p => p.OrderLines)
+                .HasForeignKey(d => d.StadiumSectionId)
+                .HasConstraintName("FK_OrderLine_StadiumSection");
         });
 
         modelBuilder.Entity<Product>(entity =>
@@ -275,17 +278,13 @@ public partial class ChampionLeagueDbContext : DbContext
         {
             entity.HasKey(e => e.SectionId).HasName("PK_StadiumSection_1");
 
-            entity.ToTable("StadiumSection", tb =>
-                {
-                    tb.HasTrigger("trg_CreateSeatsForSection");
-                    tb.HasTrigger("trg_StadiumSection_AutoNumber");
-                });
+            entity.ToTable("StadiumSection");
 
             entity.HasIndex(e => e.SectionId, "IX_StadiumSection");
 
             entity.Property(e => e.SectionId).HasColumnName("SectionID");
             entity.Property(e => e.Name)
-                .HasMaxLength(30)
+                .HasMaxLength(100)
                 .IsUnicode(false);
             entity.Property(e => e.StadiumId).HasColumnName("StadiumID");
 
@@ -370,12 +369,7 @@ public partial class ChampionLeagueDbContext : DbContext
         {
             entity.HasKey(e => e.AssignmentId).HasName("PK_TicketAssignment_1");
 
-            entity.ToTable("TicketAssignment", tb =>
-                {
-                    tb.HasTrigger("TRG_LimitUserTicketsPerMatch");
-                    tb.HasTrigger("TRG_LimitUserTicketsSameDay");
-                    tb.HasTrigger("TRG_TicketPurchaseWindow");
-                });
+            entity.ToTable("TicketAssignment", tb => tb.HasTrigger("trg_TicketAssignment_Rules"));
 
             entity.Property(e => e.AssignmentId).HasColumnName("AssignmentID");
             entity.Property(e => e.Active).HasDefaultValue(true);

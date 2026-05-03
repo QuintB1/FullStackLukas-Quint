@@ -32,6 +32,7 @@ namespace ChampionsLeague.Services
             {
                 throw;
             }
+
         }
 
 
@@ -88,5 +89,11 @@ namespace ChampionsLeague.Services
         {
             return await _orderDAO.FindByAsync(Id);
         }
+        public async Task<List<StadiumSection>> GetSectionsForProduct(int productId)
+        {
+            return await _orderDAO.GetSectionsForProduct(productId);
+        }
+
     }
+
 }

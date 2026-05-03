@@ -9,9 +9,11 @@ public partial class StadiumSection
 
     public int StadiumId { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; }
 
     public int Capacity { get; set; }
+
+    public virtual ICollection<OrderLine> OrderLines { get; set; } = new List<OrderLine>();
 
     public virtual Stadium Stadium { get; set; } = null!;
 }
