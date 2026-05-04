@@ -41,23 +41,30 @@ namespace ChampionLeague.utils.Mail
             }
         }
 
-        public async Task SendEmailAttachmentAsync(string to, string subject, string message, byte[] pdfBytes)
+        public async Task SendEmailAttachmentAsync(string to, string subject, string message, List<byte[]> pdfFiles)
         {
             var mail = new MailMessage();  // aanmaken van een mail-object
             mail.To.Add(new MailAddress(to));
             mail.From = new MailAddress(_emailSettings.Sender, _emailSettings.SenderName);  // hier komt jullie Gmail-adres
             mail.Subject = subject;
-            mail.Body = subject;
+            mail.Body = message;
             mail.IsBodyHtml = true;
 
-            using var stream = new MemoryStream(pdfBytes);
+            int counter = 1;
 
+            foreach (var pdfBytes in pdfFiles)
+            {
+                var stream = new MemoryStream(pdfBytes);
 
-            mail.Attachments.Add(new Attachment(stream, "ticket.pdf", MediaTypeNames.Application.Pdf));
+                mail.Attachments.Add(
+                    new Attachment(stream, $"ticket_{counter}.pdf", MediaTypeNames.Application.Pdf)
+                );
+
+                counter++;
+            }
 
             try
             {
-
                 await SmtpMailAsync(mail);
             }
             catch (Exception ex)

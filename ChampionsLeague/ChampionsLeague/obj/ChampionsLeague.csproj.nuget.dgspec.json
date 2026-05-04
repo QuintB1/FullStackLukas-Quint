@@ -54,6 +54,20 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[9.0.12, )"
+            },
+            "QRCoder": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
+            "iTextSharp.LGPLv2.Core": {
+              "target": "Package",
+              "version": "[3.7.12, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -267,6 +281,9 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
+              "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionLeague.utils\\ChampionLeague.utils.csproj": {
+                "projectPath": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionLeague.utils\\ChampionLeague.utils.csproj"
+              },
               "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj": {
                 "projectPath": "C:\\Users\\Lukas\\Source\\Repos\\FullStackLukas-Quint\\ChampionsLeague\\ChampionsLeague.Domain\\ChampionsLeague.Domain.csproj"
               },

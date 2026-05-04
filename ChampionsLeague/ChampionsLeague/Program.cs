@@ -13,12 +13,15 @@ using Microsoft.Extensions.DependencyInjection;
 using ChampionLeague.utils.Mail;
 using ChampionLeague.utils.Mail.Interfaces;
 using Microsoft.AspNetCore.Mvc.Razor;
+using ChampionLeague.utils.PDF.Interfaces;
+using ChampionLeague.utils.PDF;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
 builder.Services.AddSingleton<IEmailSend, EmailSend>();
+builder.Services.AddSingleton<ICreatePDF, CreatePDF>();
 
 builder.Services.AddLocalization(
     options => options.ResourcesPath = "Resources");

@@ -38,9 +38,25 @@ namespace ChampionsLeague.Controllers
             cart = _mapper.Map<OrderVM>(cartData);
             return View(cart);
         }
-        public async Task<IActionResult> CheckOut(OrderVM order)
+
+        [HttpPost]
+        public async Task<IActionResult> CheckOut(OrderVM model)
         {
-            
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var order = await _order.GetUserShoppingCart(userId);
+
+            try
+            {
+                await _order.SendOrderConfirmationAsync(order);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
             return View("success");
 
         }

@@ -62,6 +62,7 @@ else
                         <td class="line-total">
                             @(line.Quantity* line.productVM.DynamicUnitPrice) €
                         </td>
+
                         <td>
                         <td>
                             <select class="form-select section-select"
@@ -70,8 +71,8 @@ else
                                 <option value="">Loading...</option>
                             </select>
                         </td>
-
                         </td>
+
                         <td>
                             <a asp-action="RemoveFromCart"
                                asp-route-lineId="@line.LineId"
@@ -83,8 +84,8 @@ else
                 }
             </tbody>
             <h3>Total: <span id="cart-total"></span> €</h3>
-
         </table>
+
         <script>
             function updateTotals() {
                 let cartTotal = 0;
