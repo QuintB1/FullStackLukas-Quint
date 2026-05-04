@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using ChampionsLeague.Domain.EntitiesDB;
-using ChampionsLeague.Services;
 using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol.Plugins;
+using Newtonsoft.Json;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -15,8 +14,7 @@ namespace ChampionsLeague.Controllers
     {
         private readonly IOrderService _order;
         private readonly IMapper _mapper;
-        private String userId;
-        private OrderVM cart;
+
         public ShoppingCartController(IOrderService order, IMapper mapper)
         {
             _order = order;
@@ -26,59 +24,55 @@ namespace ChampionsLeague.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var cartData = await _order.GetUserShoppingCart(userId);
 
-            // Pass null to the view if no cart exists
             if (cartData == null)
-            {
                 return View(null);
-            }
 
-            cart = _mapper.Map<OrderVM>(cartData);
-            return View(cart);
+            var vm = _mapper.Map<OrderVM>(cartData);
+            return View(vm);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CheckOut(OrderVM model)
+        [Authorize]
+        public async Task<IActionResult> CheckOut(string cartJson)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+            if (string.IsNullOrWhiteSpace(cartJson))
+                return BadRequest("Cart JSON was not received.");
 
-            var order = await _order.GetUserShoppingCart(userId);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            try
-            {
-                await _order.SendOrderConfirmationAsync(order);
-            }
-            catch (Exception ex)
-            {
-                return View("Error");
-            }
-            return View("success");
+            var vm = JsonConvert.DeserializeObject<OrderVM>(cartJson);
 
+            var order = _mapper.Map<Order>(vm);
+
+            await _order.UpdateCart(order, userId);
+
+            return View("Success");
         }
+
+        [Authorize]
         public async Task<IActionResult> RemoveFromCart(int lineId)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             await _order.RemoveFromCart(lineId, userId);
 
-            return RedirectToAction("Index", "ShoppingCart");
+            return RedirectToAction("Index");
         }
+
         [HttpGet]
         public async Task<IActionResult> GetSectionsForProduct(int productId)
         {
             var sections = await _order.GetSectionsForProduct(productId);
-            if (sections == null && sections.Count < 1)
-            {
-                throw new Exception("no sections found");
-            }
+
+            if (sections == null || sections.Count < 1)
+                return NotFound("No sections found");
+
             var vm = _mapper.Map<List<StadiumSectionVM>>(sections);
 
             return Json(vm);
         }
-
-
     }
 }

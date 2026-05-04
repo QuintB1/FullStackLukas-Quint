@@ -5,56 +5,42 @@
 
 @if (Model == null)
 {
-    <div class="alert alert-info">
-        Your shopping cart is empty.
-    </div>
+    <div class="alert alert-info">Your shopping cart is empty.</div>
 }
 else
 {
-    <p>Order Date: @Model.OrderDate</p>
+    <form asp-action="CheckOut" method="post" id="checkoutForm">
+        <input type="hidden" id="CartJson" name="CartJson" />
 
-    @if (Model.OrderLines == null || !Model.OrderLines.Any())
-    {
-        <div class="alert alert-warning">
-            Your cart contains no items.
-        </div>
-    }
-    else
-    {
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Price per unit</th>
-                    <th>Line Total</th>
-                    <th>StadiumSection</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Section</th>
                     <th>Remove</th>
                 </tr>
             </thead>
+
             <tbody>
                 @for (int i = 0; i < Model.OrderLines.Count; i++)
                 {
                     var line = Model.OrderLines[i];
                     var max = line.productVM.Type == "Ticket" ? 4 : 1;
-                    var min = 1;
 
-                    <tr class="cart-line">
+                    <tr class="cart-line" data-line="@line.LineId">
                         <td>@line.productVM.Name</td>
 
                         <td>
                             <input type="number"
                                    class="form-control quantity-input"
-                                   name="OrderLines[@i].Quantity"
                                    value="@line.Quantity"
-                                   min="@min"
+                                   min="1"
                                    max="@max"
-                                   data-price="@line.productVM.DynamicUnitPrice"
-                                   data-index="@i" />
-
-                            <input type="hidden"
-                                   name="OrderLines[@i].OrderLineId"
-                                   value="@line.LineId" />
+                                   data-line="@line.LineId"
+                                   data-price="@line.productVM.DynamicUnitPrice" />
                         </td>
 
                         <td>@line.productVM.DynamicUnitPrice €</td>
@@ -64,101 +50,141 @@ else
                         </td>
 
                         <td>
-                        <td>
                             <select class="form-select section-select"
-                                    data-product="@line.productVM.ProductId"
-                                    data-line="@line.LineId">
-                                <option value="">Loading...</option>
+                                    data-line="@line.LineId"
+                                    data-product="@line.productVM.ProductId">
+                                <option>Loading...</option>
                             </select>
-                        </td>
                         </td>
 
                         <td>
                             <a asp-action="RemoveFromCart"
                                asp-route-lineId="@line.LineId"
-                               class="btn btn-danger btn-sm">
-                                Remove
-                            </a>
+                               class="btn btn-danger btn-sm">Remove</a>
                         </td>
                     </tr>
                 }
             </tbody>
-            <h3>Total: <span id="cart-total"></span> €</h3>
         </table>
 
-        <script>
-            function updateTotals() {
-                let cartTotal = 0;
+        <h3>Total: <span id="cart-total"></span> €</h3>
 
-                document.querySelectorAll(".cart-line").forEach(row => {
-                    const qtyInput = row.querySelector(".quantity-input");
-                    const lineTotalCell = row.querySelector(".line-total");
+        <button type="submit" class="btn btn-primary">Checkout</button>
+    </form>
 
-                    if (!qtyInput) return;
+    <script>
+        // -----------------------------
+        // 1. Build cart object safely
+        // -----------------------------
+        let cart = {
+            orderId: @Model.OrderId,
+            orderLines: [
+                @for (int i = 0; i < Model.OrderLines.Count; i++)
+                {
+                        var line = Model.OrderLines[i];
+                        var sectionId = line.StadiumSectionId ?? 0;
 
-                    const price = parseFloat(qtyInput.dataset.price);
-                    const qty = parseInt(qtyInput.value);
+                        <text>
+                        {
+                            lineId: @line.LineId,
+                            quantity: @line.Quantity,
+                            stadiumSectionId: @sectionId
+                        }@(i < Model.OrderLines.Count - 1 ? "," : "")
+                        </text>
+                }
+            ]
+        };
 
-                    // Calculate line total
-                    const lineTotal = price * qty;
-                    lineTotalCell.textContent = lineTotal.toFixed(2) + " €";
+        // -----------------------------
+        // 2. Update totals
+        // -----------------------------
+        function updateTotals() {
+            let cartTotal = 0;
 
-                    cartTotal += lineTotal;
-                });
+            document.querySelectorAll(".cart-line").forEach(row => {
+                const qtyInput = row.querySelector(".quantity-input");
+                const lineTotalCell = row.querySelector(".line-total");
 
-            // Load sections for each order line
-            document.querySelectorAll(".section-select").forEach(select => {
+                const price = parseFloat(qtyInput.dataset.price);
+                const qty = parseInt(qtyInput.value);
 
-                const productId = select.dataset.product;
-                const lineId = select.dataset.line;
+                const lineTotal = price * qty;
+                lineTotalCell.textContent = lineTotal.toFixed(2) + " €";
 
-                fetch(`/ShoppingCart/GetSectionsForProduct?productId=${productId}`)
-                    .then(response => response.json())
-                    .then(sections => {
+                cartTotal += lineTotal;
+            });
 
-                        // Clear existing options
-                        select.innerHTML = `<option value="">-- Select section --</option>`;
+            document.getElementById("cart-total").textContent = cartTotal.toFixed(2);
+        }
 
-                        sections.forEach(sec => {
-                            const opt = document.createElement("option");
-                            opt.value = sec.sectionId;
-                            opt.textContent = `${sec.name} (Cap: ${sec.capacity})`;
+        // -----------------------------
+        // 3. Load stadium sections
+        // -----------------------------
+        document.querySelectorAll(".section-select").forEach(select => {
+            const productId = select.dataset.product;
+            const lineId = select.dataset.line;
 
-                            // Preselect if the line already has a section
-                            if (sec.sectionId == sec.sectionId)
-                                opt.selected = true;
+            fetch(`/ShoppingCart/GetSectionsForProduct?productId=${productId}`)
+                .then(r => r.json())
+                .then(sections => {
+                    select.innerHTML = `<option value="">-- Select section --</option>`;
 
-                            select.appendChild(opt);
-                        });
-                    })
-                    .catch(err => {
-                        select.innerHTML = `<option value="">Error loading sections</option>`;
+                    sections.forEach(sec => {
+                        const opt = document.createElement("option");
+                        opt.value = sec.sectionId;
+                        opt.textContent = `${sec.name} (Cap: ${sec.capacity})`;
+
+                        const line = cart.orderLines.find(l => l.lineId == lineId);
+                        if (line && line.stadiumSectionId == sec.sectionId)
+                            opt.selected = true;
+
+                        select.appendChild(opt);
                     });
-            });
-
-                document.getElementById("cart-total").textContent = cartTotal.toFixed(2);
-            }
-
-            // Attach listeners
-            document.querySelectorAll(".quantity-input").forEach(input => {
-                input.addEventListener("input", function () {
-                    const min = parseInt(this.min);
-                    const max = parseInt(this.max);
-                    let value = parseInt(this.value);
-
-                    // Enforce min/max
-                    if (value < min) value = min;
-                    if (value > max) value = max;
-
-                    this.value = value;
-
-                    updateTotals();
                 });
+        });
+
+        // -----------------------------
+        // 4. Quantity change handler
+        // -----------------------------
+        document.querySelectorAll(".quantity-input").forEach(input => {
+            input.addEventListener("input", function () {
+                const lineId = this.dataset.line;
+                const qty = parseInt(this.value);
+
+                const line = cart.orderLines.find(l => l.lineId == lineId);
+                line.quantity = qty;
+
+                updateTotals();
             });
+        });
 
-            // Initial calculation
-            updateTotals();
-        </script>
+        // -----------------------------
+        // 5. Section change handler
+        // -----------------------------
+        document.querySelectorAll(".section-select").forEach(select => {
+            select.addEventListener("change", function () {
+                const lineId = this.dataset.line;
+                const sectionId = parseInt(this.value);
 
-    }
+                const line = cart.orderLines.find(l => l.lineId == lineId);
+                line.stadiumSectionId = sectionId;
+            });
+        });
+
+        // -----------------------------
+        // 6. Before submitting: serialize cart
+        // -----------------------------
+        document.getElementById("checkoutForm").addEventListener("submit", function (e) {
+            try {
+                const json = JSON.stringify(cart);
+                document.getElementById("CartJson").value = json;
+            } catch (err) {
+                console.error("Failed to serialize cart", err);
+                e.preventDefault();
+                alert("Cart could not be processed.");
+            }
+        });
+
+        updateTotals();
+    </script>
 }

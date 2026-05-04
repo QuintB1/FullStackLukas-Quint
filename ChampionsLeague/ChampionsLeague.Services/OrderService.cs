@@ -4,6 +4,7 @@ using ChampionsLeague.Domain.DataDB;
 using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository.Interfaces;
 using ChampionsLeague.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,6 +103,12 @@ namespace ChampionsLeague.Services
         {
             return await _orderDAO.GetSectionsForProduct(productId);
         }
+        public async Task UpdateCart(Order order, string userId)
+        {
+            await _orderDAO.UpdateCart(order, userId);
+        }
+
+
 
         public Task SendOrderConfirmationAsync(string email)
         {

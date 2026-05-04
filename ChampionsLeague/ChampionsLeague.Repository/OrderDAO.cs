@@ -157,6 +157,26 @@ namespace ChampionsLeague.Repository
                 .Where(s => s.StadiumId == stadiumId)
                 .ToListAsync();
         }
+        public async Task UpdateCart(Order order, string userId)
+        {
+            var dbOrder = await _context.Orders
+                .Include(o => o.OrderLines)
+                .FirstOrDefaultAsync(o => o.OrderId == order.OrderId && o.UserId == userId);
+
+            if (dbOrder == null)
+                throw new Exception("Cart not found");
+
+            foreach (var updatedLine in order.OrderLines)
+            {
+                var line = dbOrder.OrderLines.First(l => l.LineId == updatedLine.LineId);
+
+                line.Quantity = updatedLine.Quantity;
+                line.StadiumSectionId = updatedLine.StadiumSectionId;
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
 
     }
 }
