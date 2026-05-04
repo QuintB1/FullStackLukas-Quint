@@ -29,6 +29,17 @@ namespace BeerschopNET9_Identity.AutoMapper
             CreateMap<OrderLine, OrderLineVM>()
                 .ForMember(dest => dest.productVM,
                            opt => opt.MapFrom(src => src.Product));
+
+            CreateMap<OrderVM, Order>()
+            .ForMember(dest => dest.OrderId, opt => opt.MapFrom(src => src.OrderId))
+            .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => src.OrderDate))
+            .ForMember(dest => dest.OrderLines, opt => opt.MapFrom(src => src.OrderLines));
+
+            CreateMap<OrderLineVM, OrderLine>()
+            .ForMember(dest => dest.LineId, opt => opt.MapFrom(src => src.LineId))
+            .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity))
+            .ForMember(dest => dest.StadiumSectionId, opt => opt.MapFrom(src => src.StadiumSectionId))
+            .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.productVM.ProductId));
         }
 
 
