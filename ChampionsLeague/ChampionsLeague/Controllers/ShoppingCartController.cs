@@ -39,7 +39,9 @@ namespace ChampionsLeague.Controllers
         public async Task<IActionResult> CheckOut(string cartJson)
         {
             if (string.IsNullOrWhiteSpace(cartJson))
+            {
                 return BadRequest("Cart JSON was not received.");
+            }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -48,7 +50,7 @@ namespace ChampionsLeague.Controllers
             var order = _mapper.Map<Order>(vm);
 
             await _order.UpdateCart(order, userId);
-
+            await _order.Checkout(order.OrderId);
             return View("Success");
         }
 

@@ -128,5 +128,23 @@ namespace ChampionsLeague.Services
                     pdfFiles);
             }
         }
+
+        public async Task Checkout(int orderId)
+        {
+            await _orderDAO.Checkout(orderId);
+            return;
+        }
+
+        public async Task CancelSubscription(int assignmentId)
+        {
+            await _orderDAO.CancelSubscription(assignmentId);
+            return;
+        }
+
+        public async Task CancelTicket(int assignmentId)
+        {
+             await _orderDAO.CancelTicket(assignmentId);
+            return;
+        }
     }
 }

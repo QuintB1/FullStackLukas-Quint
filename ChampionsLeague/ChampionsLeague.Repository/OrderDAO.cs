@@ -1,7 +1,9 @@
 ﻿using ChampionsLeague.Domain.DataDB;
 using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository.Interfaces;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace ChampionsLeague.Repository
 {
@@ -171,6 +173,21 @@ namespace ChampionsLeague.Repository
             await _context.SaveChangesAsync();
         }
 
+        public async Task Checkout(int orderId)
+        {
+            await _context.Database.ExecuteSqlRawAsync(
+             "EXEC UpdateOrderLineStaticPrices @p0",
+             orderId);
+        }
 
+        public Task CancelTicket(int assignmentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task CancelSubscription(int assignmentId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
