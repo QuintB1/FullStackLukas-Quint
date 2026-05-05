@@ -9,66 +9,68 @@
 }
 else
 {
-    <form asp-action="CheckOut" method="post" id="checkoutForm">
-        <input type="hidden" id="CartJson" name="CartJson" />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Section</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
 
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                    <th>Section</th>
-                    <th>Remove</th>
+        <tbody>
+            @for (int i = 0; i < Model.OrderLines.Count; i++)
+            {
+                var line = Model.OrderLines[i];
+                var max = line.productVM.Type == "Ticket" ? 4 : 1;
+
+                <tr class="cart-line" data-line="@line.LineId">
+                    <td>@line.productVM.Name</td>
+
+                    <td>
+                        <input type="number"
+                               class="form-control quantity-input"
+                               value="@line.Quantity"
+                               min="1"
+                               max="@max"
+                               data-line="@line.LineId"
+                               data-price="@line.productVM.DynamicUnitPrice" />
+                    </td>
+
+                    <td>@line.productVM.DynamicUnitPrice €</td>
+
+                    <td class="line-total">
+                        @(line.Quantity* line.productVM.DynamicUnitPrice) €
+                    </td>
+
+                    <td>
+                        <select class="form-select section-select"
+                                data-line="@line.LineId"
+                                data-product="@line.productVM.ProductId">
+                            <option>Loading...</option>
+                        </select>
+                    </td>
+
+                    <td>
+                        <form asp-action="RemoveFromCart" method="post" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="lineId" value="@line.LineId" />
+                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                        </form>
+                    </td>
                 </tr>
-            </thead>
+            }
+        </tbody>
+    </table>
 
-            <tbody>
-                @for (int i = 0; i < Model.OrderLines.Count; i++)
-                {
-                    var line = Model.OrderLines[i];
-                    var max = line.productVM.Type == "Ticket" ? 4 : 1;
-
-                    <tr class="cart-line" data-line="@line.LineId">
-                        <td>@line.productVM.Name</td>
-
-                        <td>
-                            <input type="number"
-                                   class="form-control quantity-input"
-                                   value="@line.Quantity"
-                                   min="1"
-                                   max="@max"
-                                   data-line="@line.LineId"
-                                   data-price="@line.productVM.DynamicUnitPrice" />
-                        </td>
-
-                        <td>@line.productVM.DynamicUnitPrice €</td>
-
-                        <td class="line-total">
-                            @(line.Quantity* line.productVM.DynamicUnitPrice) €
-                        </td>
-
-                        <td>
-                            <select class="form-select section-select"
-                                    data-line="@line.LineId"
-                                    data-product="@line.productVM.ProductId">
-                                <option>Loading...</option>
-                            </select>
-                        </td>
-
-                        <td>
-                            <a asp-action="RemoveFromCart"
-                               asp-route-lineId="@line.LineId"
-                               class="btn btn-danger btn-sm">Remove</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-
+    <!-- Checkout form is now SEPARATE and NOT wrapping the table -->
+    <form asp-action="CheckOut" method="post" id="checkoutForm">
+        @Html.AntiForgeryToken()
+        <input type="hidden" id="CartJson" name="CartJson" />
         <h3>Total: <span id="cart-total"></span> €</h3>
-
         <button type="submit" class="btn btn-primary">Checkout</button>
     </form>
 
