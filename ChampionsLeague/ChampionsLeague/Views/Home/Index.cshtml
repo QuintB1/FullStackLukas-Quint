@@ -7,7 +7,22 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<style src="~/css/home.css" type="text/css"></style>
+<main>
 <div class="text-center">
     <h1 class="display-4">@Localizer["Welcome"]</h1>
     <p>@Localizer["Design"].Value</p>
 </div>
+<section id="homeIntroduction">
+    <p>Welcome to the championsLeague ticket sales site! <br />
+        please check out the calandar page for tickets <br />
+        Or check out the stadium page to view data on the stadiums and get a subscription.
+    </p>
+    <img src="~/images/ChampionsLeagueHomeDecoration1.jpg" alt="Championsleague image" />
+</section>
+<hr />
+<section id="HotelAPI">
+    <img src="~/images/ChampionsLeagueHomeDecoration2.png" alt="Alternate Text" />
+    <p></p>
+</section>
+</main>
