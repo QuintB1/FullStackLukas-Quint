@@ -1,6 +1,140 @@
-﻿body {
+﻿/* GENERAL PAGE STYLING */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f7fb;
+    margin: 0;
+    padding: 0;
+    color: #1a2a44;
 }
-#homeIntroduction{
+
+/* HEADERS */
+#greeting h1 {
+    color: #0a3d91;
+    margin-bottom: 10px;
+}
+
+#greeting p {
+    font-size: 1.2rem;
+    color: #2c4a7a;
+}
+
+/* INTRO SECTION */
+#homeIntroduction {
     display: grid;
-    grid-template-columns: 1fr,1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    align-items: center;
+    padding: 40px;
+    background: #e8f0ff;
+    border-radius: 10px;
+    margin: 20px auto;
+    width: 90%;
+}
+
+    #homeIntroduction img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+/* HOTEL EXPLANATION SECTION */
+#HotelAPIExplination {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    align-items: center;
+    padding: 40px;
+    background: #dce8ff;
+    border-radius: 10px;
+    margin: 20px auto;
+    width: 90%;
+}
+
+    #HotelAPIExplination img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+/* HOTEL API SECTION */
+#hotelAPI {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    padding: 40px;
+    background: #cddcff;
+    border-radius: 10px;
+    margin: 20px auto 60px;
+    width: 90%;
+}
+
+/* HOTEL LIST */
+#hotels {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    #hotels li {
+        background: #ffffff;
+        padding: 12px 15px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        border-left: 5px solid #0a3d91;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+        #hotels li:hover {
+            background: #e3ecff;
+            transform: translateX(4px);
+        }
+
+/* SELECTED HOTEL + OFFER */
+#hotelAPI div {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+#hotelAPI span {
+    color: #0a3d91;
+    font-size: 1.1rem;
+}
+
+#hotelAPI p {
+    margin-top: 5px;
+    font-weight: bold;
+    color: #1a2a44;
+}
+
+/* BOOK BUTTON */
+#btnBook {
+    grid-column: span 2;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    background: #0a3d91;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    #btnBook:disabled {
+        background: #7a8bb5;
+        cursor: not-allowed;
+    }
+
+    #btnBook:hover:not(:disabled) {
+        background: #0d4fb8;
+        transform: scale(1.03);
+    }
+
+/* HR STYLING */
+hr {
+    width: 90%;
+    margin: 40px auto;
+    border: none;
+    border-top: 2px solid #b0c4ff;
 }

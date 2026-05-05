@@ -7,9 +7,10 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<style src="~/css/home.css" type="text/css"></style>
+<link rel="stylesheet" href="~/css/home.css" />
+
 <main>
-<div class="text-center">
+<div class="text-center" id="greeting">
     <h1 class="display-4">@Localizer["Welcome"]</h1>
     <p>@Localizer["Design"].Value</p>
 </div>
@@ -21,8 +22,70 @@
     <img src="~/images/ChampionsLeagueHomeDecoration1.jpg" alt="Championsleague image" />
 </section>
 <hr />
-<section id="HotelAPI">
+<section id="HotelAPIExplination">
     <img src="~/images/ChampionsLeagueHomeDecoration2.png" alt="Alternate Text" />
-    <p></p>
+    <p>The section below will alow you to book a hotel room. <br />click the hotel you want to book from the list</p>
 </section>
-</main>
+<hr />
+    <section id="hotelAPI">
+        <ul id="hotels"></ul>
+
+        <div>
+            <span><b>Selected hotel:</b></span>
+            <p id="selectedHotel"></p>
+
+            <span><b>Room offer:</b></span>
+            <p id="roomOffer"></p>
+        </div>
+
+        <button id="btnBook" disabled>Book</button>
+        <script>
+            const hotelList = document.getElementById("hotels");
+            const selectedHotelEl = document.getElementById("selectedHotel");
+            const roomOfferEl = document.getElementById("roomOffer");
+            const btnBook = document.getElementById("btnBook");
+
+            let selectedHotel = null;
+
+            async function loadHotels() {
+                const response = await fetch("/api/hotels/search");
+                const hotels = await response.json();
+
+                hotels.forEach(hotel => {
+                    const li = document.createElement("li");
+
+                    // FIXED: prevent (undefined)
+                    const price = hotel.price ?? "€—";
+
+                    li.textContent = `${hotel.name} (${price})`;
+                    li.style.cursor = "pointer";
+                    li.dataset.id = hotel.id;
+
+                    li.addEventListener("click", () => selectHotel(hotel));
+
+                    hotelList.appendChild(li);
+                });
+            }
+
+            async function selectHotel(hotel) {
+                selectedHotel = hotel;
+                selectedHotelEl.textContent = hotel.name;
+
+                const response = await fetch(`/api/hotels/offers/${hotel.id}`);
+                const offer = await response.json();
+
+                roomOfferEl.textContent = offer.offer ?? "No offer available";
+
+                btnBook.disabled = false;
+            }
+
+            btnBook.addEventListener("click", () => {
+                alert("Booking hotel: " + selectedHotel.name);
+            });
+
+            loadHotels();
+        </script>
+
+
+
+

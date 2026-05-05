@@ -76,6 +76,8 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 
 
+
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="HotelAPI\" />
     <Folder Include="Resources\Views\Match\" />
     <Folder Include="Resources\Views\Stadium\" />
     <Folder Include="Resources\Views\ShoppingCart\" />
