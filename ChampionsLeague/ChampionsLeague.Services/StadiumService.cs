@@ -19,16 +19,6 @@ namespace ChampionsLeague.Services
             _stadiumDAO = stadiumDAO;
         }
 
-        public async Task AddAsync(Stadium entity)
-        {
-            await _stadiumDAO.AddAsync(entity);
-        }
-
-        public async Task DeleteAsync(Stadium entity)
-        {
-            await _stadiumDAO.DeleteAsync(entity);
-        }
-
         public async Task<Stadium?> FindByIdAsync(int Id)
         {
             return await _stadiumDAO.FindByAsync(Id);

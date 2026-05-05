@@ -25,12 +25,6 @@ namespace ChampionsLeague.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Stadium entity)
-        {
-            _context.Stadia.Remove(entity);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task<IEnumerable<Stadium>?> GetAllAsync()
         {
             return await _context.Stadia.ToListAsync();

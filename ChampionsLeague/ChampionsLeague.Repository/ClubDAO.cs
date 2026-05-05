@@ -24,12 +24,6 @@ namespace ChampionsLeague.Repository.DAO
             return await _context.Clubs.FindAsync(id);
         }
 
-        public async Task AddAsync(Club entity)
-        {
-            _context.Clubs.Add(entity);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task UpdateAsync(Club entity)
         {
             _context.Clubs.Update(entity);

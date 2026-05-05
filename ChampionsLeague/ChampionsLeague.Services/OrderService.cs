@@ -27,10 +27,6 @@ namespace ChampionsLeague.Services
             _emailSend = emailSend;
             _context = context;
         }
-        public Task AddAsync(Order entity)
-        {
-            return _orderDAO.AddAsync(entity);
-        }
 
         public async Task AddSubscriptionToCart(int clubId, string userId)
         {
@@ -56,13 +52,6 @@ namespace ChampionsLeague.Services
             {
                 throw ex;
             }
-        }
-
-
-
-        public Task DeleteAsync(Order entity)
-        {
-            return _orderDAO.DeleteAsync(entity);
         }
 
         public Task<Order?> FindByIdAsync(int Id)

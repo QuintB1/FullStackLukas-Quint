@@ -18,17 +18,6 @@ namespace ChampionsLeague.Repository
         {
             _context = context;
         }
-        public async Task AddAsync(Match entity)
-        {
-            _context.Matches.Add(entity);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteAsync(Match entity)
-        {
-            _context.Matches.Remove(entity);
-            await _context.SaveChangesAsync();
-        }
 
         public async Task<IEnumerable<Match>?> GetAllAsync()
         {

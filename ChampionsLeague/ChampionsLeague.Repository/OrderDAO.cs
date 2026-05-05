@@ -14,12 +14,6 @@ namespace ChampionsLeague.Repository
             _context = context;
         }
 
-        public async Task AddAsync(Order entity)
-        {
-            await _context.Orders.AddAsync(entity);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task AddSubscriptionToCart(int clubId, string userId)
         {
             // Step 1: Find the subscription product for this club
