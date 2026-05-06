@@ -141,9 +141,9 @@ namespace ChampionsLeague.Services
             return;
         }
 
-        public Task<List<Order>> GetHistory(string userId)
+        public async Task<List<Order>> GetHistory(string userId)
         {
-            return _orderDAO.GetHistory(userId);
+            return await _orderDAO.GetHistory(userId);
         }
     }
 }

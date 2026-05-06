@@ -193,7 +193,10 @@ namespace ChampionsLeague.Repository
 
         public async Task<List<Order>> GetHistory(string userId)
         {
-            return await _context.Orders.Where(o => o.UserId == userId && o.Status == "paid").ToListAsync();
+            return await _context.Orders
+                .Include(o => o.OrderLines)
+                .ThenInclude(ol => ol.Product)
+                .Where(o => o.UserId == userId && o.Status == "Paid").ToListAsync();
         }
     }
 }

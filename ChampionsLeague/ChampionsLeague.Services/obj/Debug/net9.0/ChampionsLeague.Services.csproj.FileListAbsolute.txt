@@ -52,26 +52,6 @@ C:\Users\quint\OneDrive\Desktop\Advanced programming\lesson8 exercise\FullStackL
 C:\Users\quint\OneDrive\Desktop\Advanced programming\lesson8 exercise\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\refint\ChampionsLeague.Services.dll
 C:\Users\quint\OneDrive\Desktop\Advanced programming\lesson8 exercise\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.pdb
 C:\Users\quint\OneDrive\Desktop\Advanced programming\lesson8 exercise\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ref\ChampionsLeague.Services.dll
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.csproj.AssemblyReference.cache
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.AssemblyInfoInputs.cache
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.AssemblyInfo.cs
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.csproj.CoreCompileInputs.cache
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.sourcelink.json
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Services.deps.json
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Services.dll
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Services.pdb
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionLeague.utils.dll
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Domain.dll
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Repository.dll
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionLeague.utils.pdb
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Domain.pdb
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Repository.pdb
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\Champion.9EE3A2EA.Up2Date
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.dll
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\refint\ChampionsLeague.Services.dll
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.pdb
-C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ref\ChampionsLeague.Services.dll
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Services.deps.json
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Services.dll
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Services.pdb
@@ -92,3 +72,23 @@ C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\refint\ChampionsLeague.Services.dll
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.pdb
 C:\Users\Lukas\Source\Repos\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ref\ChampionsLeague.Services.dll
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Services.deps.json
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Services.dll
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Services.pdb
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionLeague.utils.dll
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Domain.dll
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Repository.dll
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionLeague.utils.pdb
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Domain.pdb
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\bin\Debug\net9.0\ChampionsLeague.Repository.pdb
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.csproj.AssemblyReference.cache
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.AssemblyInfoInputs.cache
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.AssemblyInfo.cs
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.csproj.CoreCompileInputs.cache
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.sourcelink.json
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\Champion.9EE3A2EA.Up2Date
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.dll
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\refint\ChampionsLeague.Services.dll
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ChampionsLeague.Services.pdb
+C:\Users\quint\OneDrive\Desktop\GitHub\FullStackLukas-Quint\ChampionsLeague\ChampionsLeague.Services\obj\Debug\net9.0\ref\ChampionsLeague.Services.dll
