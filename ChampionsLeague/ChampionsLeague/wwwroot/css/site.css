@@ -37,3 +37,12 @@ body {
 .bg-color-darkblue {
     background-color: darkblue;
 }
+
+.order-card {
+    background-color: white;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    transition: transform .15s ease, box-shadow .15s ease;
+}

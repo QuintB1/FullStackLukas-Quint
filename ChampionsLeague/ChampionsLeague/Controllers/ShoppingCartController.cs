@@ -85,5 +85,18 @@ namespace ChampionsLeague.Controllers
 
             return Json(vm);
         }
+
+        [Authorize]
+        public async Task<IActionResult> History(string email)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var cartData = await _order.GetHistory(userId);
+
+            if (cartData == null)
+                return View(null);
+
+            var vm = _mapper.Map<List<OrderVM>>(cartData);
+            return View(vm);
+        }
     }
 }

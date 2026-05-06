@@ -140,5 +140,10 @@ namespace ChampionsLeague.Services
              await _orderDAO.CancelTicket(assignmentId);
             return;
         }
+
+        public Task<List<Order>> GetHistory(string userId)
+        {
+            return _orderDAO.GetHistory(userId);
+        }
     }
 }

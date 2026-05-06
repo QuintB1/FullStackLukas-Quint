@@ -98,7 +98,13 @@ namespace ChampionsLeague.Repository
             await _context.SaveChangesAsync();
         }
 
-
+        public async Task<Order?> GetUserPaidOrders(string userId)
+        {
+            return await _context.Orders
+                .Include(o => o.OrderLines)
+                    .ThenInclude(ol => ol.Product)
+                .FirstOrDefaultAsync(o => o.UserId == userId && o.Status == "Paid");
+        }
 
         public async Task UpdateAsync(Order entity)
         {
@@ -185,7 +191,7 @@ namespace ChampionsLeague.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<List<Order>> getHistory(string userId)
+        public async Task<List<Order>> GetHistory(string userId)
         {
             return await _context.Orders.Where(o => o.UserId == userId && o.Status == "paid").ToListAsync();
         }

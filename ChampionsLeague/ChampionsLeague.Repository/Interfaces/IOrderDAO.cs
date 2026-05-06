@@ -18,6 +18,6 @@ namespace ChampionsLeague.Repository.Interfaces
         Task Checkout(int orderId);
         Task CancelSubscription(int assignmentId);
         Task CancelTicket(int assignmentId);
-        Task<List<Order>> getHistory(String  userId);
+        Task<List<Order>> GetHistory(String  userId);
     }
 }

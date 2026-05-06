@@ -1,6 +1,7 @@
 ﻿using ChampionsLeague.Domain.EntitiesDB;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace ChampionsLeague.Services.Interfaces
         Task Checkout(int orderId);
         Task CancelSubscription(int assignmentId);
         Task CancelTicket(int assignmentId);
+        Task<List<Order>> GetHistory(string userId);
 
     }
 }
