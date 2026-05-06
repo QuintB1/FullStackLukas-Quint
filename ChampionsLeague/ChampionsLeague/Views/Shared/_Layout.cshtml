@@ -28,6 +28,7 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Stadium" asp-action="Index">Stadiums</a>
                         </li>
                     </ul>
+                    @await Html.PartialAsync("_SelectCulture")
                     @using Microsoft.AspNetCore.Identity
                     @using System.Security.Claims
 
@@ -64,5 +65,13 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        $(document).ready(() => {
+            $(".setLang").on("change", () => {
+                $('#selectLanguage').submit();
+            });
+        });
+    </script>
 </body>
 </html>

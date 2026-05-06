@@ -117,8 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnBook" xml:space="preserve">
+    <value>Book</value>
+  </data>
+  <data name="BookSection" xml:space="preserve">
+    <value>The section below will allow you to book a hotel room. Click the hotel you want to book from the list.</value>
+  </data>
   <data name="Design" xml:space="preserve">
     <value>Design your future</value>
+  </data>
+  <data name="HomeIntro" xml:space="preserve">
+    <value>Welcome to the championsLeague ticket sales site! Please check out the calendar page for tickets or check out the stadium page to view data on the stadiums and get a subscription.</value>
+  </data>
+  <data name="RoomOffer" xml:space="preserve">
+    <value>Room offer</value>
+  </data>
+  <data name="SelectedHotel" xml:space="preserve">
+    <value>Selected hotel</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome</value>

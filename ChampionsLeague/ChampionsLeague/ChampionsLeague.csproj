@@ -36,7 +36,6 @@
     <Folder Include="Resources\Views\Match\" />
     <Folder Include="Resources\Views\Stadium\" />
     <Folder Include="Resources\Views\ShoppingCart\" />
-    <Folder Include="Resources\Views\Shared\" />
   </ItemGroup>
 
 </Project>

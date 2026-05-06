@@ -117,8 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnBook" xml:space="preserve">
+    <value>Livre</value>
+  </data>
+  <data name="BookSection" xml:space="preserve">
+    <value>La section ci-dessous vous permettra de réserver une chambre d'hôtel. Cliquez sur l'hôtel que vous souhaitez réserver dans la liste.</value>
+  </data>
   <data name="Design" xml:space="preserve">
     <value>Concevez votre avenir</value>
+  </data>
+  <data name="HomeIntro" xml:space="preserve">
+    <value>Bienvenue sur le site de billetterie de la Ligue des champions ! Consultez le calendrier pour acheter vos billets ou la page des stades pour obtenir des informations sur les stades et vous abonner.</value>
+  </data>
+  <data name="RoomOffer" xml:space="preserve">
+    <value>Offre de chambre</value>
+  </data>
+  <data name="SelectedHotel" xml:space="preserve">
+    <value>Hôtel sélectionné</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Bienvenue</value>

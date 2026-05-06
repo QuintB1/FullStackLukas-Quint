@@ -117,25 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BtnBook" xml:space="preserve">
-    <value>Boek</value>
-  </data>
-  <data name="BookSection" xml:space="preserve">
-    <value>Hieronder kunt u een hotelkamer boeken. Klik op het hotel dat u wilt boeken in de lijst.</value>
-  </data>
-  <data name="Design" xml:space="preserve">
-    <value>Schrijf jouw toekomst</value>
-  </data>
-  <data name="HomeIntro" xml:space="preserve">
-    <value>Welkom op de website voor het ticketverkoop van de Champions League! Bekijk het kalenderschema om je tickets te kopen of ga naar de stadionpagina waar je stadioninformatie kunt vinden en je kunt abonneren.</value>
-  </data>
-  <data name="RoomOffer" xml:space="preserve">
-    <value>Kameraanbieding</value>
-  </data>
-  <data name="SelectedHotel" xml:space="preserve">
-    <value>Geselecteerd hotel</value>
-  </data>
-  <data name="Welcome" xml:space="preserve">
-    <value>Welkom</value>
+  <data name="Select Language" xml:space="preserve">
+    <value>sélectionner la langue</value>
   </data>
 </root>
