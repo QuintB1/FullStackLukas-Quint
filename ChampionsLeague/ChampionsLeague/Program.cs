@@ -20,8 +20,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
-builder.Services.AddSingleton<IEmailSend, EmailSend>();
-builder.Services.AddSingleton<ICreatePDF, CreatePDF>();
+builder.Services.AddTransient<IEmailSend, EmailSend>();
+builder.Services.AddTransient<ICreatePDF, CreatePDF>();
 
 builder.Services.AddLocalization(
     options => options.ResourcesPath = "Resources");
