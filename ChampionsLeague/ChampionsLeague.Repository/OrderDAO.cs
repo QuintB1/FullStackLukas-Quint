@@ -99,18 +99,6 @@ namespace ChampionsLeague.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdatePriceAsync(String userId)
-        {
-            var id = _context.Orders.Where(o =>  o.UserId == userId && o.Status == "Cart").Select(o => o.OrderId).FirstOrDefault();
-            if(id == 0)
-            {
-                throw new KeyNotFoundException("cart not found");
-            }
-
-            await _context.Database.ExecuteSqlRawAsync(
-             "EXEC UpdateOrderLineStaticPrices @p0",
-             id);
-        }
         public async Task<List<StadiumSection>> GetSectionsForProduct(int productId)
         {
             // 1. Try to load as a ticket product
@@ -176,7 +164,7 @@ namespace ChampionsLeague.Repository
         public async Task Checkout(int orderId)
         {
             await _context.Database.ExecuteSqlRawAsync(
-             "EXEC UpdateOrderLineStaticPrices @p0",
+             "EXEC FinalizeOrderAndAssignSeats @p0",
              orderId);
         }
 
@@ -188,6 +176,11 @@ namespace ChampionsLeague.Repository
         public Task CancelSubscription(int assignmentId)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<List<Order>> getHistory(string userId)
+        {
+            return await _context.Orders.Where(o => o.UserId == userId && o.Status == "paid").ToListAsync();
         }
     }
 }

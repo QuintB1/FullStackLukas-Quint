@@ -79,11 +79,6 @@ namespace ChampionsLeague.Services
             return _orderDAO.UpdateAsync(entity);
         }
 
-        public Task UpdatePriceAsync(String id)
-        {
-            return _orderDAO.UpdatePriceAsync(id);
-        }
-
         async Task<Order?> IService<Order>.FindByIdAsync(int Id)
         {
             return await _orderDAO.FindByAsync(Id);
@@ -132,7 +127,6 @@ namespace ChampionsLeague.Services
         public async Task Checkout(int orderId)
         {
             await _orderDAO.Checkout(orderId);
-            return;
         }
 
         public async Task CancelSubscription(int assignmentId)
