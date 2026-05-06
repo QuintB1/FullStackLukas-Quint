@@ -10,7 +10,6 @@ namespace ChampionsLeague.Services.Interfaces
     public interface IOrderService: IService<Order>
     {
         Task<Order?> GetUserShoppingCart(String id);
-        Task UpdatePriceAsync(String id);
         Task AddTicketToCart(int productId, string userId);
         Task AddSubscriptionToCart(int productId, string userId);
         Task RemoveFromCart(int lineId, String userId);
