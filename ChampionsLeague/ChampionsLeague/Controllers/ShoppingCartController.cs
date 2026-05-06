@@ -4,7 +4,9 @@ using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Build.Tasks;
 using Newtonsoft.Json;
+using NuGet.Protocol.Plugins;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -38,20 +40,27 @@ namespace ChampionsLeague.Controllers
         [Authorize]
         public async Task<IActionResult> CheckOut(string cartJson)
         {
-            if (string.IsNullOrWhiteSpace(cartJson))
+            try
             {
-                return BadRequest("Cart JSON was not received.");
+                if (string.IsNullOrWhiteSpace(cartJson))
+                {
+                    return BadRequest("Cart JSON was not received.");
+                }
+
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                var vm = JsonConvert.DeserializeObject<OrderVM>(cartJson);
+
+                var order = _mapper.Map<Order>(vm);
+
+                await _order.UpdateCart(order, userId);
+                await _order.Checkout(order.OrderId);
+                return View("Success");
             }
-
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var vm = JsonConvert.DeserializeObject<OrderVM>(cartJson);
-
-            var order = _mapper.Map<Order>(vm);
-
-            await _order.UpdateCart(order, userId);
-            await _order.Checkout(order.OrderId);
-            return View("Success");
+            catch (Exception ex) { 
+                return BadRequest(ex.Message);
+                }
+                
         }
 
         [Authorize]

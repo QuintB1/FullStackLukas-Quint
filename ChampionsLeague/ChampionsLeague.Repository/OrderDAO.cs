@@ -18,21 +18,28 @@ namespace ChampionsLeague.Repository
 
         public async Task AddSubscriptionToCart(int clubId, string userId)
         {
-            // Step 1: Find the subscription product for this club
-            var productId = await _context.Subscriptions
-                .Where(s => s.ClubId == clubId)
-                .Select(s => s.ProductId)
-                .FirstOrDefaultAsync();
+            try
+            {
+                // Step 1: Find the subscription product for this club
+                var productId = await _context.Subscriptions
+                    .Where(s => s.ClubId == clubId)
+                    .Select(s => s.ProductId)
+                    .FirstOrDefaultAsync();
 
-            if (productId == 0)
-                throw new KeyNotFoundException($"No subscription product found for ClubId {clubId}");
+                if (productId == 0)
+                    throw new KeyNotFoundException($"No subscription product found for ClubId {clubId}");
 
-            // Step 2: Call the stored procedure
-            await _context.Database.ExecuteSqlRawAsync(
-                "EXEC AddProductToCart @UserID = {0}, @ProductID = {1}",
-                userId,
-                productId
-            );
+                // Step 2: Call the stored procedure
+                await _context.Database.ExecuteSqlRawAsync(
+                    "EXEC AddProductToCart @UserID = {0}, @ProductID = {1}",
+                    userId,
+                    productId
+                );
+            }
+            catch
+            {
+                throw;
+            }
         }
 
 

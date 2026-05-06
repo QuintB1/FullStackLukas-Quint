@@ -68,17 +68,27 @@ namespace ChampionsLeague.Controllers
         // -------------------------
         // ADD TICKET TO CART
         // -------------------------
-        [Authorize]
         [HttpGet]
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> AddTicketToCart(int matchId)
         {
-            var userId = GetUserId();
+            try
+            {
+                var userId = GetUserId();
 
-            await _orderService.AddTicketToCart(matchId, userId);
+                await _orderService.AddTicketToCart(matchId, userId);
 
-            return RedirectToAction("Index", "ShoppingCart");
+                return RedirectToAction("Index", "ShoppingCart");
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException == null)
+                {
+                    return BadRequest(ex.Message);
+                }
+                return BadRequest(ex.InnerException.Message);
+            }
         }
 
     }

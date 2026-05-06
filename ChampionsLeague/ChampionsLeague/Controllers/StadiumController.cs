@@ -58,11 +58,22 @@ namespace ChampionsLeague.Controllers
         [HttpGet]
         public async Task<IActionResult> AddSubscriptionToCart(int clubId)
         {
-            var userId = GetUserId();
+            try
+            {
+                var userId = GetUserId();
 
-            await _orderService.AddSubscriptionToCart(clubId, userId);
+                await _orderService.AddSubscriptionToCart(clubId, userId);
 
-            return RedirectToAction("Index", "ShoppingCart");
+                return RedirectToAction("Index", "ShoppingCart");
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException == null)
+                {
+                    return BadRequest(ex.Message);
+                }
+                return BadRequest(ex.InnerException.Message);
+            }
         }
 
     }
