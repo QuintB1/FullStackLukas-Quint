@@ -40,16 +40,16 @@ else
                                data-price="@line.productVM.DynamicUnitPrice" />
                     </td>
 
-                    <td>@line.productVM.DynamicUnitPrice €</td>
+                    <td>€ @line.productVM.DynamicUnitPrice</td>
 
                     <td class="line-total">
-                        @(line.Quantity* line.productVM.DynamicUnitPrice) €
+                        € @(line.Quantity* line.productVM.DynamicUnitPrice)
                     </td>
 
                     <td>
                         <select class="form-select section-select"
                                 data-line="@line.LineId"
-                                data-product="@line.productVM.ProductId">
+                                data-product="@line.productVM.ProductId" required>
                             <option>Loading...</option>
                         </select>
                     </td>
@@ -66,7 +66,6 @@ else
         </tbody>
     </table>
 
-    <!-- Checkout form is now SEPARATE and NOT wrapping the table -->
     <form asp-action="CheckOut" method="post" id="checkoutForm">
         @Html.AntiForgeryToken()
         <input type="hidden" id="CartJson" name="CartJson" />
