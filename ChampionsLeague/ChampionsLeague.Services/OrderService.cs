@@ -145,5 +145,15 @@ namespace ChampionsLeague.Services
         {
             return await _orderDAO.GetHistory(userId);
         }
+
+        public async Task<List<TicketAssignment>> GetValidTicketAssignments(string userId)
+        {
+            return await _orderDAO.GetValidTicketAssignments(userId);
+        }
+
+        public async Task<List<SubscriptionAssignment>> GetValidSubscriptionAssignments(string userId)
+        {
+            return await _orderDAO.GetValidSubscriptionAssignments(userId);
+        }
     }
 }

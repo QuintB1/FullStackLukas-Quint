@@ -21,6 +21,8 @@ namespace ChampionsLeague.Services.Interfaces
         Task CancelSubscription(int assignmentId);
         Task CancelTicket(int assignmentId);
         Task<List<Order>> GetHistory(string userId);
+        Task<List<TicketAssignment>> GetValidTicketAssignments(String userId);
+        Task<List<SubscriptionAssignment>> GetValidSubscriptionAssignments(String userId);
 
     }
 }
