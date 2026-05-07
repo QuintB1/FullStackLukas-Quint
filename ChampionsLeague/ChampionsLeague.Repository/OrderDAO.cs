@@ -198,5 +198,29 @@ namespace ChampionsLeague.Repository
                 .ThenInclude(ol => ol.Product)
                 .Where(o => o.UserId == userId && o.Status == "Paid").ToListAsync();
         }
+
+        public async Task<List<TicketAssignment>> GetValidTicketAssignments(string userId)
+        {
+            var today = DateTime.UtcNow;
+            return await _context.TicketAssignments
+                .Include(t => t.Ticket)
+                .ThenInclude(t => t.Match)
+                .Where(t => t.Active == true && t.Ticket.Match.DateTime < today)
+                .Where(t => t.UserId == userId)
+                .ToListAsync();
+        }
+
+        public async Task<List<SubscriptionAssignment>> GetValidSubscriptionAssignments(string userId)
+        {
+            var today = DateOnly.FromDateTime(DateTime.Today);
+
+            return await _context.SubscriptionAssignments
+                .Include(s => s.Subscription)
+                .ThenInclude(sub => sub.Season)
+                .Where(s => s.UserId == userId)
+                .Where(s => s.Subscription.Season.EndDate >= today)
+                .ToListAsync();
+        }
+
     }
 }
