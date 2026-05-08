@@ -15,88 +15,109 @@ using ChampionsLeague.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-
-builder.Services.AddTransient<IEmailSend, EmailSend>();
-builder.Services.AddTransient<ICreatePDF, CreatePDF>();
-
-builder.Services.AddLocalization(
-    options => options.ResourcesPath = "Resources");
-
-builder.Services.AddControllersWithViews().AddDataAnnotationsLocalization()
-    .AddViewLocalization(LanguageViewLocationExpanderFormat.SubFolder);
-
-var supportedCultures = new[] { "nl", "en", "fr" };
-
-builder.Services.Configure<RequestLocalizationOptions>(options => {
-    options.SetDefaultCulture(supportedCultures[0])
-    .AddSupportedCultures(supportedCultures)
-    .AddSupportedUICultures(supportedCultures);
-});
-
-
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-
-builder.Services.AddDbContext<ChampionLeagueDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-
-
-
-builder.Services.AddScoped<StadiumSectionDAO>();
-builder.Services.AddScoped<IMatchDAO,MatchDAO>();
-builder.Services.AddScoped<IClubDAO, ClubDAO>();
-builder.Services.AddScoped<IOrderDAO, OrderDAO>();
-builder.Services.AddScoped<IDAO<Stadium>, StadiumDAO>();
-builder.Services.AddScoped<IDAO<Order>, OrderDAO>();
-builder.Services.AddScoped<IDAO<StadiumSection>, StadiumSectionDAO>();
-builder.Services.AddScoped<IService<Stadium>, StadiumService>();
-builder.Services.AddScoped<IService<Order>, OrderService>();
-builder.Services.AddScoped<IMatchService, MatchService>();
-builder.Services.AddScoped<IClubDAO, ClubDAO>();
-builder.Services.AddScoped<IClubService, ClubService>();
-builder.Services.AddScoped<IOrderService, OrderService>();
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
-
+// ---------------------------------------------------------
+// 1. Load Key Vault FIRST
+// ---------------------------------------------------------
 var keyVaultUrl = builder.Configuration["AzureKeyVault:VaultUri"];
 
-if (!string.IsNullOrEmpty(keyVaultUrl))
+if (!string.IsNullOrWhiteSpace(keyVaultUrl))
 {
     builder.Configuration.AddAzureKeyVault(
         new Uri(keyVaultUrl),
         new DefaultAzureCredential());
 }
 
+// ---------------------------------------------------------
+// 2. Read connection string from Key Vault
+// ---------------------------------------------------------
+var sqlConn = builder.Configuration["SqlConnectionString"];
 
+if (string.IsNullOrWhiteSpace(sqlConn))
+{
+    throw new Exception("SqlConnectionString not found in Key Vault or configuration.");
+}
+
+// ---------------------------------------------------------
+// 3. Email + PDF services
+// ---------------------------------------------------------
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddTransient<IEmailSend, EmailSend>();
+builder.Services.AddTransient<ICreatePDF, CreatePDF>();
+
+// ---------------------------------------------------------
+// 4. Localization
+// ---------------------------------------------------------
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+builder.Services.AddControllersWithViews()
+    .AddDataAnnotationsLocalization()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.SubFolder);
+
+var supportedCultures = new[] { "nl", "en", "fr" };
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    options.SetDefaultCulture(supportedCultures[0])
+           .AddSupportedCultures(supportedCultures)
+           .AddSupportedUICultures(supportedCultures);
+});
+
+// ---------------------------------------------------------
+// 5. Register DbContexts (AFTER Key Vault is loaded)
+// ---------------------------------------------------------
+builder.Services.AddDbContext<ChampionLeagueDbContext>(options =>
+    options.UseSqlServer(sqlConn));
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(sqlConn));
+
+
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+// ---------------------------------------------------------
+// 6. Identity
+// ---------------------------------------------------------
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>();
+
+// ---------------------------------------------------------
+// 7. Register DAOs + Services (cleaned, no duplicates)
+// ---------------------------------------------------------
+builder.Services.AddScoped<IClubDAO, ClubDAO>();
+builder.Services.AddScoped<IDAO<Stadium>,StadiumDAO>();
+builder.Services.AddScoped<IOrderDAO, OrderDAO>();
+builder.Services.AddScoped<IMatchDAO, MatchDAO>();
+
+builder.Services.AddScoped<IService<Stadium>, StadiumService>();
+builder.Services.AddScoped<IService<Order>, OrderService>();
+builder.Services.AddScoped<IMatchService, MatchService>();
+builder.Services.AddScoped<IClubService, ClubService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+// ---------------------------------------------------------
+// 8. MVC + Swagger
+// ---------------------------------------------------------
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-
-
-
-
-builder.Services.AddControllersWithViews();
-
+// ---------------------------------------------------------
+// Build app
+// ---------------------------------------------------------
 var app = builder.Build();
 
 app.UseRequestLocalization();
 
-// Configure the HTTP request pipeline.
+// ---------------------------------------------------------
+// 9. Pipeline
+// ---------------------------------------------------------
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
@@ -106,7 +127,6 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -123,7 +143,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
-app.MapRazorPages()
-   .WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
