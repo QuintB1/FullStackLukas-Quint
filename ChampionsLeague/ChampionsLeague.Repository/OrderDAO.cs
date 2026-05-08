@@ -181,14 +181,18 @@ namespace ChampionsLeague.Repository
              orderId);
         }
 
-        public Task CancelTicket(int assignmentId)
+        public async Task CancelTicket(int assignmentId)
         {
-            throw new NotImplementedException();
+            await _context.Database.ExecuteSqlRawAsync(
+             "EXEC CancelTicketAssignmentByID @p0",
+             assignmentId);
         }
 
-        public Task CancelSubscription(int assignmentId)
+        public async Task CancelSubscription(int assignmentId)
         {
-            throw new NotImplementedException();
+            await _context.Database.ExecuteSqlRawAsync(
+             "EXEC CancelSubscriptionAssignmentByID @p0",
+             assignmentId);
         }
 
         public async Task<List<Order>> GetHistory(string userId)

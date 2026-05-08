@@ -48,6 +48,7 @@ namespace ChampionsLeague.Repository
             return await _context.Matches
                 .Include(m => m.HomeClubNavigation)
                 .Include(m => m.AwayClubNavigation)
+                .Include(m => m.Stadium)
                 .Where(m =>
                     m.DateTime > now &&
                     (m.HomeClub == id || m.AwayClub == id))
