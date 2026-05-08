@@ -85,6 +85,19 @@ namespace ChampionsLeague.Controllers
 
             return Json(vm);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetTicketAssignments()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var assignments = await _order.GetValidTicketAssignments(userId);
+            return Json(assignments);
+        }
+        public async Task<IActionResult> GetSubscriptionAssignments()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var assignments = await _order.GetValidTicketAssignments(userId);
+            return Json(assignments);
+        }
 
         [Authorize]
         public async Task<IActionResult> History(string email)

@@ -52,6 +52,10 @@ else
                                 data-product="@line.productVM.ProductId" required>
                             <option>Loading...</option>
                         </select>
+                        <div class="invalid-feedback">
+                            Please select a section.
+                        </div>
+
                     </td>
 
                     <td>
@@ -175,7 +179,28 @@ else
         // -----------------------------
         // 6. Before submitting: serialize cart
         // -----------------------------
-        document.getElementById("checkoutForm").addEventListener("submit", function (e) {
+                document.getElementById("checkoutForm").addEventListener("submit", function (e) {
+
+            // Validate all section selects
+            const selects = document.querySelectorAll(".section-select");
+            let allValid = true;
+
+            selects.forEach(sel => {
+                if (!sel.value || sel.value.trim() === "") {
+                    allValid = false;
+                    sel.classList.add("is-invalid");
+                } else {
+                    sel.classList.remove("is-invalid");
+                }
+            });
+
+            if (!allValid) {
+                e.preventDefault();
+                alert("please select sections for all products");
+                return;
+            }
+
+            // Serialize cart
             try {
                 const json = JSON.stringify(cart);
                 document.getElementById("CartJson").value = json;
@@ -186,6 +211,5 @@ else
             }
         });
 
-        updateTotals();
     </script>
 }

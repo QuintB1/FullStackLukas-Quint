@@ -1,20 +1,22 @@
+using AutoMapper;
+using Azure.Identity;
+using ChampionLeague.utils.Mail;
+using ChampionLeague.utils.Mail.Interfaces;
+using ChampionLeague.utils.PDF;
+using ChampionLeague.utils.PDF.Interfaces;
 using ChampionsLeague.Data;
+using ChampionsLeague.Domain.DataDB;
+using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Repository;
 using ChampionsLeague.Repository.DAO;
 using ChampionsLeague.Repository.Interfaces;
 using ChampionsLeague.Services;
 using ChampionsLeague.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using ChampionsLeague.Domain.DataDB;
-using ChampionsLeague.Domain.EntitiesDB;
-using AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
-using ChampionLeague.utils.Mail;
-using ChampionLeague.utils.Mail.Interfaces;
 using Microsoft.AspNetCore.Mvc.Razor;
-using ChampionLeague.utils.PDF.Interfaces;
-using ChampionLeague.utils.PDF;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,13 +71,14 @@ builder.Services.AddScoped<IClubService, ClubService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
+var keyVaultUrl = builder.Configuration["AzureKeyVault:VaultUri"];
 
-
-
-
-
-
-
+if (!string.IsNullOrEmpty(keyVaultUrl))
+{
+    builder.Configuration.AddAzureKeyVault(
+        new Uri(keyVaultUrl),
+        new DefaultAzureCredential());
+}
 
 
 builder.Services.AddControllersWithViews();
