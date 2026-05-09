@@ -61,5 +61,14 @@ namespace ChampionsLeague.Repository
                 .Include(s => s.StadiumSections)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Match>?> GetAllMatchesWithClubIdAsync(int homeclubId, int awayClubId)
+        {
+            return await _context.Matches
+                .Include (m => m.HomeClubNavigation)
+                .Include (m => m.AwayClubNavigation)
+                .Include(m => m.Stadium)
+                .Where(m => m.HomeClub == homeclubId && m.AwayClub == awayClubId).ToListAsync(); 
+        }
     }
 }

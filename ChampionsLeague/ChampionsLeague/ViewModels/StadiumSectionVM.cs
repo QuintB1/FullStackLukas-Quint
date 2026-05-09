@@ -7,6 +7,5 @@
         public string Name { get; set; } = null!;
 
         public int Capacity { get; set; }
-        public int ClubId { get; set; }
     }
 }

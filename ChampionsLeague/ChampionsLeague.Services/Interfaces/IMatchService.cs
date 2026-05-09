@@ -11,5 +11,6 @@ namespace ChampionsLeague.Services.Interfaces
     {
         Task<IEnumerable<Match>?> GetAllByClubID(int club);
         Task<IEnumerable<Stadium>?> GetAllStadiums();
+        Task<IEnumerable<Match>?> GetAllMatchesWithClubIdAsync(int homeclubId, int awayClubId);
     }
 }
