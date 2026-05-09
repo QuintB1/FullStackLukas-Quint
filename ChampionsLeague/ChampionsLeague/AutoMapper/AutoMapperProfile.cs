@@ -46,6 +46,33 @@ namespace BeerschopNET9_Identity.AutoMapper
             .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity))
             .ForMember(dest => dest.StadiumSectionId, opt => opt.MapFrom(src => src.StadiumSectionId))
             .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.productVM.ProductId));
+
+            // TICKET ASSIGNMENTS
+            CreateMap<TicketAssignment, TicketAssignmentVM>()
+            .ForMember(dest => dest.SectionName,
+                opt => opt.MapFrom(src => src.Seat.Section.Name))
+            .ForMember(dest => dest.SeatNumber,
+                opt => opt.MapFrom(src => src.Seat.SeatNumber))
+            .ForMember(dest => dest.MatchDate,
+                opt => opt.MapFrom(src => src.Ticket.Match.DateTime))
+            .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Ticket.Product.Name));
+
+
+
+            // SUBSCRIPTION ASSIGNMENTS
+            CreateMap<SubscriptionAssignment, SubscriptionAssignmentVM>()
+            .ForMember(dest => dest.SectionName,
+                opt => opt.MapFrom(src => src.Seat.Section.Name))
+            .ForMember(dest => dest.SeatNumber,
+                opt => opt.MapFrom(src => src.Seat.SeatNumber))
+            .ForMember(dest => dest.SeasonStart,
+                opt => opt.MapFrom(src => src.Subscription.Season.StartDate))
+            .ForMember(dest => dest.SeasonEnd,
+                opt => opt.MapFrom(src => src.Subscription.Season.EndDate))
+            .ForMember(dest => dest.ProductName,
+    opt => opt.MapFrom(src => src.Subscription.Product.Name));
+
+
         }
 
 

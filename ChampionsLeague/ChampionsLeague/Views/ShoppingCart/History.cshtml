@@ -1,41 +1,146 @@
 ﻿@using ChampionsLeague.ViewModels
 @model IEnumerable<OrderVM>
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
 
-<h2>Your History</h2>
+<link rel="stylesheet" href="~/css/history.css" />
 
-@if (Model.Count() == 0) {
-    <div class="alert alert-info">Your history is empty.</div>
-} else {
-    <section id="OrderList">
-        <h2>Order List</h2>
-        @foreach (var order in Model)
+<h1 class="page-title">My Products</h1>
+
+<!-- Hidden Anti-Forgery Token for JS-generated forms -->
+<input type="hidden" id="afToken" name="__RequestVerificationToken"
+       value="@Antiforgery.GetTokens(Context).RequestToken" />
+
+<div class="history-container">
+
+    <!-- PURCHASE HISTORY -->
+    <section class="history-section">
+        <h2>Purchase History</h2>
+
+        @if (!Model.Any())
         {
-        <div class="col-md-6 mb-6")>
-            <h2>Order overview</h2> <br />
-            <b>order date : @order.OrderDate</b>
-            <hr />
-            <h6>Orderlines:</h6>
-            <ul>
-                @foreach (OrderLineVM line in order.OrderLines)
+            <div class="empty">You have no past orders.</div>
+        }
+        else
+        {
+            <div class="order-grid">
+                @foreach (var order in Model)
                 {
-                        <li>@line.Quantity x @line.productVM.Name unitprice: @line.StaticUnitPrice <br /> line-total: @(line.Quantity* line.productVM.DynamicUnitPrice)</li>
-                    <br />
+                    <div class="order-card">
+                        <h3>Order from @order.OrderDate.ToShortDateString()</h3>
+                        <ul>
+                            @foreach (var line in order.OrderLines)
+                            {
+                                <li>
+                                    <b>@line.Quantity x @line.productVM.Name</b><br />
+                                    Unit price: @line.StaticUnitPrice<br />
+                                    Line total: @(line.Quantity* line.productVM.DynamicUnitPrice)
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 }
-                </ul>
-                </div>
-
+            </div>
         }
     </section>
+
     <hr />
-    <section id="seatAssignments">
-        <article class="col-md-6">
-            <h2>Ticket seats</h2>
-        </article>
-        <article class="col-md-6">
-            <h2>Subscription seats</h2>
-            <table id="ticketSeatTable">
-            
-            </table>
-        </article>
+
+    <!-- ACTIVE ASSIGNMENTS -->
+    <section class="assignments-section">
+        <div class="assignment-column">
+            <h2>Active Ticket Assignments</h2>
+            <div id="ticketAssignments" class="assignment-list"></div>
+        </div>
+
+        <div class="assignment-column">
+            <h2>Active Subscription Assignments</h2>
+            <div id="subscriptionAssignments" class="assignment-list"></div>
+        </div>
     </section>
-}
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        loadTicketAssignments();
+        loadSubscriptionAssignments();
+    });
+
+    // ---------------------------
+    // TICKET ASSIGNMENTS
+    // ---------------------------
+    async function loadTicketAssignments() {
+        const container = document.getElementById("ticketAssignments");
+        container.innerHTML = "<p>Loading...</p>";
+
+        const res = await fetch("/ShoppingCart/GetTicketAssignments");
+        const data = await res.json();
+
+        container.innerHTML = "";
+
+        if (data.length === 0) {
+            container.innerHTML = "<p class='empty'>No active tickets.</p>";
+            return;
+        }
+
+        data.forEach(a => {
+            container.innerHTML += `
+                <div class="assignment-card">
+                    <h4>${a.productName}</h4>
+                    <p><b>Section:</b> ${a.sectionName}</p>
+                    <p><b>Seat:</b> ${a.seatNumber}</p>
+                    <p><b>Match Date:</b> ${formatDate(a.matchDate)}</p>
+
+                    <form method="post" action="/ShoppingCart/CancelProduct">
+                        <input type="hidden" name="__RequestVerificationToken"
+                               value="${document.getElementById('afToken').value}" />
+                        <input type="hidden" name="assignmentId" value="${a.assignmentId}" />
+                        <input type="hidden" name="productType" value="Ticket" />
+                        <button type="submit" class="cancel-btn">Cancel</button>
+                    </form>
+                </div>
+            `;
+        });
+    }
+
+    // ---------------------------
+    // SUBSCRIPTION ASSIGNMENTS
+    // ---------------------------
+    async function loadSubscriptionAssignments() {
+        const container = document.getElementById("subscriptionAssignments");
+        container.innerHTML = "<p>Loading...</p>";
+
+        const res = await fetch("/ShoppingCart/GetSubscriptionAssignments");
+        const data = await res.json();
+
+        container.innerHTML = "";
+
+        if (data.length === 0) {
+            container.innerHTML = "<p class='empty'>No active subscriptions.</p>";
+            return;
+        }
+
+        data.forEach(a => {
+            container.innerHTML += `
+                <div class="assignment-card">
+                    <h4>${a.productName}</h4>
+                    <p><b>Section:</b> ${a.sectionName}</p>
+                    <p><b>Seat:</b> ${a.seatNumber}</p>
+                    <p><b>Season:</b> ${a.seasonStart} → ${a.seasonEnd}</p>
+
+                    <form method="post" action="/ShoppingCart/CancelProduct">
+                        <input type="hidden" name="__RequestVerificationToken"
+                               value="${document.getElementById('afToken').value}" />
+                        <input type="hidden" name="assignmentId" value="${a.assignmentId}" />
+                        <input type="hidden" name="productType" value="Subscription" />
+                        <button type="submit" class="cancel-btn">Cancel</button>
+                    </form>
+                </div>
+            `;
+        });
+    }
+
+    function formatDate(dateString) {
+        if (!dateString) return "Unknown";
+        return new Date(dateString).toLocaleString();
+    }
+</script>
