@@ -14,19 +14,16 @@ namespace ChampionsLeague.Controllers
     public class StadiumController : Controller
     {
         private readonly IClubService _clubService;
-        private readonly IService<Stadium> _stadiumService;
         private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
 
         private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         public StadiumController(
-            IService<Stadium> stadiumService,
             IClubService clubService,
             IOrderService orderService,
             IMapper mapper)
         {
-            _stadiumService = stadiumService;
             _clubService = clubService;
             _orderService = orderService;
             _mapper = mapper;
@@ -44,7 +41,7 @@ namespace ChampionsLeague.Controllers
         [HttpGet]
         public async Task<IActionResult> GetStadium(int stadiumId)
         {
-            var stadium = await _stadiumService.FindByIdAsync(stadiumId);
+            var stadium = await _orderService.GetStadiumById(stadiumId);
 
             if (stadium == null)
                 return NotFound();
