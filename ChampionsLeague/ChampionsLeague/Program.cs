@@ -88,6 +88,15 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders()
 .AddDefaultUI(); // Required for Identity UI
+
+
+
+builder.Services.AddHttpClient<HotelApiService>(client =>
+{
+    client.BaseAddress = new Uri("https://data.xotelo.com/api");
+});
+
+
 // ---------------------------------------------------------
 // 7. Register DAOs + Services
 // ---------------------------------------------------------
@@ -101,6 +110,7 @@ builder.Services.AddScoped<IService<Order>, OrderService>();
 builder.Services.AddScoped<IMatchService, MatchService>();
 builder.Services.AddScoped<IClubService, ClubService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<HotelApiService>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 

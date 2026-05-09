@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ChampionsLeague.Models;
+using ChampionsLeague.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ChampionsLeague.Controllers
 {
@@ -6,6 +8,15 @@ namespace ChampionsLeague.Controllers
     [ApiController]
     public class HotelController : ControllerBase
     {
+
+        private readonly HotelApiService _hotelService;
+
+        public HotelController(HotelApiService hotelService)
+        {
+            _hotelService = hotelService;
+        }
+
+
         // STEP 1: Dummy hotel list
         [HttpGet("search")]
         public IActionResult SearchHotels()
@@ -18,6 +29,15 @@ namespace ChampionsLeague.Controllers
 });
 
         }
+
+
+        [HttpGet("search-real")]
+        public async Task<IActionResult> SearchRealHotels(string city = "BRU")
+        {
+            var result = await _hotelService.SearchHotelsAsync(city);
+            return Ok(result);
+        }
+
 
         // STEP 2: Dummy room offers
         [HttpGet("offers/{hotelId}")]
@@ -35,6 +55,16 @@ namespace ChampionsLeague.Controllers
 
             return Ok(new { offer = offers[hotelId] });
         }
+
+
+
+        [HttpPost("book")]
+        public IActionResult BookHotel([FromBody] HotelBooking booking)
+        {
+            // Save to DB (or mock)
+            return Ok(new { message = "Hotel booked successfully!" });
+        }
+
 
     }
 }

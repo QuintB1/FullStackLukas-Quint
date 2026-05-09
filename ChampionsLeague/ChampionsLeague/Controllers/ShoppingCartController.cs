@@ -66,16 +66,25 @@ namespace ChampionsLeague.Controllers
                 await _order.UpdateCart(order, userId);
                 await _order.Checkout(order.OrderId);
 
-                var assignments = await _order.GetValidTicketAssignments(userId);
+                var ticketAssignments = await _order.GetValidTicketAssignments(userId);
+
+                var subscriptionAssignments = await _order.GetValidSubscriptionAssignments(userId);
 
                 List<Ticket> tickets = new List<Ticket>();
 
-                foreach (var assignment in assignments)
+                foreach (var assignment in ticketAssignments)
                 {
                     tickets.Add(assignment.Ticket);
                 }
 
-                var pdfFiles = _pdf.CreatePDFDocument(tickets);
+                List<Subscription> subscriptions = new List<Subscription>();
+
+                foreach (var assignment in subscriptionAssignments)
+                {
+                    subscriptions.Add(assignment.Subscription);
+                }
+
+                var pdfFiles = _pdf.CreatePDFDocument(tickets, subscriptions);
 
                 
 

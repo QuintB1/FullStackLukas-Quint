@@ -13,7 +13,7 @@ namespace ChampionLeague.utils.PDF
 {
     public class CreatePDF : ICreatePDF
     {
-        public byte[] CreatePDFDocument(List<Ticket> tickets)
+        public byte[] CreatePDFDocument(List<Ticket> tickets, List<Subscription> subscriptions)
         {
             using var ms = new MemoryStream();
 
@@ -49,6 +49,27 @@ namespace ChampionLeague.utils.PDF
                     Alignment = Element.ALIGN_LEFT
                 });
             }
+
+            foreach (var subscription in subscriptions)
+            {
+                doc.NewPage();
+
+                var header = new Paragraph("Subscription")
+                {
+                    Alignment = Element.ALIGN_CENTER
+                };
+                doc.Add(header);
+
+                doc.Add(new Paragraph("Start date: " + subscription.Season.StartDate.ToString())
+                {
+                    Alignment = Element.ALIGN_LEFT
+                });
+                doc.Add(new Paragraph("End date: " + subscription.Season.EndDate.ToString())
+                {
+                    Alignment = Element.ALIGN_LEFT
+                });
+            }
+            
 
             doc.Close();
 

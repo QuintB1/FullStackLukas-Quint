@@ -9,6 +9,6 @@ namespace ChampionLeague.utils.PDF.Interfaces
 {
     public interface ICreatePDF
     {
-        byte[] CreatePDFDocument(List<Ticket> tickets);
+        byte[] CreatePDFDocument(List<Ticket> tickets, List<Subscription> subscriptions);
     }
 }
