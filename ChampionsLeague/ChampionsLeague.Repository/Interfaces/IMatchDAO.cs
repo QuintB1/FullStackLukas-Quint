@@ -10,5 +10,6 @@ namespace ChampionsLeague.Repository.Interfaces
     public interface IMatchDAO: IDAO<Match>
     {
         Task<IEnumerable<Match>?> GetAllMatchesWithClubIdAsync(int id);
+        Task<IEnumerable<Stadium>?> GetAllStadiums();
     }
 }

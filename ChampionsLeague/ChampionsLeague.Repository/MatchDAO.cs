@@ -55,5 +55,11 @@ namespace ChampionsLeague.Repository
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Stadium>?> GetAllStadiums()
+        {
+            return await _context.Stadia
+                .Include(s => s.StadiumSections)
+                .ToListAsync();
+        }
     }
 }

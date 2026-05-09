@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ChampionsLeague.Services;
+using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -11,14 +12,12 @@ namespace ChampionsLeague.API
     [Route("api")]
     public class MatchesController : ControllerBase
     {
-        private readonly MatchService _matchService;
-        private readonly StadiumService _stadiumService;
+        private readonly IMatchService _matchService;
         private readonly IMapper _mapper;
 
-        public MatchesController(MatchService matchService, StadiumService stadiumService, IMapper mapper)
+        public MatchesController(MatchService matchService, IMapper mapper)
         {
             _matchService = matchService;
-            _stadiumService = stadiumService;
             _mapper = mapper;
         }
         
@@ -26,7 +25,7 @@ namespace ChampionsLeague.API
         [HttpGet("stadiums")]
         public async Task<IActionResult> GetAllStadiums()
         {
-            var stadiums = await _stadiumService.GetAllAsync();
+            var stadiums = await _matchService.GetAllStadiums();
 
             if (stadiums == null)
             {
