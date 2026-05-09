@@ -76,7 +76,6 @@ namespace ChampionsLeague.Controllers
             try
             {
                 var userId = GetUserId();
-                Console.WriteLine("userID: " + userId);
 
                 await _orderService.AddTicketToCart(matchId, userId);
 
