@@ -25,7 +25,7 @@ namespace ChampionsLeague.Repository
                     .Where(s => s.ClubId == clubId)
                     .Select(s => s.ProductId)
                     .FirstOrDefaultAsync();
-
+                Console.WriteLine("-------This is the current userId:" + userId);
                 if (productId == 0)
                     throw new KeyNotFoundException($"No subscription product found for ClubId {clubId}");
 

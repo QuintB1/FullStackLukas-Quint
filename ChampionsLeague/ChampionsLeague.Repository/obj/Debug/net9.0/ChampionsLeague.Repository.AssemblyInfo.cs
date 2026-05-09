@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChampionsLeague.Repository")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca7a88b5792c8655754cdd42de2198e179f27792")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+825ee65da02c85d1a486c97775d2ab1c90d7b986")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChampionsLeague.Repository")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChampionsLeague.Repository")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
