@@ -239,10 +239,16 @@ namespace ChampionsLeague.Repository
             return await _context.SubscriptionAssignments
                 .Include(s => s.Subscription)
                     .ThenInclude(sub => sub.Season)
+
+                .Include(s => s.Subscription)
+                    .ThenInclude(c => c.Club)
+
                 .Include(s => s.Subscription)
                     .ThenInclude(sub => sub.Product)   // ⭐ REQUIRED
+
                 .Include(s => s.Seat)
                     .ThenInclude(seat => seat.Section)
+
                 .Where(s => s.UserId == userId)
                 .Where(s => s.Active == true)
                 .Where(s => s.Subscription.Season.EndDate >= today)

@@ -60,6 +60,10 @@ namespace ChampionLeague.utils.PDF
                 };
                 doc.Add(header);
 
+                doc.Add(new Paragraph("Club: " + subscription.Club.Name)
+                {
+                    Alignment = Element.ALIGN_LEFT
+                });
                 doc.Add(new Paragraph("Start date: " + subscription.Season.StartDate.ToString())
                 {
                     Alignment = Element.ALIGN_LEFT
