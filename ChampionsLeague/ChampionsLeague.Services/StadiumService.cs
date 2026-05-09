@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace ChampionsLeague.Services
 {
-    public class StadiumService : IService<Stadium>
+    public class IStadiumService : IService<Stadium>
     {
         private IDAO<Stadium> _stadiumDAO;
 
-        public StadiumService(IDAO<Stadium> stadiumDAO)
+        public IStadiumService(IDAO<Stadium> stadiumDAO)
         {
             _stadiumDAO = stadiumDAO;
         }

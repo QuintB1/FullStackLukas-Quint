@@ -10,5 +10,6 @@ namespace ChampionsLeague.Services.Interfaces
     public interface IMatchService: IService<Match>
     {
         Task<IEnumerable<Match>?> GetAllByClubID(int club);
+        Task<IEnumerable<Stadium>?> GetAllStadiums();
     }
 }

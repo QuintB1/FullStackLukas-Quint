@@ -92,11 +92,11 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 // 7. Register DAOs + Services
 // ---------------------------------------------------------
 builder.Services.AddScoped<IClubDAO, ClubDAO>();
-builder.Services.AddScoped<IDAO<Stadium>, StadiumDAO>();
 builder.Services.AddScoped<IOrderDAO, OrderDAO>();
 builder.Services.AddScoped<IMatchDAO, MatchDAO>();
+builder.Services.AddScoped<MatchService>();
 
-builder.Services.AddScoped<IService<Stadium>, StadiumService>();
+
 builder.Services.AddScoped<IService<Order>, OrderService>();
 builder.Services.AddScoped<IMatchService, MatchService>();
 builder.Services.AddScoped<IClubService, ClubService>();
