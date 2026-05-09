@@ -90,14 +90,25 @@ namespace ChampionsLeague.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var assignments = await _order.GetValidTicketAssignments(userId);
-            return Json(assignments);
+
+            var vm = _mapper.Map<List<TicketAssignmentVM>>(assignments);
+            return Json(vm);
         }
+
+
+        [HttpGet]
         public async Task<IActionResult> GetSubscriptionAssignments()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var assignments = await _order.GetValidTicketAssignments(userId);
-            return Json(assignments);
+            var assignments = await _order.GetValidSubscriptionAssignments(userId);
+
+            var vm = _mapper.Map<List<SubscriptionAssignmentVM>>(assignments);
+            return Json(vm);
         }
+
+
+
+
 
         [Authorize]
         public async Task<IActionResult> History(string email)
@@ -111,5 +122,34 @@ namespace ChampionsLeague.Controllers
             var vm = _mapper.Map<List<OrderVM>>(cartData);
             return View(vm);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CancelProduct(int assignmentId, String productType)
+        {
+            try
+            {
+                if (productType.Equals("Ticket"))
+                {
+                    await _order.CancelTicket(assignmentId);
+                }
+                else
+                {
+                    await _order.CancelSubscription(assignmentId);
+                }
+                return RedirectToAction("History");
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException == null)
+                {
+                    return BadRequest(ex.Message);
+                }
+                else
+                {
+                    return BadRequest(ex.InnerException.Message);
+                }
+            }
+        }
+
     }
 }

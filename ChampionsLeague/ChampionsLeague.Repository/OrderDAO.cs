@@ -206,13 +206,22 @@ namespace ChampionsLeague.Repository
         public async Task<List<TicketAssignment>> GetValidTicketAssignments(string userId)
         {
             var today = DateTime.UtcNow;
+
             return await _context.TicketAssignments
                 .Include(t => t.Ticket)
-                .ThenInclude(t => t.Match)
-                .Where(t => t.Active == true && t.Ticket.Match.DateTime < today)
+                    .ThenInclude(ti => ti.Match)
+                .Include(t => t.Ticket)
+                    .ThenInclude(ti => ti.Product)   // ⭐ REQUIRED
+                .Include(t => t.Seat)
+                    .ThenInclude(s => s.Section)
+                .Where(t => t.Active == true)
                 .Where(t => t.UserId == userId)
+                .Where(t => t.Ticket.Match.DateTime >= today)
                 .ToListAsync();
         }
+
+
+
 
         public async Task<List<SubscriptionAssignment>> GetValidSubscriptionAssignments(string userId)
         {
@@ -220,11 +229,19 @@ namespace ChampionsLeague.Repository
 
             return await _context.SubscriptionAssignments
                 .Include(s => s.Subscription)
-                .ThenInclude(sub => sub.Season)
+                    .ThenInclude(sub => sub.Season)
+                .Include(s => s.Subscription)
+                    .ThenInclude(sub => sub.Product)   // ⭐ REQUIRED
+                .Include(s => s.Seat)
+                    .ThenInclude(seat => seat.Section)
                 .Where(s => s.UserId == userId)
+                .Where(s => s.Active == true)
                 .Where(s => s.Subscription.Season.EndDate >= today)
                 .ToListAsync();
         }
+
+
+
 
     }
 }
