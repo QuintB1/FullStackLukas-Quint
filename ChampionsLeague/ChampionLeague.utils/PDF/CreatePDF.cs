@@ -17,14 +17,14 @@ namespace ChampionLeague.utils.PDF
         {
             using var ms = new MemoryStream();
 
-           
+            var doc = new Document(PageSize.A6, 20, 20, 20, 20);
+            PdfWriter.GetInstance(doc, ms);
+
+            doc.Open();
 
             foreach (var ticket in tickets)
             {
-                var doc = new Document(PageSize.A6, 20, 20, 20, 20);
-                PdfWriter.GetInstance(doc, ms);
-
-                doc.Open();
+                doc.NewPage();
 
                 var header = new Paragraph("Ticket Match")
                 {

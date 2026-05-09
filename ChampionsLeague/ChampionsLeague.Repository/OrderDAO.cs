@@ -226,5 +226,26 @@ namespace ChampionsLeague.Repository
                 .ToListAsync();
         }
 
+        public async Task<List<TicketAssignment>> GetOrderTicketAssignments(int orderId, string userId)
+        {
+            return await _context.TicketAssignments
+                .Include(t => t.Ticket)
+                    .ThenInclude(t => t.Match)
+                        .ThenInclude(m => m.HomeClubNavigation)
+
+                .Include(t => t.Ticket)
+                    .ThenInclude(t => t.Match)
+                        .ThenInclude(m => m.AwayClubNavigation)
+
+                .Include(t => t.Ticket)
+                    .ThenInclude(t => t.Match)
+                        .ThenInclude(m => m.Stadium)
+
+                .Where(t =>
+                    t.UserId == userId &&
+                    t.Ticket.Product.OrderLines.Any(ol => ol.OrderId == orderId))
+                .ToListAsync();
+        }
+
     }
 }

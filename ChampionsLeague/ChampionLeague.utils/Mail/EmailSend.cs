@@ -41,7 +41,7 @@ namespace ChampionLeague.utils.Mail
             }
         }
 
-        public async Task SendEmailAttachmentAsync(string to, string subject, string message, List<byte[]> pdfFiles)
+        public async Task SendEmailAttachmentAsync(string to, string subject, string message, byte[] pdfFiles)
         {
             var mail = new MailMessage();  // aanmaken van een mail-object
             mail.To.Add(new MailAddress(to));

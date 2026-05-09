@@ -21,5 +21,7 @@ namespace ChampionsLeague.Repository.Interfaces
         Task<List<Order>> GetHistory(String userId);
         Task<List<TicketAssignment>> GetValidTicketAssignments(String userId);
         Task<List<SubscriptionAssignment>> GetValidSubscriptionAssignments(String userId);
+
+        Task<List<TicketAssignment>> GetOrderTicketAssignments(int orderId, string userId);
     }
 }

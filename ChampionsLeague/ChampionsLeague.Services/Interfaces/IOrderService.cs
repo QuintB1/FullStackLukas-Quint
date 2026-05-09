@@ -16,7 +16,7 @@ namespace ChampionsLeague.Services.Interfaces
         Task RemoveFromCart(int lineId, String userId);
         Task<List<StadiumSection>> GetSectionsForProduct(int productId);
         Task UpdateCart(Order order, string userId);
-        Task SendOrderConfirmationAsync(Order order);
+        //Task SendOrderConfirmationAsync(Order order);
         Task Checkout(int orderId);
         Task CancelSubscription(int assignmentId);
         Task CancelTicket(int assignmentId);
@@ -24,5 +24,6 @@ namespace ChampionsLeague.Services.Interfaces
         Task<List<TicketAssignment>> GetValidTicketAssignments(String userId);
         Task<List<SubscriptionAssignment>> GetValidSubscriptionAssignments(String userId);
 
+        Task<List<TicketAssignment>> GetOrderTicketAssignments(int orderId, string userId);
     }
 }

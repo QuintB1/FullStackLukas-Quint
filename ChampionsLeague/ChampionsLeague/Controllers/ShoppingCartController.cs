@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
+using ChampionLeague.utils.Mail.Interfaces;
+using ChampionLeague.utils.PDF.Interfaces;
 using ChampionsLeague.Domain.EntitiesDB;
 using ChampionsLeague.Services.Interfaces;
 using ChampionsLeague.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Build.Tasks;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Newtonsoft.Json;
 using NuGet.Protocol.Plugins;
 using System.Security.Claims;
@@ -16,11 +19,15 @@ namespace ChampionsLeague.Controllers
     {
         private readonly IOrderService _order;
         private readonly IMapper _mapper;
+        private readonly IEmailSend _email;
+        private readonly ICreatePDF _pdf;
 
-        public ShoppingCartController(IOrderService order, IMapper mapper)
+        public ShoppingCartController(IOrderService order, IMapper mapper, IEmailSend email, ICreatePDF pdf)
         {
             _order = order;
             _mapper = mapper;
+            _email = email;
+            _pdf = pdf;
         }
 
         [Authorize]
@@ -55,11 +62,35 @@ namespace ChampionsLeague.Controllers
 
                 await _order.UpdateCart(order, userId);
                 await _order.Checkout(order.OrderId);
+
+                var assignments = await _order.GetOrderTicketAssignments(order.OrderId, userId);
+
+                List<Ticket> tickets = new List<Ticket>();
+
+                foreach (var assignment in assignments)
+                {
+                    tickets.Add(assignment.Ticket);
+                }
+
+                var pdfFiles = _pdf.CreatePDFDocument(tickets);
+
+                
+
+                var email = User.FindFirstValue(ClaimTypes.Email);
+
+                await _email.SendEmailAttachmentAsync(
+                    email, 
+                    "Your Champions League Tickets", 
+                    "<h1>Thank you for your purchase</h1><p>Your tickets are attached.</p>", 
+                    pdfFiles
+                );
+
                 return View("Success");
             }
-            catch (Exception ex) { 
+            catch (Exception ex) 
+            {
                 return BadRequest(ex.Message);
-                }
+            }
                 
         }
 

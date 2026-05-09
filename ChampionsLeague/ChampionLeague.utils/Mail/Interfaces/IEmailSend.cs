@@ -10,6 +10,6 @@ namespace ChampionLeague.utils.Mail.Interfaces
     {
         Task SendEmailAsync(string email, string subject, string message);
 
-        Task SendEmailAttachmentAsync(string email, string subject, string message, List<byte[]> pdfFiles);
+        Task SendEmailAttachmentAsync(string email, string subject, string message, byte[] pdfFiles);
     }
 }

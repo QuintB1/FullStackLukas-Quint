@@ -99,30 +99,30 @@ namespace ChampionsLeague.Services
             throw new NotImplementedException();
         }
 
-        public async Task SendOrderConfirmationAsync(Order order)
-        {
-            var pdfFiles = new List<byte[]>();
+        //public async Task SendOrderConfirmationAsync(Order order)
+        //{
+        //    var pdfFiles = new List<byte[]>();
 
-            var tickets = _context.TicketAssignments
-                .Where(ta => ta.UserId == order.UserId && ta.Active && order.Status == "Cart")
-                .Select(ta => ta.Ticket)
-                .ToList();
+        //    var tickets = _context.TicketAssignments
+        //        .Where(ta => ta.UserId == order.UserId && ta.Active && order.Status == "Cart")
+        //        .Select(ta => ta.Ticket)
+        //        .ToList();
 
-            foreach (var line in order.OrderLines)
-            {
-                var pdf = _createPDF.CreatePDFDocument(tickets);
-                pdfFiles.Add(pdf);
-            }
+        //    foreach (var line in order.OrderLines)
+        //    {
+        //        var pdf = _createPDF.CreatePDFDocument(tickets);
+        //        pdfFiles.Add(pdf);
+        //    }
 
-            if (!string.IsNullOrWhiteSpace(order.User.Email))
-            {
-                await _emailSend.SendEmailAttachmentAsync(
-                    order.User.Email,
-                    "Orderbevestiging",
-                    "bedankt voor jouw bestelling",
-                    pdfFiles);
-            }
-        }
+        //    if (!string.IsNullOrWhiteSpace(order.User.Email))
+        //    {
+        //        await _emailSend.SendEmailAttachmentAsync(
+        //            order.User.Email,
+        //            "Orderbevestiging",
+        //            "bedankt voor jouw bestelling",
+        //            pdfFiles);
+        //    }
+        //}
 
         public async Task Checkout(int orderId)
         {
@@ -154,6 +154,11 @@ namespace ChampionsLeague.Services
         public async Task<List<SubscriptionAssignment>> GetValidSubscriptionAssignments(string userId)
         {
             return await _orderDAO.GetValidSubscriptionAssignments(userId);
+        }
+
+        public async Task<List<TicketAssignment>> GetOrderTicketAssignments(int orderId, string userId)
+        {
+            return await _orderDAO.GetOrderTicketAssignments(orderId, userId);
         }
     }
 }
