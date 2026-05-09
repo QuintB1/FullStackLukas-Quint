@@ -40,7 +40,8 @@ if (string.IsNullOrWhiteSpace(sqlConn))
     throw new Exception("SqlConnectionString not found in Key Vault or configuration.");
 }
 
-Console.WriteLine(sqlConn);
+var rapidApiKey = builder.Configuration["RapidApi--ApiKey"];
+
 
 // ---------------------------------------------------------
 // 3. Email + PDF services
