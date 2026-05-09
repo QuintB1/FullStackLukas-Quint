@@ -1,33 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.Extensions.Configuration;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ChampionsLeague.Services
+public class HotelApiService
 {
-    public class HotelApiService
+    private readonly HttpClient _httpClient;
+    private readonly IConfiguration _configuration;
+
+    public HotelApiService(HttpClient httpClient, IConfiguration configuration)
     {
+        _httpClient = httpClient;
+        _configuration = configuration;
+    }
 
-        private readonly HttpClient _httpClient;
+    public async Task<string> SearchHotelsAsync(string city)
+    {
+        var apiKey = _configuration["RapidApi:ApiKey"];
 
-        public HotelApiService(HttpClient httpClient)
+        var request = new HttpRequestMessage
         {
-            _httpClient = httpClient;
+            Method = HttpMethod.Get,
+            // ⚠️ Example endpoint (depends on API you choose)
+            RequestUri = new Uri($"https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination?query={city}")
+        };
+
+        request.Headers.Add("x-rapidapi-key", apiKey);
+        request.Headers.Add("x-rapidapi-host", "booking-com15.p.rapidapi.com");
+
+        var response = await _httpClient.SendAsync(request);
+
+        var content = await response.Content.ReadAsStringAsync();
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception($"API ERROR: {content}");
         }
 
-        public async Task<string> SearchHotelsAsync(string city)
-        {
-            var url = $"https://test.api.amadeus.com/v1/reference-data/locations/hotels?cityCode={city}";
-
-            // ⚠ You need an access token from Amadeus
-            _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", "YOUR_ACCESS_TOKEN");
-
-            var response = await _httpClient.GetAsync(url);
-            return await response.Content.ReadAsStringAsync();
-
-        }
+        return content;
     }
 }

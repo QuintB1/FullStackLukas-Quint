@@ -1,6 +1,7 @@
 ﻿using ChampionsLeague.Models;
 using ChampionsLeague.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace ChampionsLeague.Controllers
 {
@@ -17,26 +18,26 @@ namespace ChampionsLeague.Controllers
         }
 
 
-        // STEP 1: Dummy hotel list
         [HttpGet("search")]
-        public IActionResult SearchHotels()
+        public async Task<IActionResult> SearchHotels()
         {
-            return Ok(new[]
-{
-    new { id = 1, name = "Hotel Brussels Center", price = "€120" },
-    new { id = 2, name = "Grand Palace Hotel", price = "€180" },
-    new { id = 3, name = "Airport Comfort Inn", price = "€90" }
-});
+            var json = await _hotelService.SearchHotelsAsync("brussels");
 
+            var doc = JsonDocument.Parse(json);
+
+            var hotels = doc.RootElement
+                .GetProperty("data")
+                .EnumerateArray()
+                .Select((h, index) => new
+                {
+                    id = index + 1,
+                    name = h.GetProperty("name").GetString(),
+                    price = h.GetProperty("nr_hotels").GetInt32() + " hotels available"
+                });
+
+            return Ok(hotels);
         }
 
-
-        [HttpGet("search-real")]
-        public async Task<IActionResult> SearchRealHotels(string city = "BRU")
-        {
-            var result = await _hotelService.SearchHotelsAsync(city);
-            return Ok(result);
-        }
 
 
         // STEP 2: Dummy room offers

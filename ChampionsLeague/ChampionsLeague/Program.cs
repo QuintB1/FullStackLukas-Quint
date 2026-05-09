@@ -91,10 +91,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 
 
 
-builder.Services.AddHttpClient<HotelApiService>(client =>
-{
-    client.BaseAddress = new Uri("https://data.xotelo.com/api");
-});
+builder.Services.AddHttpClient();
 
 
 // ---------------------------------------------------------
