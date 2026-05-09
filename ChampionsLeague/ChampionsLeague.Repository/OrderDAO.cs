@@ -270,5 +270,13 @@ namespace ChampionsLeague.Repository
                 .ToListAsync();
         }
 
+        public async Task<Stadium?> GetStadiumById(int id)
+        {
+            return await _context.Stadia
+                .Include(s => s.StadiumSections)
+                .FirstOrDefaultAsync(s => s.StadiumId == id);
+        }
+
+
     }
 }

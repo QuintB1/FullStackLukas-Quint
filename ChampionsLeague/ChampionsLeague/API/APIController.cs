@@ -40,18 +40,41 @@ namespace ChampionsLeague.API
 
         // 3. Users
         [HttpGet("users")]
-        public IActionResult GetUsers([FromServices] UserManager<IdentityUser> userManager)
+        public async Task<IActionResult> GetUsers([FromServices] UserManager<IdentityUser> userManager)
         {
-            var users = userManager.Users.Select(u => new
-            {
-                u.Id,
-                u.UserName,
-                u.Email,
-                Roles = new List<string>()
-            });
+            var users = userManager.Users.ToList();
 
-            return Ok(users);
+            var result = new List<object>();
+
+            foreach (var user in users)
+            {
+                var roles = await userManager.GetRolesAsync(user);
+
+                result.Add(new
+                {
+                    user.Id,
+                    user.UserName,
+                    user.Email,
+                    Roles = roles
+                });
+            }
+
+            return Ok(result);
         }
+
+        [HttpGet("matches")]
+        public async Task<IActionResult> matches(int homeclub, int awayclub)
+        {
+            var matchEntities = await _matchService.GetAllMatchesWithClubIdAsync(homeclub, awayclub);
+
+            if (matchEntities == null)
+                return NotFound();
+
+            var matchVMs = _mapper.Map<List<MatchVM>>(matchEntities);
+
+            return Ok(matchVMs);
+        }
+
     }
 
 

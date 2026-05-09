@@ -12,6 +12,7 @@ namespace ChampionsLeague.Services.Interfaces
     {
         Task<Order?> GetUserShoppingCart(String id);
         Task AddTicketToCart(int productId, string userId);
+        Task<Stadium> GetStadiumById(int id);
         Task AddSubscriptionToCart(int productId, string userId);
         Task RemoveFromCart(int lineId, String userId);
         Task<List<StadiumSection>> GetSectionsForProduct(int productId);

@@ -160,5 +160,10 @@ namespace ChampionsLeague.Services
         {
             return await _orderDAO.GetOrderTicketAssignments(orderId, userId);
         }
+
+        public async Task<Stadium?> GetStadiumById(int id)
+        {
+            return await _orderDAO.GetStadiumById(id);
+        }
     }
 }

@@ -74,5 +74,10 @@ namespace ChampionsLeague.Services
         {
             return await _matchDao.GetAllStadiums();
         }
+
+        public async Task<IEnumerable<Match>?> GetAllMatchesWithClubIdAsync(int homeclubId, int awayClubId)
+        {
+            return await _matchDao.GetAllMatchesWithClubIdAsync(homeclubId, awayClubId);
+        }
     }
 }
