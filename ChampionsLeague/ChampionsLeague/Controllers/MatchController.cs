@@ -76,6 +76,7 @@ namespace ChampionsLeague.Controllers
             try
             {
                 var userId = GetUserId();
+                Console.WriteLine("userID: " + userId);
 
                 Console.WriteLine("User ID: " +  userId);
 

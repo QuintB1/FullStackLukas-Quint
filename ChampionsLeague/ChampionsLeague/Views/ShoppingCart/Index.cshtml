@@ -6,6 +6,12 @@
 @if (Model == null)
 {
     <div class="alert alert-info">Your shopping cart is empty.</div>
+    <a asp-controller="ShoppingCart"
+       asp-action="History"
+       class="btn btn-secondary">
+        View Purchase History
+    </a>
+
 }
 else
 {
@@ -76,6 +82,12 @@ else
         <h3>Total: <span id="cart-total"></span> €</h3>
         <button type="submit" class="btn btn-primary">Checkout</button>
     </form>
+    <a asp-controller="ShoppingCart"
+       asp-action="History"
+       class="btn btn-secondary">
+        View Purchase History
+    </a>
+
 
     <script>
         // -----------------------------

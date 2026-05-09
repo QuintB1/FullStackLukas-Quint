@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Azure.Identity;
 using ChampionLeague.utils.Mail;
 using ChampionLeague.utils.Mail.Interfaces;
@@ -72,26 +72,27 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 // ---------------------------------------------------------
 builder.Services.AddDbContext<ChampionLeagueDbContext>(options =>
     options.UseSqlServer(sqlConn));
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(sqlConn));
-
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // ---------------------------------------------------------
-// 6. Identity
+// Identity (FINAL, CLEAN, NO DUPLICATES)
 // ---------------------------------------------------------
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
     options.SignIn.RequireConfirmedAccount = true;
 })
-.AddEntityFrameworkStores<ApplicationDbContext>();
-
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders()
+.AddDefaultUI(); // Required for Identity UI
 // ---------------------------------------------------------
-// 7. Register DAOs + Services (cleaned, no duplicates)
+// 7. Register DAOs + Services
 // ---------------------------------------------------------
 builder.Services.AddScoped<IClubDAO, ClubDAO>();
-builder.Services.AddScoped<IDAO<Stadium>,StadiumDAO>();
+builder.Services.AddScoped<IDAO<Stadium>, StadiumDAO>();
 builder.Services.AddScoped<IOrderDAO, OrderDAO>();
 builder.Services.AddScoped<IMatchDAO, MatchDAO>();
 

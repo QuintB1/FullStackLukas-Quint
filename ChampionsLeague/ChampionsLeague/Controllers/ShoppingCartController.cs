@@ -35,6 +35,9 @@ namespace ChampionsLeague.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var cartData = await _order.GetUserShoppingCart(userId);
+            Console.WriteLine("Authenticated: " + User.Identity.IsAuthenticated);
+            Console.WriteLine("UserId: " + userId);
+
 
             if (cartData == null)
                 return View(null);
