@@ -40,6 +40,8 @@ if (string.IsNullOrWhiteSpace(sqlConn))
     throw new Exception("SqlConnectionString not found in Key Vault or configuration.");
 }
 
+Console.WriteLine(sqlConn);
+
 // ---------------------------------------------------------
 // 3. Email + PDF services
 // ---------------------------------------------------------

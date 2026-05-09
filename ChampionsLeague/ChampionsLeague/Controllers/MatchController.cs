@@ -68,7 +68,7 @@ namespace ChampionsLeague.Controllers
         // -------------------------
         // ADD TICKET TO CART
         // -------------------------
-        [HttpGet]
+
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> AddTicketToCart(int matchId)
@@ -76,6 +76,8 @@ namespace ChampionsLeague.Controllers
             try
             {
                 var userId = GetUserId();
+
+                Console.WriteLine("User ID: " +  userId);
 
                 await _orderService.AddTicketToCart(matchId, userId);
 
