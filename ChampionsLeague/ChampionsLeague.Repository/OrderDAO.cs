@@ -209,6 +209,16 @@ namespace ChampionsLeague.Repository
             return await _context.TicketAssignments
                 .Include(t => t.Ticket)
                     .ThenInclude(ti => ti.Match)
+                        .ThenInclude(m => m.HomeClubNavigation)
+
+                .Include(t => t.Ticket)
+                    .ThenInclude(t => t.Match)
+                        .ThenInclude(m => m.AwayClubNavigation)
+
+                .Include(t => t.Ticket)
+                    .ThenInclude(t => t.Match)
+                        .ThenInclude(m => m.Stadium)
+
                 .Include(t => t.Ticket)
                     .ThenInclude(ti => ti.Product)   // ⭐ REQUIRED
                 .Include(t => t.Seat)

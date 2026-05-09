@@ -66,7 +66,7 @@ namespace ChampionsLeague.Controllers
                 await _order.UpdateCart(order, userId);
                 await _order.Checkout(order.OrderId);
 
-                var assignments = await _order.GetOrderTicketAssignments(order.OrderId, userId);
+                var assignments = await _order.GetValidTicketAssignments(userId);
 
                 List<Ticket> tickets = new List<Ticket>();
 

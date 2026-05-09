@@ -48,11 +48,9 @@ namespace ChampionLeague.utils.PDF
                 {
                     Alignment = Element.ALIGN_LEFT
                 });
-
-                doc.Close();
             }
 
-           
+            doc.Close();
 
             return ms.ToArray();
         }

@@ -52,16 +52,13 @@ namespace ChampionLeague.utils.Mail
 
             int counter = 1;
 
-            foreach (var pdfBytes in pdfFiles)
-            {
-                var stream = new MemoryStream(pdfBytes);
+            var stream = new MemoryStream(pdfFiles);
 
-                mail.Attachments.Add(
-                    new Attachment(stream, $"ticket_{counter}.pdf", MediaTypeNames.Application.Pdf)
-                );
+            mail.Attachments.Add(
+                new Attachment(stream, $"ticket_{counter}.pdf", MediaTypeNames.Application.Pdf)
+            );
 
-                counter++;
-            }
+            counter++;
 
             try
             {
