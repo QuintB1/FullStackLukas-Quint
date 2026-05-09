@@ -24,7 +24,9 @@ namespace BeerschopNET9_Identity.AutoMapper
     .ForMember(dest => dest.StadiumName,
     opt => opt.MapFrom(src => src.Stadium.Name));
 
-
+            CreateMap<Stadium, StadiumVM>()
+            .ForMember(dest => dest.Sections,
+                opt => opt.MapFrom(src => src.StadiumSections));
 
             CreateMap<StadiumSection, StadiumSectionVM>();
             CreateMap<Order, OrderVM>()
